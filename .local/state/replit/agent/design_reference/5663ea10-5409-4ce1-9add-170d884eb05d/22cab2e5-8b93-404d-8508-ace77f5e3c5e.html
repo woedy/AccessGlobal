@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Global Foundation - Empowering Communities, Transforming Lives</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#1E40AF',
+                            600: '#1d4ed8',
+                            700: '#1e3a8a'
+                        },
+                        success: {
+                            500: '#059669',
+                            600: '#047857'
+                        },
+                        warning: {
+                            500: '#F59E0B'
+                        },
+                        accent: {
+                            500: '#8B5CF6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+
+    <!-- @COMPONENT: Navigation -->
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50" data-mock="true">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-hands-helping text-primary-500 text-2xl mr-3"></i>
+                        <span class="font-bold text-xl text-gray-900">Access Global Foundation</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-primary-500 hover:text-primary-600 px-3 py-2 text-sm font-medium border-b-2 border-primary-500">Home</a>
+                        <a href="#about" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">About Us</a>
+                        <a href="#programs" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">Programs</a>
+                        <a href="#impact" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">Impact Stories</a>
+                        <a href="#get-involved" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">Get Involved</a>
+                        <a href="#blog" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">Blog</a>
+                        <a href="#contact" class="text-gray-600 hover:text-primary-500 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <button class="bg-warning-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-event="click:handleDonate">
+                        <i class="fas fa-heart mr-1"></i> Donate Now
+                    </button>
+                    <button class="md:hidden text-gray-600 hover:text-primary-500">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: HomePage -->
+    <div id="home">
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <!-- Hero background with community empowerment in Africa -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080');" data-mock-image="true" data-implementation="Community empowerment image"></div>
+            
+            <div class="relative z-20 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Empowering Communities,<br>
+                    <span class="text-warning-500">Transforming Lives</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    Through education, healthcare, security, and humanitarian aid, we create lasting change in communities worldwide.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-warning-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg" data-event="click:handleDonate">
+                        <i class="fas fa-heart mr-2"></i> Donate Now
+                    </button>
+                    <button class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all" data-event="click:handleJoinOutreach">
+                        <i class="fas fa-hands-helping mr-2"></i> Join an Outreach
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- Impact Statistics -->
+        <section class="py-16 bg-primary-500 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div data-mock="true">
+                        <div class="text-4xl font-bold mb-2" data-bind="stats.communitiesServed">250+</div>
+                        <div class="text-primary-100">Communities Served</div>
+                    </div>
+                    <div data-mock="true">
+                        <div class="text-4xl font-bold mb-2" data-bind="stats.livesImpacted">150K+</div>
+                        <div class="text-primary-100">Lives Impacted</div>
+                    </div>
+                    <div data-mock="true">
+                        <div class="text-4xl font-bold mb-2" data-bind="stats.schoolsBuilt">87</div>
+                        <div class="text-primary-100">Schools Built</div>
+                    </div>
+                    <div data-mock="true">
+                        <div class="text-4xl font-bold mb-2" data-bind="stats.healthcareVisits">45K+</div>
+                        <div class="text-primary-100">Healthcare Visits</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Statement -->
+        <section class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Mission</h2>
+                <p class="text-xl text-gray-600 leading-relaxed mb-12" data-mock="true">
+                    To create sustainable positive change in underserved communities worldwide through comprehensive programs in education, healthcare, security, and humanitarian aid. We believe every person deserves access to fundamental human needs and the opportunity to thrive.
+                </p>
+                <div class="bg-gradient-to-r from-primary-50 to-success-50 p-8 rounded-2xl">
+                    <blockquote class="text-2xl font-medium text-gray-800 italic">
+                        "Together, we build bridges of hope and create pathways to a brighter future."
+                    </blockquote>
+                    <cite class="text-primary-600 font-semibold mt-4 block" data-mock="true">- Access Global Foundation</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Programs -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Programs</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Comprehensive initiatives designed to address critical needs and create lasting impact
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Education Program -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-mock="true">
+                        <!-- Children learning in classroom setting -->
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Children learning in classroom" class="w-full h-48 object-cover" data-mock-image="true" />
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-graduation-cap text-success-500 text-xl mr-3"></i>
+                                <h3 class="text-xl font-semibold text-gray-900">Education</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Building schools, training teachers, and providing educational resources to ensure every child has access to quality learning.</p>
+                            <a href="#programs" class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Healthcare Program -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-mock="true">
+                        <!-- Healthcare volunteers helping patients -->
+                        <img src="https://pixabay.com/get/g0cec6e5024d3abaca8cd1e15c5ffd4605828db229734938a743359de15e961414c9dd46ed7e42b57d813c78d72025726f108de53f5e3dab539d0ba85ba1e561e_1280.jpg" alt="Healthcare volunteers helping patients" class="w-full h-48 object-cover" data-mock-image="true" />
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-heartbeat text-red-500 text-xl mr-3"></i>
+                                <h3 class="text-xl font-semibold text-gray-900">Healthcare</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Providing medical care, health education, and establishing clinics to improve community health outcomes.</p>
+                            <a href="#programs" class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Security Program -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-mock="true">
+                        <!-- Community safety and security initiatives -->
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Community safety meeting" class="w-full h-48 object-cover" data-mock-image="true" />
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-shield-alt text-primary-500 text-xl mr-3"></i>
+                                <h3 class="text-xl font-semibold text-gray-900">Security</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Strengthening community safety through training, infrastructure, and collaborative security initiatives.</p>
+                            <a href="#programs" class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Humanitarian Aid Program -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-mock="true">
+                        <!-- Humanitarian aid distribution scene -->
+                        <img src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Humanitarian aid distribution" class="w-full h-48 object-cover" data-mock-image="true" />
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-hands-helping text-warning-500 text-xl mr-3"></i>
+                                <h3 class="text-xl font-semibold text-gray-900">Humanitarian Aid</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Providing emergency relief, food assistance, and essential supplies during crises and natural disasters.</p>
+                            <a href="#programs" class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-20 bg-gradient-to-r from-primary-500 to-success-500 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Join thousands of supporters who are creating positive change in communities worldwide.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-primary-500 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105" data-event="click:handleDonate">
+                        <i class="fas fa-heart mr-2"></i> Start Donating
+                    </button>
+                    <button class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-500 px-8 py-4 rounded-lg text-lg font-semibold transition-all" data-event="click:handleVolunteer">
+                        <i class="fas fa-users mr-2"></i> Become a Volunteer
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- @END_COMPONENT: HomePage -->
+
+    <!-- @COMPONENT: AboutPage -->
+    <div id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Access Global Foundation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Founded on the belief that every community deserves access to fundamental human needs
+                </p>
+            </div>
+
+            <!-- Our Story -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
+                    <p class="text-gray-600 mb-4" data-mock="true">
+                        Access Global Foundation was born from a simple yet powerful vision: that every person, regardless of their circumstances or location, deserves access to education, healthcare, security, and basic human dignity.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-mock="true">
+                        Founded in 2015 by a group of passionate humanitarians, we began with a small project in rural Kenya. Today, we operate in over 25 countries, touching the lives of more than 150,000 people annually.
+                    </p>
+                    <p class="text-gray-600" data-mock="true">
+                        Our approach is rooted in community partnership, sustainable development, and the belief that lasting change comes from empowering local leaders and building local capacity.
+                    </p>
+                </div>
+                <div>
+                    <!-- Diverse volunteers working together -->
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Diverse volunteers working together" class="rounded-xl shadow-lg w-full" data-mock-image="true" />
+                </div>
+            </div>
+
+            <!-- Vision, Mission, Values -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-primary-50 rounded-xl" data-mock="true">
+                    <i class="fas fa-eye text-primary-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                    <p class="text-gray-600">A world where every community has access to the resources and opportunities needed to thrive and prosper.</p>
+                </div>
+                <div class="text-center p-8 bg-success-50 rounded-xl" data-mock="true">
+                    <i class="fas fa-bullseye text-success-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                    <p class="text-gray-600">To empower communities through sustainable programs in education, healthcare, security, and humanitarian aid.</p>
+                </div>
+                <div class="text-center p-8 bg-warning-50 rounded-xl" data-mock="true">
+                    <i class="fas fa-heart text-warning-500 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Our Values</h3>
+                    <p class="text-gray-600">Integrity, compassion, sustainability, community partnership, and unwavering commitment to human dignity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: AboutPage -->
+
+    <!-- @COMPONENT: ProgramsPage -->
+    <div id="programs" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Programs & Initiatives</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive programs designed to address critical needs and create sustainable impact
+                </p>
+            </div>
+
+            <!-- Program Categories -->
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Education Programs -->
+                <div class="bg-white rounded-xl shadow-lg p-8" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-graduation-cap text-success-500 text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Education Programs</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-success-500 mt-1 mr-3"></i>
+                            <span>School construction and infrastructure development</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-success-500 mt-1 mr-3"></i>
+                            <span>Teacher training and capacity building programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-success-500 mt-1 mr-3"></i>
+                            <span>Educational materials and technology provision</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-success-500 mt-1 mr-3"></i>
+                            <span>Adult literacy and vocational training</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Healthcare Programs -->
+                <div class="bg-white rounded-xl shadow-lg p-8" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-heartbeat text-red-500 text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Healthcare Initiatives</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                            <span>Mobile health clinics and medical outreach</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                            <span>Maternal and child health programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                            <span>Disease prevention and vaccination campaigns</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                            <span>Mental health and counseling services</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Security Programs -->
+                <div class="bg-white rounded-xl shadow-lg p-8" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-shield-alt text-primary-500 text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Security & Safety</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mt-1 mr-3"></i>
+                            <span>Community safety training and education</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mt-1 mr-3"></i>
+                            <span>Emergency response system development</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mt-1 mr-3"></i>
+                            <span>Infrastructure security improvements</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-500 mt-1 mr-3"></i>
+                            <span>Conflict resolution and peacebuilding</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Humanitarian Aid -->
+                <div class="bg-white rounded-xl shadow-lg p-8" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-hands-helping text-warning-500 text-3xl mr-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-900">Humanitarian Aid</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-warning-500 mt-1 mr-3"></i>
+                            <span>Emergency disaster relief and response</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-warning-500 mt-1 mr-3"></i>
+                            <span>Food security and nutrition programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-warning-500 mt-1 mr-3"></i>
+                            <span>Clean water and sanitation projects</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-warning-500 mt-1 mr-3"></i>
+                            <span>Refugee support and resettlement assistance</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ProgramsPage -->
+
+    <!-- @COMPONENT: ImpactStoriesPage -->
+    <div id="impact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Impact Stories</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real stories of transformation and hope from the communities we serve
+                </p>
+            </div>
+
+            <!-- @MAP: stories.map(story => ( -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- Story 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Young African girl in school uniform smiling -->
+                    <img src="https://pixabay.com/get/gb499e05ebf9f9a433dec46ccab5b12245cb7310999702a66c4294d605cd24eeac90e336dd6a4b2c26b546a6517bd2d331ce5d6e7c1ba253a24c2b18ca2b4e6eb_1280.jpg" alt="Amara, education success story" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Amara's Educational Journey</h3>
+                        <p class="text-gray-600 mb-4">
+                            Thanks to our school construction program in Sierra Leone, Amara now has access to quality education. She dreams of becoming a doctor to serve her community.
+                        </p>
+                        <div class="flex items-center text-sm text-primary-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Sierra Leone, West Africa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Healthcare worker with mother and child -->
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Maria's healthcare story" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Maria's Second Chance</h3>
+                        <p class="text-gray-600 mb-4">
+                            Our mobile health clinic reached Maria just in time during her complicated pregnancy. Today, both she and her healthy baby boy are thriving.
+                        </p>
+                        <div class="flex items-center text-sm text-primary-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Guatemala, Central America</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg" data-mock="true">
+                    <!-- Community gathering showing unity -->
+                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Community transformation story" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Kibera's Transformation</h3>
+                        <p class="text-gray-600 mb-4">
+                            Through our integrated community development program, Kibera has seen remarkable improvements in safety, education, and economic opportunities.
+                        </p>
+                        <div class="flex items-center text-sm text-primary-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Kibera, Kenya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+
+            <!-- Testimonials Section -->
+            <div class="bg-gradient-to-r from-primary-50 to-success-50 rounded-2xl p-8 lg:p-12">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">What Our Partners Say</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <blockquote class="bg-white p-6 rounded-xl shadow-sm" data-mock="true">
+                        <p class="text-gray-600 mb-4 italic">
+                            "Access Global Foundation doesn't just provide aid—they empower communities to create lasting change. Their approach is truly transformational."
+                        </p>
+                        <cite class="text-primary-600 font-semibold">Dr. James Kimani, Local Health Director</cite>
+                    </blockquote>
+                    <blockquote class="bg-white p-6 rounded-xl shadow-sm" data-mock="true">
+                        <p class="text-gray-600 mb-4 italic">
+                            "Working with AGF has been incredible. They listen to our community's needs and work with us to build solutions that last."
+                        </p>
+                        <cite class="text-primary-600 font-semibold">Elena Rodriguez, Community Leader</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ImpactStoriesPage -->
+
+    <!-- @COMPONENT: GetInvolvedPage -->
+    <div id="get-involved" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Involved</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Join our global community of changemakers and help us create lasting impact
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Volunteering -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center" data-mock="true">
+                    <i class="fas fa-hands-helping text-success-500 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Volunteer</h3>
+                    <p class="text-gray-600 mb-6">Join our field teams or contribute remotely with your skills and expertise to make a direct impact.</p>
+                    <ul class="text-left text-gray-600 mb-6 space-y-2">
+                        <li>• Field volunteer opportunities</li>
+                        <li>• Remote skill-based volunteering</li>
+                        <li>• Leadership development programs</li>
+                        <li>• Community outreach initiatives</li>
+                    </ul>
+                    <button class="bg-success-500 hover:bg-success-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full" data-event="click:handleVolunteerSignup">
+                        Become a Volunteer
+                    </button>
+                </div>
+
+                <!-- Partnerships -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center" data-mock="true">
+                    <i class="fas fa-handshake text-primary-500 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Partner With Us</h3>
+                    <p class="text-gray-600 mb-6">Collaborate with us to amplify impact through strategic partnerships and shared resources.</p>
+                    <ul class="text-left text-gray-600 mb-6 space-y-2">
+                        <li>• Corporate partnerships</li>
+                        <li>• NGO collaborations</li>
+                        <li>• Government partnerships</li>
+                        <li>• Academic institutions</li>
+                    </ul>
+                    <button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full" data-event="click:handlePartnershipInquiry">
+                        Explore Partnerships
+                    </button>
+                </div>
+
+                <!-- Careers -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center" data-mock="true">
+                    <i class="fas fa-briefcase text-warning-500 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Join Our Team</h3>
+                    <p class="text-gray-600 mb-6">Build a meaningful career while making a difference in communities around the world.</p>
+                    <ul class="text-left text-gray-600 mb-6 space-y-2">
+                        <li>• Program management roles</li>
+                        <li>• Field coordinator positions</li>
+                        <li>• Technical specialists</li>
+                        <li>• Support staff opportunities</li>
+                    </ul>
+                    <button class="bg-warning-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full" data-event="click:handleCareersPage">
+                        View Open Positions
+                    </button>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="mt-16 bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-8 lg:p-12 text-center text-white">
+                <h3 class="text-2xl font-bold mb-4">Stay Connected</h3>
+                <p class="text-xl mb-8 opacity-90">Get updates on our latest projects, impact stories, and volunteer opportunities.</p>
+                <form class="max-w-md mx-auto flex gap-4" data-implementation="Newsletter subscription form" data-mock="true">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-lg text-gray-900 border-none outline-none" data-bind="email" />
+                    <button type="submit" class="bg-white text-primary-500 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors" data-event="submit:handleNewsletterSignup">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: GetInvolvedPage -->
+
+    <!-- @COMPONENT: DonatePage -->
+    <div id="donate" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Make a Donation</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Your contribution directly impacts lives and creates lasting change in communities worldwide
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Donation Form -->
+                <div class="bg-gray-50 rounded-xl p-8" data-mock="true">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Choose Your Impact</h3>
+                    
+                    <!-- Donation Amount Selection -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-semibold mb-3">Donation Amount</label>
+                        <div class="grid grid-cols-3 gap-3 mb-4">
+                            <button class="bg-white border-2 border-primary-500 text-primary-500 p-3 rounded-lg font-semibold transition-colors hover:bg-primary-500 hover:text-white" data-event="click:selectAmount" data-value="25">$25</button>
+                            <button class="bg-white border-2 border-gray-300 text-gray-700 p-3 rounded-lg font-semibold transition-colors hover:border-primary-500 hover:text-primary-500" data-event="click:selectAmount" data-value="50">$50</button>
+                            <button class="bg-white border-2 border-gray-300 text-gray-700 p-3 rounded-lg font-semibold transition-colors hover:border-primary-500 hover:text-primary-500" data-event="click:selectAmount" data-value="100">$100</button>
+                        </div>
+                        <input type="number" placeholder="Enter custom amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="customAmount" />
+                    </div>
+
+                    <!-- Program Selection -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-semibold mb-3">Where should your donation go?</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="selectedProgram">
+                            <option value="general">Where needed most</option>
+                            <option value="education">Education Programs</option>
+                            <option value="healthcare">Healthcare Initiatives</option>
+                            <option value="security">Security & Safety</option>
+                            <option value="humanitarian">Humanitarian Aid</option>
+                        </select>
+                    </div>
+
+                    <!-- Donation Frequency -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-semibold mb-3">Donation Frequency</label>
+                        <div class="flex gap-3">
+                            <button class="bg-primary-500 text-white px-4 py-2 rounded-lg font-semibold transition-colors" data-event="click:selectFrequency" data-value="monthly">Monthly</button>
+                            <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold transition-colors hover:border-primary-500" data-event="click:selectFrequency" data-value="one-time">One-time</button>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="border-t pt-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Payment Information</h4>
+                        <!-- TODO: Integrate with Stripe/PayPal payment processing -->
+                        <button class="w-full bg-warning-500 hover:bg-yellow-600 text-white py-4 rounded-lg text-lg font-semibold transition-colors mb-3" data-event="click:handleStripePayment">
+                            <i class="fas fa-credit-card mr-2"></i> Donate with Card
+                        </button>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-lg text-lg font-semibold transition-colors" data-event="click:handlePayPalPayment">
+                            <i class="fab fa-paypal mr-2"></i> Donate with PayPal
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Impact Breakdown -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Your Impact</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-success-50 p-6 rounded-xl" data-mock="true">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-graduation-cap text-success-500 text-2xl mr-3"></i>
+                                <h4 class="text-lg font-semibold text-gray-900">$25 - Education</h4>
+                            </div>
+                            <p class="text-gray-600">Provides school supplies for 5 children for one month</p>
+                        </div>
+
+                        <div class="bg-red-50 p-6 rounded-xl" data-mock="true">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-heartbeat text-red-500 text-2xl mr-3"></i>
+                                <h4 class="text-lg font-semibold text-gray-900">$50 - Healthcare</h4>
+                            </div>
+                            <p class="text-gray-600">Funds vaccinations for 10 children against preventable diseases</p>
+                        </div>
+
+                        <div class="bg-primary-50 p-6 rounded-xl" data-mock="true">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-home text-primary-500 text-2xl mr-3"></i>
+                                <h4 class="text-lg font-semibold text-gray-900">$100 - Infrastructure</h4>
+                            </div>
+                            <p class="text-gray-600">Helps build clean water access points for a community</p>
+                        </div>
+
+                        <div class="bg-warning-50 p-6 rounded-xl" data-mock="true">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-hands-helping text-warning-500 text-2xl mr-3"></i>
+                                <h4 class="text-lg font-semibold text-gray-900">$250 - Emergency Aid</h4>
+                            </div>
+                            <p class="text-gray-600">Provides emergency food supplies for a family for one month</p>
+                        </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="mt-8 p-4 bg-gray-100 rounded-lg">
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-lock mr-2"></i>
+                            <span class="text-sm">Your donation is secure and encrypted. We are committed to transparency and will provide regular updates on how your contribution is making a difference.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: DonatePage -->
+
+    <!-- @COMPONENT: BlogPage -->
+    <div id="blog" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest Updates</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Stay informed about our ongoing projects, impact reports, and upcoming events
+                </p>
+            </div>
+
+            <!-- @MAP: blogPosts.map(post => ( -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden" data-mock="true">
+                    <!-- Clean water well construction in rural community -->
+                    <img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Clean water project completion" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <div class="text-sm text-primary-500 mb-2">December 15, 2023</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Clean Water Project Completed in Rural Kenya</h3>
+                        <p class="text-gray-600 mb-4">Our latest water infrastructure project brings clean, accessible water to over 2,000 residents in the Turkana region...</p>
+                        <a href="#" class="text-primary-500 hover:text-primary-600 font-medium">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden" data-mock="true">
+                    <!-- School opening ceremony with children -->
+                    <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="New school opening ceremony" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <div class="text-sm text-primary-500 mb-2">December 10, 2023</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">New School Opens in Sierra Leone</h3>
+                        <p class="text-gray-600 mb-4">Celebrating the opening of our 87th school, providing education access to 400 children in the Bo District...</p>
+                        <a href="#" class="text-primary-500 hover:text-primary-600 font-medium">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden" data-mock="true">
+                    <!-- Healthcare workers with medical supplies -->
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Mobile health clinic deployment" class="w-full h-48 object-cover" data-mock-image="true" />
+                    <div class="p-6">
+                        <div class="text-sm text-primary-500 mb-2">December 5, 2023</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile Health Clinics Reach Remote Areas</h3>
+                        <p class="text-gray-600 mb-4">Our new fleet of mobile health clinics extends medical care to previously unreachable communities...</p>
+                        <a href="#" class="text-primary-500 hover:text-primary-600 font-medium">Read More →</a>
+                    </div>
+                </article>
+            </div>
+            <!-- @END_MAP )) -->
+
+            <!-- Newsletter Signup -->
+            <div class="mt-16 bg-white rounded-xl shadow-lg p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Subscribe to Our Newsletter</h3>
+                <p class="text-gray-600 mb-6">Get monthly updates on our projects, impact stories, and ways to get involved.</p>
+                <form class="max-w-md mx-auto flex gap-4" data-implementation="Newsletter subscription" data-mock="true">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="newsletterEmail" />
+                    <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors" data-event="submit:handleNewsletterSubscription">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: BlogPage -->
+
+    <!-- @COMPONENT: ContactPage -->
+    <div id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get in touch with our team to learn more about our work or discuss partnership opportunities
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-gray-50 rounded-xl p-8" data-mock="true">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                    <form class="space-y-6" data-implementation="Contact form with validation" data-event="submit:handleContactSubmission">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="firstName" required />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="lastName" required />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="email" required />
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Subject</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none" data-bind="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="volunteer">Volunteer Opportunities</option>
+                                <option value="partnership">Partnership Proposal</option>
+                                <option value="donation">Donation Questions</option>
+                                <option value="media">Media Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary-500 focus:outline-none resize-none" data-bind="message" placeholder="Tell us how we can help..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary-500 hover:bg-primary-600 text-white py-4 rounded-lg text-lg font-semibold transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Office Information -->
+                        <div class="flex items-start" data-mock="true">
+                            <i class="fas fa-map-marker-alt text-primary-500 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Headquarters</h4>
+                                <p class="text-gray-600">
+                                    123 Global Impact Avenue<br>
+                                    International District<br>
+                                    New York, NY 10001
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start" data-mock="true">
+                            <i class="fas fa-phone text-primary-500 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                                <p class="text-sm text-gray-500">Monday - Friday, 9:00 AM - 6:00 PM EST</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start" data-mock="true">
+                            <i class="fas fa-envelope text-primary-500 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                                <p class="text-gray-600">info@accessglobalfoundation.com</p>
+                                <p class="text-sm text-gray-500">We'll respond within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="flex items-start" data-mock="true">
+                            <i class="fas fa-share-alt text-primary-500 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-3">Follow Us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-gray-400 hover:text-primary-500 text-xl transition-colors" data-event="click:openSocial" data-platform="facebook">
+                                        <i class="fab fa-facebook"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-400 hover:text-primary-500 text-xl transition-colors" data-event="click:openSocial" data-platform="twitter">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-400 hover:text-primary-500 text-xl transition-colors" data-event="click:openSocial" data-platform="instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-400 hover:text-primary-500 text-xl transition-colors" data-event="click:openSocial" data-platform="linkedin">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="mt-8 bg-gray-200 rounded-xl h-64 flex items-center justify-center" data-implementation="Embed Google Maps or similar interactive map">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-map text-4xl mb-2"></i>
+                            <p>Interactive Map</p>
+                            <p class="text-sm">Office Location</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ContactPage -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Foundation Info -->
+                <div class="md:col-span-1" data-mock="true">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-hands-helping text-warning-500 text-2xl mr-3"></i>
+                        <span class="font-bold text-xl">Access Global Foundation</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Empowering communities and transforming lives through sustainable development programs worldwide.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-warning-500 transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-warning-500 transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-warning-500 transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-warning-500 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div data-mock="true">
+                    <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Our Programs</a></li>
+                        <li><a href="#impact" class="hover:text-white transition-colors">Impact Stories</a></li>
+                        <li><a href="#get-involved" class="hover:text-white transition-colors">Get Involved</a></li>
+                        <li><a href="#blog" class="hover:text-white transition-colors">Latest News</a></li>
+                    </ul>
+                </div>
+
+                <!-- Programs -->
+                <div data-mock="true">
+                    <h3 class="font-semibold text-lg mb-4">Our Programs</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#programs" class="hover:text-white transition-colors">Education</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Healthcare</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Security & Safety</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Humanitarian Aid</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Community Development</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div data-mock="true">
+                    <h3 class="font-semibold text-lg mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@accessglobalfoundation.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                            <span>123 Global Impact Avenue<br>New York, NY 10001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm" data-mock="true">© 2023 Access Global Foundation. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-mock="true">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-mock="true">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-mock="true">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Donation Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-warning-500 hover:bg-yellow-600 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-110" data-event="click:handleFloatingDonate">
+            <i class="fas fa-heart text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        (function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            const navigation = document.querySelector('nav');
+            
+            // TODO: Implement mobile menu dropdown functionality
+            // TODO: Add donation form validation and payment processing
+            // TODO: Implement newsletter subscription functionality
+            // TODO: Add contact form validation and submission handling
+            // TODO: Integrate with Google Maps for location display
+            // TODO: Add counter animations for impact statistics
+            // TODO: Implement blog post filtering and pagination
+            // TODO: Add social media sharing functionality
+        })();
+    </script>
+</body>
+</html>
