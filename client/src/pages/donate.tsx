@@ -18,19 +18,19 @@ export default function Donate() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary-500">
-              <div className="text-3xl font-bold text-primary-500 mb-2">$25</div>
+              <div className="text-3xl font-bold text-primary-500 mb-2">$100</div>
               <div className="text-sm text-gray-600">Provides school supplies for one student for a month</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary-500">
-              <div className="text-3xl font-bold text-primary-500 mb-2">$75</div>
+              <div className="text-3xl font-bold text-primary-500 mb-2">$250</div>
               <div className="text-sm text-gray-600">Funds health screenings for 10 community members</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-warning-500">
-              <div className="text-3xl font-bold text-warning-500 mb-2">$150</div>
+              <div className="text-3xl font-bold text-warning-500 mb-2">$500</div>
               <div className="text-sm text-gray-600">Plants 50 trees for environmental restoration</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-success-500">
-              <div className="text-3xl font-bold text-success-500 mb-2">$500</div>
+              <div className="text-3xl font-bold text-success-500 mb-2">$1000</div>
               <div className="text-sm text-gray-600">Supports microfinance for 5 entrepreneurs</div>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function Donate() {
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <i className="fas fa-graduation-cap text-success-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Education Supporter</h3>
-              <div className="text-2xl font-bold text-success-500 mb-2">$20/month</div>
+              <div className="text-2xl font-bold text-success-500 mb-2">$100/month</div>
               <p className="text-sm text-gray-600 mb-4">Funds educational materials and teacher training</p>
               <Button className="bg-success-500 hover:bg-success-600 text-white w-full">
                 Support Education
@@ -71,7 +71,7 @@ export default function Donate() {
             <div className="bg-white rounded-xl p-6 text-center shadow-md border-2 border-primary-500">
               <i className="fas fa-globe text-primary-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Global Champion</h3>
-              <div className="text-2xl font-bold text-primary-500 mb-2">$50/month</div>
+              <div className="text-2xl font-bold text-primary-500 mb-2">$500/month</div>
               <p className="text-sm text-gray-600 mb-4">Supports all four program areas comprehensively</p>
               <Button className="bg-primary-500 hover:bg-primary-600 text-white w-full">
                 Become a Champion
@@ -81,7 +81,7 @@ export default function Donate() {
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <i className="fas fa-hands-helping text-warning-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Impact Partner</h3>
-              <div className="text-2xl font-bold text-warning-500 mb-2">$100/month</div>
+              <div className="text-2xl font-bold text-warning-500 mb-2">$5000/month</div>
               <p className="text-sm text-gray-600 mb-4">Enables major community development projects</p>
               <Button className="bg-warning-500 hover:bg-warning-600 text-white w-full">
                 Partner With Us
