@@ -174,7 +174,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <button className="group bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
               <Heart className="mr-3 group-hover:animate-pulse" size={20} />
-              Donate Now
+              <a href='/donate'> Donate Now</a>
+             
               <div className="ml-2 bg-white/20 rounded-full px-3 py-1 text-sm">→</div>
             </button>
             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
@@ -299,7 +300,8 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <button className="group bg-white text-blue-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
               <Heart className="mr-3 group-hover:text-red-500 group-hover:animate-pulse" size={20} />
-              Start Donating
+                            <a href='/donate'> Start Donating</a>
+
               <div className="ml-2 bg-blue-600 text-white rounded-full px-3 py-1 text-sm">→</div>
             </button>
             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-blue-600 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
