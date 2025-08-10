@@ -135,7 +135,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with parallax effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-800/90 via-purple-800/80 to-indigo-800/90 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-600/90 via-gray-900/80 to-indigo-800/90 z-10"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110"
           style={{

@@ -73,8 +73,8 @@ export default function About() {
 
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h2>
-            <p className="text-gray-600 mb-4">
-              <span className="font-bold">The Beginning </span>
+            <p className="font-bold  mb-3">The Beginning </p>
+            <p className="text-gray-600 mb-8">
               Access Global Foundation was born in 2018 when our founder, Sarah
               Johnson, witnessed firsthand the untapped potential in a remote
               village in Madagascar. Despite having brilliant minds and strong
@@ -83,8 +83,9 @@ export default function About() {
               sparked a vision: what if we could systematically remove barriers
               that prevent communities from thriving?
             </p>
+            <p className="font-bold  mb-3">Growing Impact </p>
+
             <p className="text-gray-600 mb-4">
-              <span className="font-bold">Growing Impact </span>
               What began as a single education initiative has grown into a
               comprehensive foundation addressing interconnected challenges.
               We've learned that sustainable change requires a holistic
@@ -285,137 +286,52 @@ export default function About() {
         <div className="mt-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Partnerships & Collaborations
+              Some of Our Works
             </h2>
           </div>
-      {/* Program Categories */}
-      <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Global Education Initiatives */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="flex items-center mb-6">
-              <i className="fas fa-globe-americas text-success-500 text-3xl mr-4"></i>
-              <h2 className="text-2xl font-bold text-gray-900">Global Education Initiatives</h2>
-
-          
+          {/* Program Categories */}
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
             </div>
-            <ul className="space-y-3 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-success-500 mt-1 mr-3"></i>
-                <span>Scholarships for underserved students</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-success-500 mt-1 mr-3"></i>
-                <span>Digital literacy and technology access</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-success-500 mt-1 mr-3"></i>
-                <span>School infrastructure development</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-success-500 mt-1 mr-3"></i>
-                <span>Teacher training in underserved regions</span>
-              </li>
-            </ul>
-            <img 
-              src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
-              alt="Children in classroom" 
-              className="w-full h-48 object-cover rounded-lg" 
-            />
-          </div>
 
-          {/* Environmental Empowerment */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="flex items-center mb-6">
-              <i className="fas fa-leaf text-green-500 text-3xl mr-4"></i>
-              <h2 className="text-2xl font-bold text-gray-900">Environmental Empowerment</h2>
+            {/* Health & Wellness Access */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <div className="flex items-center mb-6">
+                <i className="fas fa-heartbeat text-red-500 text-3xl mr-4"></i>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Health & Wellness Access
+                </h2>
+              </div>
+              <ul className="space-y-3 text-gray-600 mb-6">
+                <li className="flex items-start">
+                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
+                  <span>Mobile health clinics and outreach</span>
+                </li>
+                <li className="flex items-start">
+                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
+                  <span>Health awareness programs</span>
+                </li>
+                <li className="flex items-start">
+                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
+                  <span>Partnerships for medicine delivery</span>
+                </li>
+                <li className="flex items-start">
+                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
+                  <span>Medical aid and emergency response</span>
+                </li>
+              </ul>
+              <img
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Mobile health clinic"
+                className="w-full h-48 object-cover rounded-lg"
+              />
             </div>
-            <ul className="space-y-3 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-green-500 mt-1 mr-3"></i>
-                <span>Community-based tree planting projects</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-green-500 mt-1 mr-3"></i>
-                <span>Clean water access infrastructure</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-green-500 mt-1 mr-3"></i>
-                <span>Sustainable waste management systems</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-green-500 mt-1 mr-3"></i>
-                <span>Environmental awareness education</span>
-              </li>
-            </ul>
-            <img 
-              src="https://images.unsplash.com/photo-1569163139394-de44cb55b7a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
-              alt="Environmental projects" 
-              className="w-full h-48 object-cover rounded-lg" 
-            />
           </div>
-
-          {/* Economic Access & Entrepreneurship */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="flex items-center mb-6">
-              <i className="fas fa-chart-line text-primary-500 text-3xl mr-4"></i>
-              <h2 className="text-2xl font-bold text-gray-900">Economic Access & Entrepreneurship</h2>
-            </div>
-            <ul className="space-y-3 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-primary-500 mt-1 mr-3"></i>
-                <span>Skills training and development programs</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-primary-500 mt-1 mr-3"></i>
-                <span>Microfinance support for small businesses</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-primary-500 mt-1 mr-3"></i>
-                <span>Mentorship for youth entrepreneurs</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-primary-500 mt-1 mr-3"></i>
-                <span>Women's economic empowerment initiatives</span>
-              </li>
-            </ul>
-            <img 
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
-              alt="Entrepreneurship training" 
-              className="w-full h-48 object-cover rounded-lg" 
-            />
-          </div>
-
-          {/* Health & Wellness Access */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <div className="flex items-center mb-6">
-              <i className="fas fa-heartbeat text-red-500 text-3xl mr-4"></i>
-              <h2 className="text-2xl font-bold text-gray-900">Health & Wellness Access</h2>
-            </div>
-            <ul className="space-y-3 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                <span>Mobile health clinics and outreach</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                <span>Health awareness programs</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                <span>Partnerships for medicine delivery</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                <span>Medical aid and emergency response</span>
-              </li>
-            </ul>
-            <img 
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
-              alt="Mobile health clinic" 
-              className="w-full h-48 object-cover rounded-lg" 
-            />
-          </div>
-        </div>
         </div>
       </div>
     </div>
