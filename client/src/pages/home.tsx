@@ -180,7 +180,7 @@ export default function Home() {
             </button>
             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
               <Users className="mr-3 group-hover:text-blue-600" size={20} />
-              Get Involved
+              <a href='/get-involved'>Get Involved</a>
             </button>
           </div>
         </div>
@@ -306,7 +306,7 @@ export default function Home() {
             </button>
             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-blue-600 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
               <Users className="mr-3 group-hover:text-blue-600" size={20} />
-              Become a Volunteer
+              <a href='/get-involved'>    Become a Volunteer </a>
             </button>
           </div>
           
