@@ -23,6 +23,7 @@ const Programs = () => {
       id: "education",
       title: "Global Education Initiatives",
       icon: <GraduationCap size={48} className="text-blue-600" />,
+      link: "/donate",
       category: "education",
       tagline: "Unlocking minds, opening futures",
       description: "Comprehensive educational programs that break down barriers to learning and create pathways to knowledge for underserved communities worldwide.",
@@ -47,6 +48,7 @@ const Programs = () => {
       id: "environment",
       title: "Environmental Empowerment",
       icon: <Leaf size={48} className="text-green-600" />,
+      link: "/donate",
       category: "environment", 
       tagline: "Nurturing our planet, sustaining our future",
       description: "Community-driven environmental initiatives that promote sustainability, combat climate change, and ensure access to clean resources.",
@@ -70,6 +72,7 @@ const Programs = () => {
       id: "economic",
       title: "Economic Access & Entrepreneurship",
       icon: <Briefcase size={48} className="text-purple-600" />,
+      link: "/donate",
       category: "economic",
       tagline: "Empowering dreams, building prosperity", 
       description: "Comprehensive economic empowerment programs that provide skills, resources, and opportunities for sustainable livelihoods.",
@@ -93,6 +96,7 @@ const Programs = () => {
       id: "health",
       title: "Health & Wellness Access",
       icon: <Heart size={48} className="text-red-600" />,
+      link: "/donate",
       category: "health",
       tagline: "Healing communities, saving lives",
       description: "Holistic healthcare initiatives that bring essential medical services and health education to remote and underserved areas.",
@@ -116,6 +120,7 @@ const Programs = () => {
       id: "agriculture",
       title: "Training for Farmers",
       icon: <Tractor size={48} className="text-amber-600" />,
+      link: "/donate",
       category: "agriculture",
       tagline: "Growing food security, cultivating hope",
       description: "Modern agricultural training programs that boost productivity, ensure food security, and create sustainable farming practices.",
@@ -139,6 +144,7 @@ const Programs = () => {
       id: "energy",
       title: "Renewable Energy",
       icon: <Zap size={48} className="text-yellow-600" />,
+      link: "/donate",
       category: "environment",
       tagline: "Powering progress with clean energy",
       description: "Clean energy solutions that bring reliable, sustainable power to communities while protecting the environment.",
@@ -162,6 +168,7 @@ const Programs = () => {
       id: "agritech",
       title: "Agri-Tech Innovation",
       icon: <Cpu size={48} className="text-teal-600" />,
+      link: "/donate",
       category: "technology",
       tagline: "Technology meets tradition for better harvests",
       description: "Cutting-edge agricultural technology solutions that revolutionize farming practices and maximize crop yields.",
@@ -345,12 +352,14 @@ const Programs = () => {
                   </div>
 
                   {/* CTA Button */}
+                  <a href={program.link}>
                   <button
                     className={`w-full inline-flex items-center justify-center bg-gradient-to-r ${program.bgGradient} text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-lg transition-all duration-300 group`}
                   >
                     {program.ctaText}
                     <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
+                  </a>
                 </div>
               </motion.div>
             ))}

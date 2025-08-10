@@ -84,13 +84,13 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Headquarters</h3>
                     <p className="text-gray-600">
-                      123 Global Way<br />
-                      Impact City, IC 12345<br />
+                    1629 k street NW #300<br />
+                    Washington DC, 20006<br />
                       United States
                     </p>
                   </div>
                 </div>
-
+                
                 <div className="flex items-start">
                   <i className="fas fa-envelope text-primary-500 text-xl w-6 mr-4 mt-1"></i>
                   <div>

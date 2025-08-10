@@ -290,7 +290,42 @@ export default function About() {
             </h2>
           </div>
           {/* Program Categories */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid lg:grid-cols-3 gap-12 mb-16">
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div className="bg-white rounded-xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+                alt="Children in classroom"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
             <div className="bg-white rounded-xl shadow-lg">
               <img
                 src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
@@ -299,38 +334,7 @@ export default function About() {
               />
             </div>
 
-            {/* Health & Wellness Access */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="flex items-center mb-6">
-                <i className="fas fa-heartbeat text-red-500 text-3xl mr-4"></i>
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Health & Wellness Access
-                </h2>
-              </div>
-              <ul className="space-y-3 text-gray-600 mb-6">
-                <li className="flex items-start">
-                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                  <span>Mobile health clinics and outreach</span>
-                </li>
-                <li className="flex items-start">
-                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                  <span>Health awareness programs</span>
-                </li>
-                <li className="flex items-start">
-                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                  <span>Partnerships for medicine delivery</span>
-                </li>
-                <li className="flex items-start">
-                  <i className="fas fa-check text-red-500 mt-1 mr-3"></i>
-                  <span>Medical aid and emergency response</span>
-                </li>
-              </ul>
-              <img
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Mobile health clinic"
-                className="w-full h-48 object-cover rounded-lg"
-              />
-            </div>
+            
           </div>
         </div>
       </div>

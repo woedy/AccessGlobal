@@ -12,6 +12,7 @@ export default function Navigation() {
     { name: "About Us", href: "/about" },
     { name: "Programs", href: "/programs" },
     { name: "Stories of Change", href: "/stories" },
+    { name: "Blog", href: "/blogs" },
     { name: "Get Involved", href: "/get-involved" },
     { name: "Contact", href: "/contact" },
   ];

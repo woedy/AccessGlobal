@@ -42,7 +42,7 @@ export default function Donate() {
                 placeholder="Custom amount" 
                 className="flex-1 px-4 py-3 rounded-lg border border-gray-300 text-gray-900"
               />
-              <Button className="bg-warning-500 hover:bg-warning-600 text-white px-8">
+              <Button className="bg-warning-500 hover:bg-warning-600 text-black px-8">
                 <i className="fas fa-heart mr-2"></i> Donate
               </Button>
             </div>

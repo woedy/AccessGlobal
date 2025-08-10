@@ -24,6 +24,7 @@ export default function Footer() {
               <li><Link href="/about" className="text-gray-300 hover:text-warning-500 transition-colors">About Us</Link></li>
               <li><Link href="/programs" className="text-gray-300 hover:text-warning-500 transition-colors">Our Programs</Link></li>
               <li><Link href="/stories" className="text-gray-300 hover:text-warning-500 transition-colors">Stories</Link></li>
+              <li><Link href="/blogs" className="text-gray-300 hover:text-warning-500 transition-colors">Blogs</Link></li>
               <li><Link href="/get-involved" className="text-gray-300 hover:text-warning-500 transition-colors">Get Involved</Link></li>
             </ul>
           </div>
@@ -58,7 +59,7 @@ export default function Footer() {
               </a>
             </div>
             <div className="text-gray-400 text-sm">
-              © 2024 Access Global Foundation. All rights reserved.
+              © 2025 Access Global Foundation. All rights reserved.
             </div>
           </div>
         </div>

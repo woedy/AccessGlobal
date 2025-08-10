@@ -123,24 +123,24 @@ export default function GetInvolved() {
               </div>
               <div className="flex items-start">
                 <i className="fas fa-map-marker-alt text-primary-500 w-6 mr-3 mt-1"></i>
-                <span className="text-gray-600">123 Global Way<br />Impact City, IC 12345</span>
+                <span className="text-gray-600">  1629 k street NW #300<br />Washington DC, 20006</span>
               </div>
             </div>
           </div>
-
+        
           <div className="bg-white p-8 rounded-xl shadow-lg">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <i className="fab fa-facebook"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
