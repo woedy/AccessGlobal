@@ -14,7 +14,7 @@ export default function Stories() {
           {/* Story 1 - Education */}
           <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1544279151-6e4e999de2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              src="https://images.pexels.com/photos/8457971/pexels-photo-8457971.jpeg" 
               alt="Young girl studying with books" 
               className="w-full h-48 object-cover" 
             />
@@ -33,7 +33,7 @@ export default function Stories() {
           {/* Story 2 - Environmental */}
           <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1569163139394-de44cb55b7a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              src="https://plus.unsplash.com/premium_photo-1664301311322-e778de6426f8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
               alt="Community tree planting project" 
               className="w-full h-48 object-cover" 
             />
@@ -67,46 +67,58 @@ export default function Stories() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Detailed Impact Story */}
-        <div className="bg-gradient-to-r from-primary-50 to-warning-50 rounded-2xl p-8 lg:p-12 mb-16">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">The Community That Health Built</h2>
+          {/* Story 3 - Economic Access */}
+          <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Women entrepreneurs working together" 
+              className="w-full h-48 object-cover" 
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">From Refugee Camp to Medical School</h3>
               <p className="text-gray-600 mb-4">
-                In 2020, we partnered with the remote village of Beira in Mozambique to establish their first permanent health clinic. What started as a Health & Wellness Access initiative has transformed into a comprehensive community health program.
-              </p>
-              <p className="text-gray-600 mb-4">
-                Today, the clinic serves 15 surrounding villages and has trained 25 local health workers. Infant mortality rates have dropped by 60%, and the clinic has become a beacon of hope for sustainable healthcare in the region.
-              </p>
-              <p className="text-gray-600 mb-6 italic">
-                "Before the clinic, we had to travel three days to reach the nearest hospital. Now, we have hope and health care right here in our village." - António Silva, Village Elder
-              </p>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-500">15</div>
-                  <div className="text-sm text-gray-600">Villages Served</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-500">25</div>
-                  <div className="text-sm text-gray-600">Health Workers Trained</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-500">60%</div>
-                  <div className="text-sm text-gray-600">Reduction in Infant Mortality</div>
-                </div>
+              Amara fled conflict in South Sudan at age 12. Through our Global Education Initiative, she received not just a scholarship but also digital literacy training and mentorship. Today, at 22, she's in her final year of medical school and plans to return to serve refugees. "Education gave me wings when the world tried to clip them," she says. Her younger siblings are now also in our program.              </p>
+              <div className="flex items-center text-sm text-primary-500">
+                <i className="fas fa-map-marker-alt mr-1"></i>
+                <span>Kakuma Refugee Camp, Kenya</span>
               </div>
             </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-                alt="Health clinic with community members" 
-                className="rounded-xl shadow-lg w-full" 
-              />
+          </div>
+          {/* Story 3 - Economic Access */}
+          <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Women entrepreneurs working together" 
+              className="w-full h-48 object-cover" 
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">From Drought to Abundance</h3>
+              <p className="text-gray-600 mb-4">
+              The village of Khimsar was facing its worst drought in 50 years. Our Environmental Empowerment program introduced rainwater harvesting, drought-resistant crops, and community-managed water systems. Within two years, they not only achieved water security but became a model eco-village. The community now trains other villages and has reduced water usage by 40% while increasing crop yields by 65%.     </p>         <div className="flex items-center text-sm text-primary-500">
+                <i className="fas fa-map-marker-alt mr-1"></i>
+                <span>Rajasthan, India</span>
+              </div>
+            </div>
+          </div>
+          {/* Story 3 - Economic Access */}
+          <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Women entrepreneurs working together" 
+              className="w-full h-48 object-cover" 
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Building Bridges, Breaking Hatred</h3>
+              <p className="text-gray-600 mb-4">
+              The village of Khimsar was facing its worst drought in 50 years. Our Environmental Empowerment program introduced rainwater harvesting, drought-resistant crops, and community-managed water systems. Within two years, they not only achieved water security but became a model eco-village. The community now trains other villages and has reduced water usage by 40% while increasing crop yields by 65%.     </p>         <div className="flex items-center text-sm text-primary-500">
+                <i className="fas fa-map-marker-alt mr-1"></i>
+                <span>Kigali, Rwanda & Berlin, Germany</span>
+              </div>
             </div>
           </div>
         </div>
+
+
 
         {/* Global Impact Visualization */}
         <div className="bg-gray-900 rounded-2xl p-8 lg:p-12 text-white mb-16">
