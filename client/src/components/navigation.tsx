@@ -12,46 +12,61 @@ export default function Navigation() {
     { name: "About Us", href: "/about" },
     { name: "Programs", href: "/programs" },
     { name: "Stories of Change", href: "/stories" },
-    { name: "Blog", href: "/blogs" },
+    { name: "Blog", href: "/blog" },
     { name: "Get Involved", href: "/get-involved" },
     { name: "Contact", href: "/contact" },
   ];
 
-  const isActive = (href: string) => {
-    if (href === "/" && location === "/") return true;
-    if (href !== "/" && location.startsWith(href)) return true;
-    return false;
+  const isActive = (href: string) =>
+    href === location || (href !== "/" && location.startsWith(href));
+
+  const renderNavLink = (item: typeof navigation[number], mobile = false) => {
+    const active = isActive(item.href);
+    const baseClasses = mobile
+      ? "block px-3 py-2 text-base font-medium transition-colors"
+      : "px-3 py-2 text-sm font-medium transition-colors";
+
+    const activeClasses = mobile
+      ? "text-primary-500 bg-primary-50"
+      : "text-primary-500 border-b-2 border-primary-500";
+
+    const inactiveClasses = mobile
+      ? "text-gray-600 hover:text-primary-500 hover:bg-gray-50"
+      : "text-gray-600 hover:text-primary-500";
+
+    return (
+      <Link
+        key={item.name}
+        href={item.href}
+        className={`${baseClasses} ${active ? activeClasses : inactiveClasses}`}
+        aria-current={active ? "page" : undefined}
+        onClick={mobile ? () => setIsMobileMenuOpen(false) : undefined}
+      >
+        {item.name}
+      </Link>
+    );
   };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <i className="fas fa-globe text-primary-500 text-2xl mr-3"></i>
-              <span className="font-bold text-xl text-gray-900">Access Global Foundation</span>
-            </Link>
-          </div>
-          
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 flex items-center">
+            <i className="fas fa-globe text-primary-500 text-2xl mr-3"></i>
+            <span className="font-bold text-xl text-gray-900">
+              Access Global Foundation
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
-                    isActive(item.href)
-                      ? "text-primary-500 border-b-2 border-primary-500"
-                      : "text-gray-600 hover:text-primary-500"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => renderNavLink(item))}
             </div>
           </div>
-          
+
+          {/* Donate + Mobile Menu Button */}
           <div className="flex items-center space-x-3">
             <Link href="/donate">
               <Button className="bg-warning-500 hover:bg-warning-600 text-white">
@@ -60,31 +75,20 @@ export default function Navigation() {
             </Link>
             <button
               className="md:hidden text-gray-600 hover:text-primary-500"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              aria-expanded={isMobileMenuOpen}
+              aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Nav */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors ${
-                    isActive(item.href)
-                      ? "text-primary-500 bg-primary-50"
-                      : "text-gray-600 hover:text-primary-500 hover:bg-gray-50"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => renderNavLink(item, true))}
             </div>
           </div>
         )}

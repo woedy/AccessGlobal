@@ -1,6 +1,11 @@
+import { useState } from 'react';
+import { useLocation } from 'wouter';
 import NewsletterSignup from "@/components/newsletter-signup";
 
 export default function Blog() {
+  const [, setLocation] = useLocation();
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
   const blogPosts = [
     {
       id: 1,
@@ -8,7 +13,8 @@ export default function Blog() {
       excerpt: "Our latest water infrastructure project brings clean, accessible water to over 2,000 residents in the Turkana region...",
       date: "December 15, 2023",
       image: "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Infrastructure"
+      category: "Infrastructure",
+      readTime: "8 min read"
     },
     {
       id: 2,
@@ -16,7 +22,8 @@ export default function Blog() {
       excerpt: "Celebrating the opening of our 87th school, providing education access to 400 children in the Bo District...",
       date: "December 10, 2023",
       image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Education"
+      category: "Education",
+      readTime: "6 min read"
     },
     {
       id: 3,
@@ -24,7 +31,8 @@ export default function Blog() {
       excerpt: "Our new fleet of mobile health clinics extends medical care to previously unreachable communities...",
       date: "December 5, 2023",
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Healthcare"
+      category: "Healthcare",
+      readTime: "7 min read"
     },
     {
       id: 4,
@@ -32,7 +40,8 @@ export default function Blog() {
       excerpt: "Training local volunteers in disaster preparedness and emergency response protocols...",
       date: "November 28, 2023",
       image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Security"
+      category: "Security",
+      readTime: "5 min read"
     },
     {
       id: 5,
@@ -40,7 +49,8 @@ export default function Blog() {
       excerpt: "Farmers in Guatemala report 40% increase in crop yields after completing our sustainable farming program...",
       date: "November 20, 2023",
       image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Community Development"
+      category: "Community Development",
+      readTime: "4 min read"
     },
     {
       id: 6,
@@ -48,9 +58,20 @@ export default function Blog() {
       excerpt: "Learn about our incredible volunteers who are making a difference in communities across Africa...",
       date: "November 15, 2023",
       image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      category: "Volunteers"
+      category: "Volunteers",
+      readTime: "3 min read"
     }
   ];
+
+  const categories = ["All", "Education", "Healthcare", "Infrastructure", "Security", "Community Development", "Volunteers"];
+
+  const filteredPosts = selectedCategory === 'All' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
+
+  const handlePostClick = (postId: number) => {
+    setLocation(`/blog/${postId}`);
+  };
 
   return (
     <div className="py-20 bg-gray-50">
@@ -63,7 +84,7 @@ export default function Blog() {
         </div>
 
         {/* Featured Post */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12 cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handlePostClick(blogPosts[0].id)}>
           <div className="grid lg:grid-cols-2">
             <img 
               src={blogPosts[0].image}
@@ -72,24 +93,49 @@ export default function Blog() {
             />
             <div className="p-8">
               <div className="flex items-center mb-4">
-                <span className="bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                   {blogPosts[0].category}
                 </span>
                 <span className="text-gray-500 text-sm ml-4">{blogPosts[0].date}</span>
+                <span className="text-gray-500 text-sm ml-4">{blogPosts[0].readTime}</span>
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">{blogPosts[0].title}</h2>
               <p className="text-gray-600 mb-6">{blogPosts[0].excerpt}</p>
-              <button className="text-primary-500 hover:text-primary-600 font-medium">
+              <button className="text-blue-500 hover:text-blue-600 font-medium">
                 Read Full Story →
               </button>
             </div>
           </div>
         </div>
 
+        {/* Categories Filter */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Browse by Category</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  selectedCategory === category
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 hover:bg-blue-500 hover:text-white'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Blog Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {blogPosts.slice(1).map((post) => (
-            <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          {filteredPosts.slice(1).map((post) => (
+            <article 
+              key={post.id} 
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={() => handlePostClick(post.id)}
+            >
               <img 
                 src={post.image}
                 alt={post.title}
@@ -104,27 +150,15 @@ export default function Blog() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{post.title}</h3>
                 <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                <button className="text-primary-500 hover:text-primary-600 font-medium">
-                  Read More →
-                </button>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500 text-sm">{post.readTime}</span>
+                  <button className="text-blue-500 hover:text-blue-600 font-medium">
+                    Read More →
+                  </button>
+                </div>
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Categories Filter */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Browse by Category</h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {["All", "Education", "Healthcare", "Infrastructure", "Security", "Community Development", "Volunteers"].map((category) => (
-              <button
-                key={category}
-                className="px-4 py-2 bg-gray-100 hover:bg-primary-500 hover:text-white rounded-lg transition-colors"
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Newsletter Signup */}
@@ -137,7 +171,7 @@ export default function Blog() {
         </div>
 
         {/* Recent Impact */}
-        <div className="mt-16 bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-8 lg:p-12 text-white">
+        <div className="mt-16 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 lg:p-12 text-white">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-4">This Month's Impact</h2>
             <p className="text-xl opacity-90">See what we've accomplished together</p>
@@ -146,19 +180,19 @@ export default function Blog() {
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold mb-2">2,450</div>
-              <div className="opacity-90">People Reached</div>
+              <div className="text-sm opacity-90">People Reached</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">3</div>
-              <div className="opacity-90">New Projects</div>
+              <div className="text-sm opacity-90">New Projects</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">12</div>
-              <div className="opacity-90">Volunteers Deployed</div>
+              <div className="text-sm opacity-90">Volunteers Deployed</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">$45K</div>
-              <div className="opacity-90">Funds Raised</div>
+              <div className="text-sm opacity-90">Funds Raised</div>
             </div>
           </div>
         </div>

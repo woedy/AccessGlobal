@@ -12,6 +12,8 @@ import GetInvolved from "@/pages/get-involved";
 import Donate from "@/pages/donate";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
+import Blog from "./pages/blog";
+import BlogPost from "./pages/blog/[id]";
 
 function Router() {
   return (
@@ -24,6 +26,8 @@ function Router() {
           <Route path="/programs" component={Programs} />
           <Route path="/stories" component={Stories} />
           <Route path="/get-involved" component={GetInvolved} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/blog/:id" component={BlogPost} />
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
