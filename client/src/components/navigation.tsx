@@ -53,7 +53,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center">
-            <i className="fas fa-globe text-primary-500 text-2xl mr-3"></i>
+            <img 
+              src="/assets/access_logo.jpg" 
+              alt="Access Global Foundation Logo" 
+              className="h-10 w-auto mr-3"
+            />
             <span className="font-bold text-xl text-gray-900">
               Access Global Foundation
             </span>

@@ -216,6 +216,14 @@ const Programs = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
+              {/* Logo */}
+              <div className="mb-8">
+                <img 
+                  src="/assets/access_logo.jpg" 
+                  alt="Access Global Foundation Logo" 
+                  className="h-20 w-auto mx-auto mb-6 rounded-full shadow-2xl"
+                />
+              </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 Our Programs
               </h1>

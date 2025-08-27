@@ -8,7 +8,11 @@ export default function Footer() {
           {/* Organization Info */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <i className="fas fa-globe text-warning-500 text-2xl mr-3"></i>
+              <img 
+                src="/assets/access_logo.jpg" 
+                alt="Access Global Foundation Logo" 
+                className="h-8 w-auto mr-3"
+              />
               <span className="font-bold text-xl">Access Global Foundation</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">

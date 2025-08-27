@@ -6,6 +6,14 @@ export default function GetInvolved() {
     <div className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
+          {/* Logo */}
+          <div className="mb-8">
+            <img 
+              src="/assets/access_logo.jpg" 
+              alt="Access Global Foundation Logo" 
+              className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
+            />
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Involved</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join us in creating pathways to opportunity worldwide. Every contribution makes a difference.
