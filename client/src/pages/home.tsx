@@ -194,7 +194,7 @@ export default function Home() {
               <img 
                 src="/assets/access_logo.jpg" 
                 alt="Access Global Foundation Logo" 
-                className="h-20 w-auto mx-auto mb-6 rounded-full shadow-2xl"
+                className="h-40 w-auto mx-auto mb-6 rounded-full shadow-2xl"
               />
             </div>
             <div className="inline-block px-6 py-2 bg-yellow-500/20 rounded-full border border-yellow-500/30 backdrop-blur-sm mb-6">
