@@ -52,13 +52,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center">
+          <Link href="/" className="flex-shrink-0 flex items-center min-w-0">
             <img 
               src="/assets/access_logo.jpg" 
               alt="Access Global Foundation Logo" 
-              className="h-10 w-auto mr-3"
+              className="h-10 w-auto mr-2 sm:mr-3"
             />
-            <span className="font-bold text-xl text-gray-900">
+            <span className="font-bold text-base sm:text-lg md:text-xl text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis max-w-[160px] sm:max-w-none">
               Access Global Foundation
             </span>
           </Link>
@@ -72,7 +72,7 @@ export default function Navigation() {
 
           {/* Donate + Mobile Menu Button */}
           <div className="flex items-center space-x-3">
-            <Link href="/donate">
+            <Link href="/donate" className="hidden md:block">
               <Button className="bg-warning-500 hover:bg-warning-600 text-white">
                 <i className="fas fa-heart mr-1"></i> Donate Now
               </Button>
