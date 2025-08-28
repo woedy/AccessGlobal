@@ -199,7 +199,7 @@ export default function Home() {
             </div>
             <div className="inline-block px-6 py-2 bg-yellow-500/20 rounded-full border border-yellow-500/30 backdrop-blur-sm mb-6">
               <span className="text-yellow-400 font-semibold">
-                Making Impact Worldwide
+                Live, Love, Life
               </span>
             </div>
           </div>
@@ -218,11 +218,7 @@ export default function Home() {
             their potential.
           </p>
 
-          <div className="mb-12">
-            <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent italic">
-              The World is Yours.
-            </p>
-          </div>
+
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <a href="/donate">

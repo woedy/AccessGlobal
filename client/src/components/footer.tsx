@@ -18,7 +18,7 @@ export default function Footer() {
             <p className="text-gray-300 mb-4 max-w-md">
               Creating pathways to opportunity by breaking down barriers and promoting equitable access to tools that change lives.
             </p>
-            <p className="text-warning-500 font-bold italic text-lg">The World is Yours.</p>
+            <p className="text-warning-500 font-bold italic text-lg">Live, Love, Life.</p>
           </div>
 
           {/* Quick Links */}

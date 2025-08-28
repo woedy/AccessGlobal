@@ -17,7 +17,6 @@ export default function Contact() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Ready to make a difference? We'd love to hear from you and explore how we can work together.
           </p>
-          <p className="text-2xl font-bold text-warning-500 mt-4 italic">The World is Yours.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

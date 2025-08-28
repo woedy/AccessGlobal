@@ -230,9 +230,7 @@ const Programs = () => {
               <p className="text-xl md:text-2xl mb-4 max-w-4xl mx-auto leading-relaxed">
                 Transforming lives through comprehensive global initiatives
               </p>
-              <p className="text-3xl md:text-4xl font-bold text-yellow-400 italic">
-                The World is Yours.
-              </p>
+             
             </motion.div>
           </div>
         </div>

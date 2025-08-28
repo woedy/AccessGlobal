@@ -12,15 +12,13 @@ export default function About() {
             />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            About Access Global Foundation
+            Access Global Foundation
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We believe in a world where every individual, regardless of
             background or geography, has the opportunity to thrive.
           </p>
-          <p className="text-2xl font-bold text-warning-500 mt-4 italic">
-            The World is Yours.
-          </p>
+
         </div>
 
         {/* Who We Are */}
@@ -39,21 +37,14 @@ export default function About() {
               pathways to success across the globe.
             </p>
             <p className="text-gray-600 mb-4">
-              Our approach is rooted in partnership, not charity. We work
+              Our approach is rooted in partnerships. We work
               alongside local communities to identify their unique needs and
               co-create solutions that are culturally relevant and sustainable.
-              From establishing digital learning centers in rural Kenya to
-              supporting women's cooperatives in Guatemala, our work spans
+              From establishing digital learning centers in rural areas to
+              supporting women's cooperatives in Ghana, our work spans
               continents while remaining deeply personal and community-driven.
             </p>
-            <p className="text-gray-600 mb-4">
-              Central to our mission is fighting antisemitism and all forms of
-              discrimination. We actively support Holocaust education programs,
-              interfaith dialogue initiatives, and community healing projects
-              that address historical prejudices. We believe that combating
-              hatred in all its forms is fundamental to creating the equitable
-              access we champion worldwide.
-            </p>
+
             <p className="text-gray-600 mb-4">
               We believe that with the right tools, support, and opportunities,
               every person can shape their future and contribute to a better
@@ -73,33 +64,40 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              alt="Diverse volunteers working together"
+              src="https://images.pexels.com/photos/9493593/pexels-photo-9493593.jpeg"
+              alt="Interfaith dialogue and community unity"
               className="rounded-xl shadow-lg w-full"
             />
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h2>
-            <p className="font-bold  mb-3">The Beginning </p>
-            <p className="text-gray-600 mb-8">
-              Access Global Foundation was born in 2018 when our founder, Sarah
-              Johnson, witnessed firsthand the untapped potential in a remote
-              village in Madagascar. Despite having brilliant minds and strong
-              community bonds, residents lacked access to basic educational
-              resources and sustainable economic opportunities. This experience
-              sparked a vision: what if we could systematically remove barriers
-              that prevent communities from thriving?
-            </p>
-            <p className="font-bold  mb-3">Growing Impact </p>
+            <p className="font-bold text-lg text-primary-600 mb-4">Fighting Antisemitism & Building Unity</p>
 
             <p className="text-gray-600 mb-4">
-              What began as a single education initiative has grown into a
-              comprehensive foundation addressing interconnected challenges.
-              We've learned that sustainable change requires a holistic
-              approach—combining education with economic opportunity,
-              environmental stewardship with health access, and local wisdom
-              with global resources.
+              Central to our mission is fighting antisemitism and all forms of
+              discrimination. We actively support Holocaust education programs,
+              interfaith dialogue initiatives, and community healing projects
+              that address historical prejudices. We believe that combating
+              hatred in all its forms is fundamental to creating the equitable
+              access we champion worldwide.
+            </p>
+
+            <p className="text-gray-600 mb-4">
+              Our antisemitism prevention work includes comprehensive Holocaust education 
+              programs in schools and communities, interfaith dialogue workshops that bring 
+              together religious and community leaders, and digital platforms that promote 
+              understanding and combat online hate speech. We partner with museums, 
+              educational institutions, and community organizations to ensure that the 
+              lessons of history are never forgotten.
+            </p>
+
+            <p className="text-gray-600 mb-4">
+              We also support initiatives that address contemporary antisemitism through 
+              cultural exchange programs, youth leadership development, and community 
+              resilience building. By fostering understanding and respect between different 
+              communities, we create stronger, more inclusive societies where every individual 
+              can thrive regardless of their background or beliefs.
             </p>
           </div>
         </div>
@@ -290,61 +288,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Partnerships & Collaborations */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Some of Our Works
-            </h2>
-          </div>
-          {/* Program Categories */}
-          <div className="grid lg:grid-cols-3 gap-12 mb-16">
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="bg-white rounded-xl shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-                alt="Children in classroom"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-
-            
-          </div>
-        </div>
+    
       </div>
     </div>
   );

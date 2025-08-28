@@ -18,7 +18,6 @@ export default function GetInvolved() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join us in creating pathways to opportunity worldwide. Every contribution makes a difference.
           </p>
-          <p className="text-2xl font-bold text-warning-500 mt-4 italic">The World is Yours.</p>
         </div>
 
         {/* Ways to Get Involved */}

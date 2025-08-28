@@ -75,11 +75,11 @@ export default function Stories() {
               </div>
             </div>
           </div>
-          {/* Story 3 - Economic Access */}
+          {/* Story 4 - Refugee Education */}
           <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-              alt="Women entrepreneurs working together" 
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Refugee student studying" 
               className="w-full h-48 object-cover" 
             />
             <div className="p-6">
@@ -92,11 +92,11 @@ export default function Stories() {
               </div>
             </div>
           </div>
-          {/* Story 3 - Economic Access */}
+          {/* Story 5 - Environmental Sustainability */}
           <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-              alt="Women entrepreneurs working together" 
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Sustainable farming and water conservation" 
               className="w-full h-48 object-cover" 
             />
             <div className="p-6">
@@ -108,17 +108,17 @@ export default function Stories() {
               </div>
             </div>
           </div>
-          {/* Story 3 - Economic Access */}
+          {/* Story 6 - Interfaith Unity */}
           <div className="bg-gray-50 rounded-xl overflow-hidden shadow-lg">
             <img 
-              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-              alt="Women entrepreneurs working together" 
+              src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              alt="Interfaith dialogue and community unity" 
               className="w-full h-48 object-cover" 
             />
             <div className="p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-3">Building Bridges, Breaking Hatred</h3>
               <p className="text-gray-600 mb-4">
-              The village of Khimsar was facing its worst drought in 50 years. Our Environmental Empowerment program introduced rainwater harvesting, drought-resistant crops, and community-managed water systems. Within two years, they not only achieved water security but became a model eco-village. The community now trains other villages and has reduced water usage by 40% while increasing crop yields by 65%.     </p>         <div className="flex items-center text-sm text-primary-500">
+              Our antisemitism prevention program brought together communities from Rwanda and Germany for a groundbreaking reconciliation initiative. Through shared workshops, cultural exchanges, and joint community projects, participants built lasting friendships and understanding. The program has since expanded to 12 countries, creating a network of peacebuilders committed to combating hatred and discrimination.     </p>         <div className="flex items-center text-sm text-primary-500">
                 <i className="fas fa-map-marker-alt mr-1"></i>
                 <span>Kigali, Rwanda & Berlin, Germany</span>
               </div>
