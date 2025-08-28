@@ -58,7 +58,7 @@ export default function Navigation() {
               alt="Access Global Foundation Logo" 
               className="h-10 w-auto mr-2 sm:mr-3"
             />
-            <span className="font-bold text-base sm:text-lg md:text-xl text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis max-w-[160px] sm:max-w-none">
+            <span className="font-bold text-base sm:text-lg md:text-xl text-gray-900 whitespace-nowrap text-ellipsis max-w-[160px] sm:max-w-none">
               Access Global Foundation
             </span>
           </Link>
