@@ -190,30 +190,19 @@ export default function Home() {
         >
           <div className="mb-8">
             {/* Logo */}
-            <div className="mb-8">
-              <img 
-                src="/assets/access_logo.jpg" 
-                alt="Access Global Foundation Logo" 
-                className="h-40 w-auto mx-auto mb-6 rounded-full shadow-2xl"
-              />
-            </div>
-            <div className="inline-block px-6 py-2 bg-yellow-500/20 rounded-full border border-yellow-500/30 backdrop-blur-sm mb-6">
-              <span className="text-yellow-400 font-semibold">
-                Live, Love, Life
-              </span>
-            </div>
+                         <div className="mb-8">
+                               <img 
+                  src="/assets/access_logo.jpg" 
+                  alt="Access Global Foundation Logo" 
+                  className="h-72 w-auto mx-auto mb-6 rounded-full shadow-2xl"
+                />
+             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            Welcome to
-            <br />
-            <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-pulse">
-              Access Global Foundation
-            </span>
-          </h1>
+          
 
           <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-4xl mx-auto leading-relaxed">
-            We believe in a world where every individual, regardless of
+            We're a new foundation with big dreams. Help us create a world where every individual, regardless of
             background or geography, has the opportunity to thrive and unlock
             their potential.
           </p>
@@ -224,21 +213,29 @@ export default function Home() {
           <a href="/donate">
             <button className="group bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
               <Heart className="mr-3 group-hover:animate-pulse" size={20} />
-               Donate Now
+               Support Our Launch
 
               <div className="ml-2 bg-white/20 rounded-full px-3 py-1 text-sm">
                 →
               </div>
             </button>
             </a>
-            <a href="/get-involved">
-            <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
-              <Users className="mr-3 group-hover:text-blue-600" size={20} />
-              Get Involved
-            </button>
+                         <a href="/get-involved">
+             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
+               <Users className="mr-3 group-hover:text-blue-600" size={20} />
+               Join Our Mission
+             </button>
 
-            </a>
-          </div>
+             </a>
+           </div>
+           
+           <div className="mt-8">
+             <div className="inline-block px-6 py-2 bg-yellow-500/20 rounded-full border border-yellow-500/30 backdrop-blur-sm">
+               <span className="text-yellow-400 font-semibold">
+                 Live, Love, Life
+               </span>
+             </div>
+           </div>
         </div>
 
         {/* Enhanced scroll indicator */}
@@ -256,17 +253,17 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our Global Impact
+              Our First Year Goals
             </h2>
             <p className="text-xl opacity-90">
-              Numbers that tell our story of transformation
+              Help us achieve these ambitious targets in our launch year
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <ImpactCounter target={45} label="Countries Reached" />
-            <ImpactCounter target={500} label="Lives Transformed" />
-            <ImpactCounter target={1200} label="Local Partnerships" />
-            <ImpactCounter target={850} label="Active Projects" />
+            <ImpactCounter target={15} label="Countries to Reach" />
+            <ImpactCounter target={100} label="Lives to Transform" />
+            <ImpactCounter target={50} label="Partnerships to Build" />
+            <ImpactCounter target={25} label="Projects to Launch" />
           </div>
         </div>
       </section>
@@ -276,9 +273,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-white/50"></div>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-blue-100 rounded-full mb-6">
-              <span className="text-blue-600 font-semibold">Our Purpose</span>
-            </div>
+           
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-8">
               Our Mission
             </h2>
@@ -287,11 +282,11 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-xl text-gray-700 leading-relaxed mb-8">
-                To create pathways to opportunity by breaking down barriers in
+                To create pathways to opportunities by breaking down barriers in
                 underserved communities and promoting equitable access to tools
                 that change lives. Access Global Foundation is committed to
-                unlocking potential and opening doors — socially, economically,
-                and educationally — across the globe.
+                unlocking potential and opening doors socially, economically,
+                and educationally across the globe.
               </p>
 
               <div className="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-blue-500">
@@ -325,14 +320,12 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <div className="inline-block px-6 py-2 bg-green-100 rounded-full mb-6">
-              <span className="text-green-600 font-semibold">What We Do</span>
-            </div>
+          
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Our Programs
+              Programs We're Launching
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive initiatives designed to address critical needs and
+              Help us launch these comprehensive initiatives designed to address critical needs and
               create lasting impact across multiple sectors
             </p>
           </div>
@@ -370,10 +363,10 @@ export default function Home() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-black mb-8">
-            Ready to Make a Difference?
+            Ready to Help Us Launch?
           </h2>
           <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of supporters who are creating positive change in
+            Join our founding supporters who are helping us create positive change in
             communities worldwide. Together, we can build a more accessible and
             equitable future for all.
           </p>
@@ -386,7 +379,7 @@ export default function Home() {
                 className="mr-3 group-hover:text-red-500 group-hover:animate-pulse"
                 size={20}
               />
-              Start Donating
+              Support Our Launch
               <div className="ml-2 bg-blue-600 text-white rounded-full px-3 py-1 text-sm">
                 →
               </div>
@@ -396,7 +389,7 @@ export default function Home() {
             <a href="/get-involved">
             <button className="group bg-transparent border-2 border-white/50 text-white hover:bg-white hover:text-blue-600 px-10 py-4 rounded-full text-lg font-bold transition-all backdrop-blur-sm flex items-center">
               <Users className="mr-3 group-hover:text-blue-600" size={20} />
-              <a href="/get-involved"> Become a Volunteer </a>
+              <a href="/get-involved"> Become a Founding Supporter </a>
             </button>
             </a>
           </div>
@@ -405,25 +398,25 @@ export default function Home() {
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$100</div>
+              <div className="text-2xl font-bold mb-2">$1,000</div>
               <div className="opacity-90">
                 Provides school supplies for one student for a month
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$250</div>
+              <div className="text-2xl font-bold mb-2">$2,500</div>
               <div className="opacity-90">
                 Funds health screenings for 10 community members
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$500</div>
+              <div className="text-2xl font-bold mb-2">$5,000</div>
               <div className="opacity-90">
                 Plants 50 trees for environmental restoration
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$1000</div>
+              <div className="text-2xl font-bold mb-2">$10,000</div>
               <div className="opacity-90">
                 Supports microfinance for 5 entrepreneurs
               </div>
