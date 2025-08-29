@@ -35,14 +35,15 @@ const Programs = () => {
         "Educational resource distribution and library establishment"
       ],
       impact: {
-        schools: "87 Schools Built",
-        students: "25,000+ Students Supported", 
-        teachers: "1,200+ Teachers Trained",
-        countries: "15 Countries"
+        schools: "25 Schools to Build",
+        students: "1,000+ Students to Support", 
+        teachers: "100+ Teachers to Train",
+        countries: "15 Countries to Reach"
       },
       bgGradient: "from-blue-600 to-indigo-700",
       ctaText: "Support Education",
-      featured: true
+      featured: true,
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "environment",
@@ -60,13 +61,14 @@ const Programs = () => {
         "Climate adaptation strategies for vulnerable communities"
       ],
       impact: {
-        trees: "500K+ Trees Planted",
-        water: "200+ Clean Water Points",
-        communities: "180 Communities Served",
-        waste: "75% Waste Reduction Average"
+        trees: "50K+ Trees to Plant",
+        water: "20+ Clean Water Points to Build",
+        communities: "20 Communities to Serve",
+        waste: "25% Waste Reduction Target"
       },
       bgGradient: "from-green-600 to-emerald-700",
-      ctaText: "Join Green Movement"
+      ctaText: "Join Green Movement",
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "economic",
@@ -84,13 +86,14 @@ const Programs = () => {
         "Youth entrepreneurship incubators"
       ],
       impact: {
-        businesses: "3,500+ Businesses Launched",
-        jobs: "12,000+ Jobs Created",
-        women: "2,800+ Women Entrepreneurs",
-        income: "40% Average Income Increase"
+        businesses: "100+ Businesses to Launch",
+        jobs: "500+ Jobs to Create",
+        women: "200+ Women Entrepreneurs to Support",
+        income: "25% Average Income Increase Target"
       },
       bgGradient: "from-purple-600 to-violet-700",
-      ctaText: "Empower Entrepreneurs"
+      ctaText: "Empower Entrepreneurs",
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "health",
@@ -108,13 +111,14 @@ const Programs = () => {
         "Maternal and child health initiatives"
       ],
       impact: {
-        patients: "85,000+ Patients Treated",
-        clinics: "120 Mobile Clinics Operating",
-        workers: "900+ Health Workers Trained",
-        villages: "300+ Villages Reached"
+        patients: "1,000+ Patients to Treat",
+        clinics: "5 Mobile Clinics to Launch",
+        workers: "50+ Health Workers to Train",
+        villages: "15 Villages to Reach"
       },
       bgGradient: "from-red-600 to-rose-700", 
-      ctaText: "Support Healthcare"
+      ctaText: "Support Healthcare",
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "agriculture",
@@ -132,13 +136,14 @@ const Programs = () => {
         "Market linkage and value chain development"
       ],
       impact: {
-        farmers: "15,000+ Farmers Trained",
-        yield: "60% Average Yield Increase",
-        cooperatives: "200+ Farmer Cooperatives",
-        food: "2M+ People Fed Annually"
+        farmers: "500+ Farmers to Train",
+        yield: "30% Average Yield Increase Target",
+        cooperatives: "20+ Farmer Cooperatives to Form",
+        food: "100K+ People to Feed Annually"
       },
       bgGradient: "from-amber-600 to-orange-700",
-      ctaText: "Support Farmers"
+      ctaText: "Support Farmers",
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "energy",
@@ -156,13 +161,14 @@ const Programs = () => {
         "Technical training for renewable energy maintenance"
       ],
       impact: {
-        homes: "45,000+ Homes Powered",
-        panels: "8,000+ Solar Installations",
-        emissions: "30,000 Tons CO2 Reduced",
-        technicians: "500+ Technicians Trained"
+        homes: "500+ Homes to Power",
+        panels: "200+ Solar Installations to Deploy",
+        emissions: "5,000 Tons CO2 Reduction Target",
+        technicians: "50+ Technicians to Train"
       },
       bgGradient: "from-yellow-600 to-amber-700",
-      ctaText: "Power Communities"
+      ctaText: "Power Communities",
+      launchPhase: "Phase 1 - Launch Ready"
     },
     {
       id: "agritech",
@@ -180,13 +186,15 @@ const Programs = () => {
         "IoT sensors for soil and crop health monitoring"
       ],
       impact: {
-        hectares: "25,000+ Hectares Monitored",
-        efficiency: "45% Water Use Reduction", 
-        technology: "300+ Smart Systems Deployed",
-        farmers: "5,000+ Tech-Enabled Farmers"
+        hectares: "5,000+ Hectares to Monitor",
+        efficiency: "25% Water Use Reduction Target", 
+        technology: "50+ Smart Systems to Deploy",
+        farmers: "500+ Farmers to Enable"
       },
       bgGradient: "from-teal-600 to-cyan-700",
-      ctaText: "Embrace Innovation"
+      ctaText: "Embrace Innovation",
+      featured: false,
+      launchPhase: "Phase 1 - Launch Ready"
     }
   ];
 
@@ -207,7 +215,7 @@ const Programs = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative h-[40vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-purple-800 to-teal-900" />
         <div className="relative z-10 h-full flex items-center justify-center text-white">
           <div className="max-w-6xl mx-auto px-4 text-center">
@@ -217,18 +225,18 @@ const Programs = () => {
               transition={{ duration: 0.8 }}
             >
               {/* Logo */}
-              <div className="mb-8">
+              <div className="mb-4">
                 <img 
                   src="/assets/access_logo.jpg" 
                   alt="Access Global Foundation Logo" 
-                  className="h-20 w-auto mx-auto mb-6 rounded-full shadow-2xl"
+                  className="h-16 w-auto mx-auto mb-4 rounded-full shadow-2xl"
                 />
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                Our Programs
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Programs We're Launching
               </h1>
-              <p className="text-xl md:text-2xl mb-4 max-w-4xl mx-auto leading-relaxed">
-                Transforming lives through comprehensive global initiatives
+              <p className="text-lg md:text-xl mb-4 max-w-4xl mx-auto leading-relaxed">
+                Help us launch these comprehensive global initiatives to transform lives
               </p>
              
             </motion.div>
@@ -237,36 +245,36 @@ const Programs = () => {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Breaking Barriers, Building Futures
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              At Access Global Foundation, our programs are strategically designed to address interconnected challenges 
+              At Access Global Foundation, we're designing programs to address interconnected challenges 
               facing underserved communities worldwide. From education to environmental sustainability, from economic 
-              empowerment to healthcare access, we create comprehensive solutions that transform lives and communities.
+              empowerment to healthcare access, we'll create comprehensive solutions that transform lives and communities.
             </p>
           </div>
 
           {/* Impact Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">25+</div>
-              <div className="text-gray-600 font-medium">Countries</div>
+              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">15</div>
+              <div className="text-gray-600 font-medium">Countries to Reach</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">250+</div>
-              <div className="text-gray-600 font-medium">Communities</div>
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">50</div>
+              <div className="text-gray-600 font-medium">Communities to Serve</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">150K+</div>
-              <div className="text-gray-600 font-medium">Lives Impacted</div>
+              <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">100</div>
+              <div className="text-gray-600 font-medium">Lives to Transform</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">500+</div>
-              <div className="text-gray-600 font-medium">Projects</div>
+              <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">25</div>
+              <div className="text-gray-600 font-medium">Projects to Launch</div>
             </div>
           </div>
         </div>
@@ -295,7 +303,7 @@ const Programs = () => {
       </section>
 
       {/* Programs Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {filteredPrograms.map((program, index) => (
@@ -342,27 +350,14 @@ const Programs = () => {
                     </ul>
                   </div>
 
-                  {/* Impact Metrics */}
-                  <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <Target size={20} className="text-green-600" />
-                      Our Impact
-                    </h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      {Object.entries(program.impact).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div className="text-2xl font-bold text-blue-600">{value}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+
 
                   {/* CTA Button */}
-                  <a href={program.link}>
+                  <a href={`/programs/${program.id}`}>
                   <button
                     className={`w-full inline-flex items-center justify-center bg-gradient-to-r ${program.bgGradient} text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-lg transition-all duration-300 group`}
                   >
-                    {program.ctaText}
+                    Learn More
                     <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
                   </a>
@@ -382,22 +377,28 @@ const Programs = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Make a Global Impact?
+              Ready to Help Us Launch?
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Join us in our mission to break down barriers and open doors to opportunity worldwide. 
+              Join us in launching our mission to break down barriers and open doors to opportunity worldwide. 
               Together, we can make the world truly accessible for everyone.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg">
-                Get Involved Today
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-gray-900 transition-colors shadow-lg">
-                Make a Donation
-              </button>
-              <button className="bg-transparent border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-400 hover:text-gray-900 transition-colors shadow-lg">
-                See Our Impact
-              </button>
+              <a href="/get-involved">
+                <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg">
+                  Join Our Mission
+                </button>
+              </a>
+              <a href="/donate">
+                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-gray-900 transition-colors shadow-lg">
+                  Support Our Launch
+                </button>
+              </a>
+              <a href="/get-involved">
+                <button className="bg-transparent border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-400 hover:text-gray-900 transition-colors shadow-lg">
+                  Be a Founding Supporter
+                </button>
+              </a>
             </div>
           </motion.div>
         </div>

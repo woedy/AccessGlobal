@@ -212,6 +212,8 @@ export default function DonationFlow() {
     <div className="min-h-screen bg-gray-50">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
       
+   
+      
       {/* Only show progress indicator after step 1 */}
       {currentStep > 1 && <ProgressIndicator currentStep={currentStep} />}
       

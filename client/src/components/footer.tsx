@@ -25,11 +25,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="text-gray-300 hover:text-warning-500 transition-colors">About Us</Link></li>
-              <li><Link href="/programs" className="text-gray-300 hover:text-warning-500 transition-colors">Our Programs</Link></li>
-              <li><Link href="/stories" className="text-gray-300 hover:text-warning-500 transition-colors">Stories</Link></li>
-              <li><Link href="/blogs" className="text-gray-300 hover:text-warning-500 transition-colors">Blogs</Link></li>
+              <li><Link href="/about" className="text-gray-300 hover:text-warning-500 transition-colors">About</Link></li>
+              <li><Link href="/programs" className="text-gray-300 hover:text-warning-500 transition-colors">Programs</Link></li>
               <li><Link href="/get-involved" className="text-gray-300 hover:text-warning-500 transition-colors">Get Involved</Link></li>
+              <li><Link href="/donate" className="text-gray-300 hover:text-warning-500 transition-colors">Donate</Link></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-warning-500 transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -38,9 +38,8 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-4">Support</h3>
             <ul className="space-y-2">
               <li><Link href="/donate" className="text-gray-300 hover:text-warning-500 transition-colors">Donate</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-warning-500 transition-colors">Contact Us</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">Newsletter</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">Volunteer</a></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-warning-500 transition-colors">Contact</Link></li>
+              <li><Link href="/get-involved" className="text-gray-300 hover:text-warning-500 transition-colors">Get Involved</Link></li>
             </ul>
           </div>
         </div>

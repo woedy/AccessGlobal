@@ -1,207 +1,141 @@
-# Donation Service Configuration
+# Donation Service - Stripe Integration
 
-This service handles communication with your Django backend for donation processing with support for multiple payment methods.
+## Overview
+This donation service implements Stripe hosted checkout for the Access Global Foundation static website. It allows donors to make secure payments without requiring a backend server.
 
-## Configuration
+## Features
+- **Stripe Hosted Checkout**: Secure payment processing through Stripe's hosted solution
+- **PayPal Integration**: Direct redirect to PayPal for donations
+- **Multiple Payment Methods**: Support for various payment options
+- **Static Site Compatible**: No backend server required
 
-1. **Update API Base URL**: In `config/api.ts`, update the `BASE_URL` to point to your Django backend:
-   ```typescript
-   export const API_CONFIG = {
-     BASE_URL: 'https://your-django-backend.com/api',
-   };
-   ```
+## Setup Instructions
 
-2. **Environment Variable (Optional)**: You can also use environment variables by:
-   - Creating a `.env.local` file in your project root
-   - Adding: `NEXT_PUBLIC_API_URL=https://your-django-backend.com/api`
-   - Then uncomment the line in `config/api.ts`:
-   ```typescript
-   BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'https://your-django-backend.com/api',
-   ```
-
-## Supported Payment Methods
-
-The donation system now supports the following payment methods:
-
-1. **Credit/Debit Card** - Direct card processing
-2. **Stripe Checkout** - Redirect to Stripe's secure payment page
-3. **PayPal** - Redirect to PayPal for payment
-4. **Cryptocurrency** - Bitcoin, Ethereum, USDT, USDC, BNB
-5. **Bank Transfer** - Direct bank account transfer
-6. **Mobile Money** - MTN, Vodafone, AirtelTigo
-
-## Django Backend Endpoints Expected
-
-The service expects these endpoints on your Django backend:
-
-### 1. Submit Donation
-- **URL**: `POST /api/donations/`
-- **Request Body**: 
-  ```json
-  {
-    "amount": 100,
-    "isMonthly": false,
-    "monthlyPlan": "education",
-    "paymentMethod": "card|stripe|paypal|crypto|bank|momo",
-    "donorInfo": {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john@example.com",
-      "phone": "+1234567890",
-      "address": "123 Main St"
-    },
-    "paymentDetails": {
-      // Card payment
-      "cardNumber": "1234567890123456",
-      "expiryDate": "12/25",
-      "cvv": "123",
-      "cardholderName": "John Doe"
-      
-      // OR Bank transfer
-      "bankName": "access",
-      "accountNumber": "1234567890",
-      "routingNumber": "123456789"
-      
-      // OR Mobile money
-      "provider": "mtn",
-      "phoneNumber": "0241234567"
-      
-      // OR Crypto
-      "cryptocurrency": "bitcoin",
-      "walletAddress": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-      
-      // OR Stripe/PayPal
-      "email": "john@example.com"
-    }
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "transaction_id": "AGF123456789",
-    "message": "Donation processed successfully",
-    "redirect_url": "https://checkout.stripe.com/..." // For Stripe/PayPal
-  }
-  ```
-
-### 2. Validate Payment (Optional)
-- **URL**: `POST /api/donations/validate-payment/`
-- **Request Body**:
-  ```json
-  {
-    "paymentMethod": "card",
-    "paymentDetails": { ... }
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "valid": true,
-    "message": "Payment details are valid"
-  }
-  ```
-
-### 3. Get Donation History (Optional)
-- **URL**: `GET /api/donations/history/?email=john@example.com`
-- **Response**:
-  ```json
-  {
-    "donations": [
-      {
-        "id": 1,
-        "amount": 100,
-        "date": "2024-01-15",
-        "status": "completed",
-        "paymentMethod": "card"
-      }
-    ]
-  }
-  ```
-
-### 4. Get Crypto Rates (Optional)
-- **URL**: `GET /api/crypto/rates/`
-- **Response**:
-  ```json
-  {
-    "rates": {
-      "bitcoin": 45000,
-      "ethereum": 3000,
-      "usdt": 1,
-      "usdc": 1,
-      "bnb": 300
-    }
-  }
-  ```
-
-## Input Validation
-
-The frontend includes comprehensive validation for all payment methods:
-
-### Credit Card Validation
-- Card number: 13-19 digits
-- Expiry date: MM/YY format, must be future date
-- CVV: 3-4 digits
-- Cardholder name: Required
-
-### Bank Transfer Validation
-- Bank name: Required selection
-- Account number: Required
-
-### Mobile Money Validation
-- Provider: Required selection
-- Phone number: Minimum 10 digits
-
-### Crypto Validation
-- Cryptocurrency: Required selection
-- Wallet address: 26-35 characters
-
-### Email Validation
-- Valid email format for Stripe/PayPal
-
-## Authentication
-
-If your Django backend requires authentication, uncomment and configure the authorization header in the `submitDonation` method:
+### 1. Stripe Configuration
+1. Create a Stripe account at [stripe.com](https://stripe.com)
+2. Get your publishable key from the Stripe Dashboard
+3. Update the `stripePublishableKey` in `donationService.ts`:
 
 ```typescript
-headers: {
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token}`, // Add your auth token here
-},
+private stripePublishableKey = 'pk_test_your_actual_key_here';
 ```
 
-## Payment Gateway Integration
+### 2. Stripe Checkout Session Creation
+The current implementation includes a mock checkout session. In production, you'll need to:
 
-### Stripe Integration
-- User provides email
-- Backend creates Stripe checkout session
-- Frontend redirects to Stripe checkout
-- Stripe redirects back to success page
+1. **Option A: Use Stripe CLI for testing**
+   ```bash
+   stripe listen --forward-to localhost:3000/api/create-checkout-session
+   ```
 
-### PayPal Integration
-- User provides PayPal email
-- Backend creates PayPal payment
-- Frontend redirects to PayPal
-- PayPal redirects back to success page
+2. **Option B: Use a serverless function (Vercel/Netlify)**
+   Create an API route that creates Stripe checkout sessions
 
-### Crypto Integration
-- User selects cryptocurrency and provides wallet address
-- Backend calculates crypto amount based on current rates
-- User sends crypto to provided address
-- Backend confirms transaction
+3. **Option C: Use Stripe's client-only checkout**
+   Implement Stripe Elements for direct card processing
 
-## Error Handling
+### 3. Environment Variables
+Create a `.env.local` file in your project root:
 
-The service includes comprehensive error handling and will return appropriate error messages if the Django backend is unavailable or returns errors.
+```env
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_key_here
+VITE_STRIPE_SECRET_KEY=sk_test_your_secret_key_here
+```
+
+## Payment Flow
+
+### Stripe Payments
+1. User selects donation amount
+2. User chooses Stripe as payment method
+3. User enters email address
+4. System redirects to Stripe hosted checkout
+5. User completes payment on Stripe
+6. Stripe redirects back to success page
+
+### PayPal Payments
+1. User selects donation amount
+2. User chooses PayPal as payment method
+3. User enters email address
+4. System redirects to PayPal
+5. User completes payment on PayPal
+6. PayPal redirects back to success page
+
+## Security Considerations
+
+### What's Secure
+- ✅ Stripe hosted checkout (PCI compliant)
+- ✅ No sensitive data stored on your server
+- ✅ Stripe handles all payment processing
+- ✅ HTTPS required for production
+
+### What to Avoid
+- ❌ Never store credit card numbers
+- ❌ Never handle raw payment data
+- ❌ Don't bypass Stripe's security measures
 
 ## Testing
 
-You can test the service by updating the API URL to a test endpoint or by using a mock service during development.
+### Stripe Test Mode
+- Use test card numbers: `4242 4242 4242 4242`
+- Use test expiry: Any future date
+- Use test CVC: Any 3 digits
 
-## Quick Setup
+### PayPal Sandbox
+- Use PayPal sandbox accounts for testing
+- Test with small amounts only
 
-1. Update the URL in `client/src/config/api.ts`
-2. Ensure your Django backend has the required endpoints
-3. Test the donation flow with different payment methods
-4. Implement proper validation on your backend
+## Production Deployment
 
-The service is now ready to work with your Django backend and supports a complete donation experience! 
+### 1. Update Keys
+- Change from test keys to live keys
+- Update success/cancel URLs to production domain
+
+### 2. SSL Certificate
+- Ensure HTTPS is enabled
+- Valid SSL certificate required
+
+### 3. Webhook Setup (Recommended)
+- Set up Stripe webhooks for payment confirmations
+- Handle successful payments server-side
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Stripe not loading**
+   - Check internet connection
+   - Verify publishable key is correct
+   - Check browser console for errors
+
+2. **Payment not processing**
+   - Verify Stripe account is active
+   - Check Stripe Dashboard for errors
+   - Ensure test mode is enabled for testing
+
+3. **Redirect issues**
+   - Verify success/cancel URLs are correct
+   - Check domain configuration in Stripe
+
+### Debug Mode
+Enable debug logging by adding to your browser console:
+
+```javascript
+localStorage.setItem('debug', 'stripe:*');
+```
+
+## Support
+
+- **Stripe Documentation**: [stripe.com/docs](https://stripe.com/docs)
+- **Stripe Support**: [support.stripe.com](https://support.stripe.com)
+- **PayPal Developer**: [developer.paypal.com](https://developer.paypal.com)
+
+## Notes for Access Global Foundation
+
+This implementation follows the PIVOT PLAN requirements:
+- ✅ Maintains all existing donation tiers and amounts
+- ✅ Implements Stripe hosted checkout for secure payments
+- ✅ No backend/server implementation needed
+- ✅ Static site compatible
+- ✅ Reflects new foundation messaging
+
+Remember to update the Stripe publishable key and PayPal business email before going live! 

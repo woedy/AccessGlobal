@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -9,11 +8,10 @@ export default function Navigation() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "About", href: "/about" },
     { name: "Programs", href: "/programs" },
-    { name: "Stories of Change", href: "/stories" },
-    { name: "Blog", href: "/blog" },
     { name: "Get Involved", href: "/get-involved" },
+    { name: "Donate", href: "/donate" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -70,13 +68,8 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Donate + Mobile Menu Button */}
+          {/* Mobile Menu Button */}
           <div className="flex items-center space-x-3">
-            <Link href="/donate" className="hidden md:block">
-              <Button className="bg-warning-500 hover:bg-warning-600 text-white">
-                <i className="fas fa-heart mr-1"></i> Donate Now
-              </Button>
-            </Link>
             <button
               className="md:hidden text-gray-600 hover:text-primary-500"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}

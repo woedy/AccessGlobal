@@ -29,58 +29,64 @@ export default function PaymentMethodStep({
 
   const paymentMethods = [
     {
-      id: 'card',
-      name: 'Credit/Debit Card',
-      description: 'Visa, Mastercard, American Express',
-      icon: 'fas fa-credit-card',
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-500'
-    },
-    {
       id: 'stripe',
       name: 'Stripe Checkout',
       description: 'Secure payment processing by Stripe',
       icon: 'fab fa-stripe-s',
       color: 'text-purple-500',
       bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-500'
+      borderColor: 'border-purple-500',
+      available: true
+    },
+    {
+      id: 'card',
+      name: 'Credit/Debit Card',
+      description: 'Visa, Mastercard, American Express',
+      icon: 'fas fa-credit-card',
+      color: 'text-gray-400',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-300',
+      available: false
     },
     {
       id: 'paypal',
       name: 'PayPal',
       description: 'Pay with your PayPal account',
       icon: 'fab fa-paypal',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-600'
+      color: 'text-gray-400',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-300',
+      available: false
     },
     {
       id: 'crypto',
       name: 'Cryptocurrency',
       description: 'Bitcoin, Ethereum, and other crypto',
       icon: 'fab fa-bitcoin',
-      color: 'text-orange-500',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-500'
+      color: 'text-gray-400',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-300',
+      available: false
     },
     {
       id: 'bank',
       name: 'Bank Transfer',
       description: 'Direct bank account transfer',
       icon: 'fas fa-university',
-      color: 'text-green-500',
-      bgColor: 'bg-green-50',
-      borderColor: 'border-green-500'
+      color: 'text-gray-400',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-300',
+      available: false
     },
     {
       id: 'momo',
       name: 'Mobile Money',
       description: 'MTN, Vodafone, AirtelTigo',
       icon: 'fas fa-mobile-alt',
-      color: 'text-orange-500',
-      bgColor: 'bg-orange-50',
-      borderColor: 'border-orange-500'
+      color: 'text-gray-400',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-300',
+      available: false
     }
   ];
 
@@ -89,9 +95,18 @@ export default function PaymentMethodStep({
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Payment Method</h2>
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
-            <p className="text-lg font-semibold text-blue-800">
+          <div className="bg-purple-50 rounded-lg p-4 mb-6 border border-purple-200">
+            <p className="text-lg font-semibold text-purple-800">
               Donating ${getFinalAmount()} {monthlyPlan ? 'per month' : 'one-time'}
+            </p>
+            <p className="text-sm text-purple-700 mt-2">
+              Stripe provides secure, professional payment processing
+            </p>
+          </div>
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <p className="text-sm text-blue-700">
+              <i className="fas fa-info-circle mr-2"></i>
+              <strong>Note:</strong> Stripe is currently the only available payment method. Other methods will be added soon!
             </p>
           </div>
         </div>
@@ -101,33 +116,42 @@ export default function PaymentMethodStep({
             {paymentMethods.map((method) => (
               <div
                 key={method.id}
-                onClick={() => onPaymentMethodSelect(method.id)}
-                className={`p-6 rounded-xl border-2 cursor-pointer transition-all ${
-                  paymentMethod === method.id 
-                    ? `${method.borderColor} ${method.bgColor}` 
-                    : 'border-gray-200 hover:border-gray-300'
+                onClick={() => method.available && onPaymentMethodSelect(method.id)}
+                className={`p-6 rounded-xl border-2 transition-all ${
+                  method.available 
+                    ? paymentMethod === method.id 
+                      ? `${method.borderColor} ${method.bgColor} cursor-pointer` 
+                      : 'border-gray-200 hover:border-gray-300 cursor-pointer'
+                    : 'border-gray-300 cursor-not-allowed opacity-40'
                 }`}
               >
                 <div className="flex items-center">
                   <i className={`${method.icon} text-2xl mr-4 ${method.color}`}></i>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold">{method.name}</h3>
-                    <p className="text-gray-600">{method.description}</p>
+                    <h3 className={`text-lg font-semibold ${method.available ? 'text-gray-900' : 'text-gray-500'}`}>
+                      {method.name}
+                    </h3>
+                    <p className={method.available ? 'text-gray-600' : 'text-gray-400'}>
+                      {method.description}
+                    </p>
                   </div>
-                  {paymentMethod === method.id && (
+                  {paymentMethod === method.id && method.available && (
                     <i className="fas fa-check text-green-500 text-xl"></i>
+                  )}
+                  {!method.available && (
+                    <i className="fas fa-lock text-gray-400 text-xl"></i>
                   )}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+          <div className="mt-8 p-4 bg-purple-50 rounded-lg border border-purple-200">
             <div className="flex items-start">
-              <i className="fas fa-shield-alt text-green-500 mr-3 mt-1"></i>
-              <div className="text-sm text-gray-600">
-                <p className="font-semibold">Secure Payment Processing</p>
-                <p>All payment methods are secured with industry-standard encryption. Your financial information is protected.</p>
+              <i className="fab fa-stripe-s text-purple-500 mr-3 mt-1 text-xl"></i>
+              <div className="text-sm text-purple-800">
+                <p className="font-semibold">Secure Stripe Checkout</p>
+                <p>Stripe provides industry-leading security with PCI compliance. Your payment information is processed securely and never stored on our servers.</p>
               </div>
             </div>
           </div>
@@ -139,7 +163,7 @@ export default function PaymentMethodStep({
             <Button
               onClick={onNext}
               disabled={!paymentMethod}
-              className="flex-1 bg-blue-500 hover:bg-blue-600 text-white"
+              className="flex-1 bg-purple-500 hover:bg-purple-600 text-white"
             >
               Continue
             </Button>

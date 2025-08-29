@@ -1,4 +1,5 @@
 import { getApiUrl } from '@/config/api';
+import { stripeService, StripeDonationData } from './stripeService';
 
 // Types for donation data
 export interface DonorInfo {
@@ -58,29 +59,20 @@ export interface DonationResponse {
 }
 
 class DonationService {
+  
   async submitDonation(donationData: DonationData): Promise<DonationResponse> {
     try {
-      const response = await fetch(getApiUrl('/donations/'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any authentication headers your Django backend requires
-          // 'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(donationData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      // Only Stripe payments are active for now
+      if (donationData.paymentMethod === 'stripe') {
+        return this.handleStripeCheckout(donationData);
       }
-
-      const result = await response.json();
+      
+      // All other payment methods are temporarily disabled
       return {
-        success: true,
-        transactionId: result.transaction_id || `AGF${Date.now()}`,
-        message: result.message || 'Donation processed successfully',
-        redirectUrl: result.redirect_url, // For payment gateway redirects
+        success: false,
+        transactionId: '',
+        message: 'This payment method is temporarily unavailable. Please use Stripe for secure donations.',
+        error: 'Payment method not available',
       };
     } catch (error) {
       console.error('Donation submission failed:', error);
@@ -93,69 +85,81 @@ class DonationService {
     }
   }
 
-  // Optional: Add other methods as needed for your Django backend
-  async validatePayment(paymentMethod: string, paymentDetails: any): Promise<{ valid: boolean; message?: string }> {
+  private async handleStripeCheckout(donationData: DonationData): Promise<DonationResponse> {
     try {
-      const response = await fetch(getApiUrl('/donations/validate-payment/'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // Convert to Stripe donation data format
+      const stripeDonationData: StripeDonationData = {
+        amount: donationData.amount,
+        isMonthly: donationData.isMonthly,
+        monthlyPlan: donationData.monthlyPlan,
+        donorInfo: donationData.donorInfo,
+        metadata: {
+          foundation: 'Access Global Foundation',
+          donation_type: donationData.isMonthly ? 'recurring' : 'one_time',
         },
-        body: JSON.stringify({ paymentMethod, paymentDetails }),
-      });
+      };
 
-      if (!response.ok) {
-        return { valid: false, message: 'Payment validation failed' };
+      // Use Stripe service to create checkout session
+      let session;
+      if (donationData.isMonthly) {
+        session = await stripeService.createRecurringDonationSession(stripeDonationData);
+      } else {
+        session = await stripeService.createOneTimeDonationSession(stripeDonationData);
       }
-
-      const result = await response.json();
-      return { valid: result.valid, message: result.message };
+      
+      if (session.url) {
+        // Redirect to Stripe hosted checkout
+        window.location.href = session.url;
+        return {
+          success: true,
+          transactionId: session.id,
+          message: 'Redirecting to Stripe checkout...',
+          redirectUrl: session.url,
+        };
+      } else {
+        throw new Error('Failed to create Stripe checkout session');
+      }
     } catch (error) {
-      console.error('Payment validation failed:', error);
-      return { valid: false, message: 'Payment validation failed' };
+      console.error('Stripe checkout failed:', error);
+      return {
+        success: false,
+        transactionId: '',
+        message: 'Stripe checkout failed',
+        error: error instanceof Error ? error.message : 'Unknown error occurred',
+      };
     }
   }
 
-  async getDonationHistory(email: string): Promise<any[]> {
-    try {
-      const response = await fetch(getApiUrl(`/donations/history/?email=${encodeURIComponent(email)}`), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
 
-      if (!response.ok) {
-        return [];
-      }
 
-      const result = await response.json();
-      return result.donations || [];
-    } catch (error) {
-      console.error('Failed to fetch donation history:', error);
-      return [];
+
+
+  // Optional: Add other methods as needed for your static site
+  async validatePayment(paymentMethod: string, paymentDetails: any): Promise<{ valid: boolean; message?: string }> {
+    // For static site, basic validation
+    if (paymentMethod === 'stripe' && paymentDetails.email) {
+      return { valid: true, message: 'Payment method validated' };
     }
+    if (paymentMethod === 'paypal' && paymentDetails.email) {
+      return { valid: true, message: 'Payment method validated' };
+    }
+    return { valid: false, message: 'Please provide valid payment details' };
+  }
+
+  async getDonationHistory(email: string): Promise<any[]> {
+    // For static site, return empty array
+    // In production, this would call your backend API
+    return [];
   }
 
   // Get crypto exchange rates (optional)
   async getCryptoRates(): Promise<Record<string, number>> {
-    try {
-      const response = await fetch(getApiUrl('/crypto/rates/'), {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        return {};
-      }
-
-      const result = await response.json();
-      return result.rates || {};
-    } catch (error) {
-      console.error('Failed to fetch crypto rates:', error);
-      return {};
-    }
+    // For static site, return empty object
+    // In production, this would call your backend API
+    return {};
   }
 }
+
+
 
 export const donationService = new DonationService(); 

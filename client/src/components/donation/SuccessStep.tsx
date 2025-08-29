@@ -121,11 +121,11 @@ export default function SuccessStep({
           <div className="bg-gradient-to-r from-blue-500 to-green-500 rounded-xl p-6 text-white mb-8">
             <h3 className="text-lg font-bold mb-2">Your Impact</h3>
             <p className="text-sm opacity-90">
-              Your generous donation will directly support our programs in education, healthcare, 
+              Your generous donation will help us launch our programs in education, healthcare, 
               environmental conservation, and economic empowerment around the world.
             </p>
             <p className="text-lg font-semibold mt-3 italic">
-              Because with your help, the world truly is theirs.
+              Because with your help, we can make the world truly theirs.
             </p>
           </div>
 

@@ -6,6 +6,12 @@ export default function ProgressIndicator({ currentStep }: ProgressIndicatorProp
   return (
     <div className="bg-white py-8 border-b border-gray-200">
       <div className="max-w-4xl mx-auto px-4">
+        {/* New Foundation Header */}
+        <div className="text-center mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Help Us Launch Our Mission</h3>
+          <p className="text-sm text-gray-600">We're a new foundation with big dreams. Your support makes it possible.</p>
+        </div>
+        
         <div className="flex items-center justify-between">
           {[1, 2, 3, 4, 5].map((step) => (
             <div key={step} className="flex items-center">

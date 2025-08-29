@@ -63,7 +63,7 @@ const FloatingElements = () => (
 );
 
 // Program Card Component
-const ProgramCard = ({ icon: Icon, title, description, color, image }) => (
+const ProgramCard = ({ icon: Icon, title, description, color, image, id }) => (
   <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
     <div className="relative overflow-hidden">
       <img
@@ -83,7 +83,7 @@ const ProgramCard = ({ icon: Icon, title, description, color, image }) => (
         {title}
       </h3>
       <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
-      <a href="/programs">
+      <a href={`/programs/${id}`}>
       <button className="text-blue-500 hover:text-blue-700 font-semibold flex items-center group-hover:translate-x-2 transition-transform">
         Learn More
         <span className="ml-2 text-lg">→</span>
@@ -102,6 +102,7 @@ export default function Home() {
 
   const programs = [
     {
+      id: "education",
       icon: Globe,
       title: "Global Education",
       description:
@@ -111,6 +112,7 @@ export default function Home() {
         "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     },
     {
+      id: "environment",
       icon: Leaf,
       title: "Environmental Empowerment",
       description:
@@ -120,6 +122,7 @@ export default function Home() {
         "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg",
     },
     {
+      id: "economic",
       icon: TrendingUp,
       title: "Economic Access",
       description:
@@ -129,6 +132,7 @@ export default function Home() {
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     },
     {
+      id: "health",
       icon: Activity,
       title: "Health & Wellness",
       description:
@@ -138,6 +142,7 @@ export default function Home() {
         "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     },
     {
+      id: "agriculture",
       icon: Sprout,
       title: "Training for Farmers",
       description:
@@ -147,6 +152,7 @@ export default function Home() {
         "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     },
     {
+      id: "energy",
       icon: Zap,
       title: "Renewable Energy",
       description:
@@ -156,6 +162,7 @@ export default function Home() {
         "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
     },
     {
+      id: "agritech",
       icon: Cpu,
       title: "Agri-Tech Innovation",
       description:

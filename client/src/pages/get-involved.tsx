@@ -14,9 +14,9 @@ export default function GetInvolved() {
               className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get Involved</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Be a Founding Supporter</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join us in creating pathways to opportunity worldwide. Every contribution makes a difference.
+            Help us launch our mission to create pathways to opportunity worldwide. Be part of our founding story and make a lasting difference.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export default function GetInvolved() {
         <div className="bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-8 lg:p-12 text-white text-center mb-16">
           <h2 className="text-2xl font-bold mb-4">Stay Connected</h2>
           <p className="text-xl mb-8 opacity-90">
-            Get updates on our programs, success stories, and ways to get involved.
+            Get updates on our launch progress, program development, and ways to support our mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input 

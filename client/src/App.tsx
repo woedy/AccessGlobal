@@ -7,6 +7,13 @@ import FloatingDonateButton from "@/components/floating-donate-button";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Programs from "@/pages/programs";
+import EducationProgram from "@/pages/programs/education";
+import EnvironmentProgram from "@/pages/programs/environment";
+import EconomicProgram from "@/pages/programs/economic";
+import HealthProgram from "@/pages/programs/health";
+import AgricultureProgram from "@/pages/programs/agriculture";
+import EnergyProgram from "@/pages/programs/energy";
+import AgriTechProgram from "@/pages/programs/agritech";
 import Stories from "@/pages/stories";
 import GetInvolved from "@/pages/get-involved";
 import Donate from "@/pages/donate";
@@ -24,6 +31,13 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/programs" component={Programs} />
+          <Route path="/programs/education" component={EducationProgram} />
+          <Route path="/programs/environment" component={EnvironmentProgram} />
+          <Route path="/programs/economic" component={EconomicProgram} />
+          <Route path="/programs/health" component={HealthProgram} />
+          <Route path="/programs/agriculture" component={AgricultureProgram} />
+          <Route path="/programs/energy" component={EnergyProgram} />
+          <Route path="/programs/agritech" component={AgriTechProgram} />
           <Route path="/stories" component={Stories} />
           <Route path="/get-involved" component={GetInvolved} />
           <Route path="/blog" component={Blog} />

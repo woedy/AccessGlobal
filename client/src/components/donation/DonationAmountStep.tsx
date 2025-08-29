@@ -39,9 +39,9 @@ export default function DonationAmountStep({
               className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Make a Difference</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Help Us Launch Our Mission</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Your donation creates pathways to opportunity and transforms lives around the world.
+            We're a new foundation with big dreams. Your donation helps us launch our programs and create pathways to opportunity for communities worldwide.
           </p>
           <p className="text-2xl font-bold text-yellow-500 mt-4 italic">The World is Yours.</p>
         </div>
@@ -111,9 +111,9 @@ export default function DonationAmountStep({
 
         {/* Monthly Giving */}
         <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Monthly Supporter</h2>
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Founding Supporter</h2>
           <p className="text-center text-gray-600 mb-8">
-            Join our community of monthly donors and create sustained impact in communities worldwide.
+            Join our founding community of monthly donors and help us build sustained impact in communities worldwide from the ground up.
           </p>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -226,27 +226,27 @@ export default function DonationAmountStep({
 
         {/* Impact Statement */}
         <div className="text-center bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 lg:p-12 text-white">
-          <h2 className="text-2xl font-bold mb-4">Your Donation Creates Real Impact</h2>
+          <h2 className="text-2xl font-bold mb-4">Your Donation Launches Real Impact</h2>
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             <div>
               <div className="text-3xl font-bold mb-2">98%</div>
-              <div className="text-sm opacity-90">Goes directly to programs</div>
+              <div className="text-sm opacity-90">Will go directly to programs</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">45+</div>
-              <div className="text-sm opacity-90">Countries impacted</div>
+              <div className="text-3xl font-bold mb-2">15+</div>
+              <div className="text-sm opacity-90">Countries we'll reach</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">500K+</div>
-              <div className="text-sm opacity-90">Lives transformed</div>
+              <div className="text-3xl font-bold mb-2">100+</div>
+              <div className="text-sm opacity-90">Lives we'll transform</div>
             </div>
             <div>
               <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-sm opacity-90">Impact happening</div>
+              <div className="text-sm opacity-90">Impact we'll create</div>
             </div>
           </div>
           <p className="text-xl opacity-90 italic">
-            Because with your help, the world truly is theirs.
+            Because with your help, we can make the world truly theirs.
           </p>
         </div>
       </div>
