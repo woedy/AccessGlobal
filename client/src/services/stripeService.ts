@@ -13,6 +13,8 @@ export interface StripeDonationData {
     phone: string;
     address: string;
   };
+  message?: string;
+  isPublic?: boolean;
   metadata?: Record<string, string>;
 }
 
@@ -23,6 +25,7 @@ export interface StripeCheckoutSession {
   currency: string;
   mode: 'payment' | 'subscription';
   status: string;
+  donationId?: string;
 }
 
 export interface StripePaymentIntent {
@@ -81,22 +84,37 @@ class StripeService {
    */
   async createOneTimeDonationSession(donationData: StripeDonationData): Promise<StripeCheckoutSession> {
     try {
-      // For testing purposes, redirect to a Stripe test checkout
-      // In production, you'd create a real checkout session via your backend
+      // Call backend to create Stripe Checkout session
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: donationData.amount,
+          isMonthly: donationData.isMonthly,
+          donorInfo: donationData.donorInfo,
+          message: donationData.message || '',
+          isPublic: donationData.isPublic !== false,
+          metadata: donationData.metadata,
+        }),
+      });
       
-      // Create a simple checkout URL (you'll replace this with your real Stripe checkout URL)
-      const checkoutUrl = `https://checkout.stripe.com/pay/cs_test_a1BcDeF2gHiJkLmNoPqRsT3uVwXyZ4#fidkdHxwZzktZ2tqZ2FwZGZtYVhPYVZtWjA0TjE0PW11PT02dGN1dzZDuZkJ1aFFEOWQ0T2EybUktR3H1aRxxYmZOY1Q0aUovYSt3PW9pNWk6Z01PNXFQNTRxTzZgTThkaXR8dTdRZ3Mgd2ZqYmtkPWNhdGFpaqRkY2Nka2pHaFp1ZGFYSk9MS0syTms#cC1jZ2g0WmR5SmdPY3dTZW1tfXZ1atfPGRVbUt3Hm52YmVKYV9GdUNLUTEpdGhEYmR1Sm5fTEpjVHVEY0olMjB1eXBkYjlrZfJjbY9kYA`;
+      if (!response.ok) {
+        throw new Error('Failed to create Stripe Checkout session');
+      }
       
-      // Redirect to Stripe checkout
-      window.location.href = checkoutUrl;
+      const data = await response.json();
       
       return {
-        id: `session_${Date.now()}`,
-        url: checkoutUrl,
+        id: data.url ? `session_${Date.now()}` : '',
+        url: data.url,
         amount_total: donationData.amount,
         currency: STRIPE_CONFIG.CURRENCY,
         mode: 'payment',
         status: 'created',
+        donationId: data.donationId,
       };
     } catch (error) {
       console.error('Failed to create one-time donation session:', error);
@@ -108,52 +126,38 @@ class StripeService {
    * Create a recurring donation checkout session
    */
   async createRecurringDonationSession(donationData: StripeDonationData): Promise<StripeCheckoutSession> {
-    const stripe = await this.initialize();
-
     try {
-      // For recurring donations, we need to create a price first
-      // Since this is a static site, we'll use predefined price IDs
-      const priceId = this.getPriceIdForAmount(donationData.amount);
-
-      const session = await stripe.redirectToCheckout({
-        mode: STRIPE_CONFIG.MODES.RECURRING,
-        lineItems: [
-          {
-            price: priceId,
-            quantity: 1,
-          },
-        ],
-        success_url: STRIPE_CONFIG.SUCCESS_URL,
-        cancel_url: STRIPE_CONFIG.CANCEL_URL,
-        customer_email: donationData.donorInfo.email,
-        metadata: {
-          donor_name: `${donationData.donorInfo.firstName} ${donationData.donorInfo.lastName}`,
-          donor_email: donationData.donorInfo.email,
-          donor_phone: donationData.donorInfo.phone,
-          donor_address: donationData.donorInfo.address,
-          foundation: STRIPE_CONFIG.FOUNDATION_NAME,
-          donation_type: 'recurring',
-          monthly_amount: donationData.amount.toString(),
-          ...donationData.metadata,
+      // Call backend to create Stripe Checkout session for recurring donations
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          amount: donationData.amount,
+          isMonthly: donationData.isMonthly,
+          donorInfo: donationData.donorInfo,
+          message: donationData.message || '',
+          isPublic: donationData.isPublic !== false,
+          metadata: donationData.metadata,
+        }),
       });
-
-      if (session.error) {
-        throw new Error(session.error.message);
+      
+      if (!response.ok) {
+        throw new Error('Failed to create Stripe Checkout session');
       }
-
-      // For redirectToCheckout, we need to handle the redirect manually
-      if (session.url) {
-        window.location.href = session.url;
-      }
-
+      
+      const data = await response.json();
+      
       return {
-        id: `session_${Date.now()}`,
-        url: session.url || '',
+        id: data.url ? `session_${Date.now()}` : '',
+        url: data.url,
         amount_total: donationData.amount,
         currency: STRIPE_CONFIG.CURRENCY,
-        mode: STRIPE_CONFIG.MODES.RECURRING,
+        mode: 'subscription',
         status: 'created',
+        donationId: data.donationId,
       };
     } catch (error) {
       console.error('Failed to create recurring donation session:', error);

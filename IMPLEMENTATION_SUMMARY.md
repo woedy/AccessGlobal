@@ -1,19 +1,20 @@
-# 🚀 STRIPE DONATION SYSTEM - IMPLEMENTATION COMPLETE
-## What's Been Built and What You Need to Do
+# 🚀 STRIPE DONATION SYSTEM - FULL-STACK IMPLEMENTATION
+## Updated Implementation Summary (Backend + Frontend)
 
 ---
 
 ## ✅ **WHAT'S BEEN IMPLEMENTED**
 
-### **1. Complete Stripe Integration**
+### **1. Full-Stack Stripe Integration**
+- ✅ Express backend for secure Stripe session creation
 - ✅ Stripe service with full payment processing
 - ✅ One-time donation support
 - ✅ Recurring monthly donation support
 - ✅ Secure Stripe hosted checkout
 - ✅ Professional payment experience
 
-### **2. Updated Donation Service**
-- ✅ Integrated with Stripe service
+### **2. Updated Donation Service & API**
+- ✅ Frontend calls backend API for Stripe session
 - ✅ Handles both one-time and recurring donations
 - ✅ Maintains existing donation flow
 - ✅ Stripe payment method support
@@ -24,9 +25,10 @@
 - ✅ Next steps information
 - ✅ Call-to-action buttons
 
-### **4. Configuration Files**
+### **4. Configuration Files & Environment Variables**
 - ✅ Stripe configuration (`client/src/config/stripe.ts`)
-- ✅ Environment variable support
+- ✅ Environment variable support in both frontend and backend
+- ✅ `.env` files for secrets and URLs
 - ✅ Foundation branding integration
 
 ### **5. Testing & Documentation**
@@ -34,37 +36,31 @@
 - ✅ Test utility (`client/src/utils/stripeTest.ts`)
 - ✅ Troubleshooting guide
 - ✅ Test card numbers for development
+- ✅ Backend error logging for diagnostics
 
 ---
 
 ## 🔧 **WHAT YOU NEED TO DO**
 
 ### **Step 1: Update Stripe Keys**
-1. Open `client/src/config/stripe.ts`
-2. Replace placeholder keys with your actual Stripe keys:
-   ```typescript
-   PUBLISHABLE_KEY: 'pk_test_your_actual_key_here',
-   SECRET_KEY: 'sk_test_your_actual_key_here',
+1. Open `server/.env` and add your Stripe secret key:
+   ```env
+   STRIPE_SECRET_KEY=sk_test_your_actual_key_here
+   ```
+2. Open `client/.env` and add your publishable key:
+   ```env
+   VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_actual_key_here
+   VITE_BACKEND_URL=http://localhost:3001
    ```
 
-### **Step 2: Create Stripe Products & Prices**
+### **Step 2: (Optional) Create Stripe Products & Prices**
 1. Go to [Stripe Dashboard](https://dashboard.stripe.com/)
-2. Create a product for "Access Global Foundation Donations"
-3. Create one-time prices for: $25, $50, $100, $250, $500, $1000, $5000
-4. Create recurring monthly prices for the same amounts
-5. Copy all the price IDs (they start with `price_`)
+2. Create products and prices if you want to use predefined price IDs for recurring donations.
+3. For one-time donations, the backend supports custom amounts.
 
-### **Step 3: Update Price Mapping**
-1. Open `client/src/services/stripeService.ts`
-2. Find the `getPriceIdForAmount` method
-3. Replace the placeholder price IDs with your actual ones:
-   ```typescript
-   const priceMap: Record<number, string> = {
-     25: 'price_1ABC123DEF456',      // Your actual price ID
-     50: 'price_1ABC123DEF789',      // Your actual price ID
-     // ... continue for all amounts
-   };
-   ```
+### **Step 3: Update Price Mapping (Recurring Only)**
+1. Open `client/src/services/stripeService.ts` if you use recurring donations.
+2. Update the price IDs in `getPriceIdForAmount` as needed.
 
 ---
 
@@ -111,6 +107,9 @@
 ## 📁 **FILES CREATED/MODIFIED**
 
 ### **New Files Created:**
+- `server/index.js` - Express backend for Stripe
+- `server/.env` - Backend environment variables
+- `client/.env` - Frontend environment variables
 - `client/src/config/stripe.ts` - Stripe configuration
 - `client/src/services/stripeService.ts` - Stripe payment service
 - `client/src/pages/donate-success.tsx` - Success page
@@ -120,20 +119,22 @@
 
 ### **Files Modified:**
 - `client/src/services/donationService.ts` - Integrated with Stripe
-- `package.json` - Added Stripe dependency
+- `server/index.js` - Backend error logging and Stripe integration
+- `package.json` - Added Stripe and Express dependencies
 
 ---
 
 ## 🎯 **SYSTEM FEATURES**
 
 ### **Donation Types:**
-- ✅ **One-time donations** - Any amount
-- ✅ **Recurring monthly donations** - Predefined amounts
+- ✅ **One-time donations** - Any amount (via backend)
+- ✅ **Recurring monthly donations** - Predefined amounts (optional)
 - ✅ **Custom amounts** - User-defined donation amounts
 
 ### **Payment Security:**
 - ✅ **Stripe hosted checkout** - PCI compliant
 - ✅ **Secure payment processing** - No card data on your server
+- ✅ **Backend handles secrets and webhooks**
 - ✅ **Professional checkout experience** - Trusted by millions
 
 ### **User Experience:**
@@ -148,7 +149,7 @@
 
 - ✅ **No sensitive data stored** - Stripe handles everything
 - ✅ **PCI compliance** - Stripe's responsibility
-- ✅ **Webhook support** - For payment confirmations
+- ✅ **Webhook support** - For payment confirmations (via backend)
 - ✅ **Test mode** - Safe development and testing
 
 ---
@@ -165,9 +166,10 @@
 ## 🆘 **SUPPORT & TROUBLESHOOTING**
 
 ### **Common Issues:**
-1. **"No price ID found"** - Update price mapping
-2. **Stripe not loading** - Check API keys
-3. **Checkout not working** - Verify URLs and configuration
+1. **500 Internal Server Error** - Check backend logs for details
+2. **"No price ID found"** - Update price mapping (recurring only)
+3. **Stripe not loading** - Check API keys
+4. **Checkout not working** - Verify URLs and configuration
 
 ### **Resources:**
 - `STRIPE_SETUP_GUIDE.md` - Complete setup instructions
@@ -193,4 +195,4 @@ The system handles everything else automatically:
 - Donor information collection
 - Both one-time and recurring donations
 
-**Your foundation can now accept real donations through Stripe! 🎯**
+**Your foundation can now accept real donations through Stripe, powered by a secure backend! 🎯**

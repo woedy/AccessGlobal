@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'wouter';
+import { useLocation } from 'wouter';
 import { stripeService } from '@/services/stripeService';
 
 export default function DonateSuccess() {
-  const [searchParams] = useSearchParams();
+  const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [donationDetails, setDonationDetails] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const sessionId = searchParams.get('session_id');
+  const params = new URLSearchParams(location.split('?')[1] || '');
+  const sessionId = params.get('session_id');
 
   useEffect(() => {
     if (sessionId) {
-      handleSuccessfulPayment(sessionId);
+      // Remove duplicate session_id parameter if present
+      const cleanSessionId = sessionId.split('?')[0];
+      fetchDonationDetails(cleanSessionId);
     } else {
       setIsLoading(false);
     }
@@ -24,6 +27,54 @@ export default function DonateSuccess() {
       setDonationDetails(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchDonationDetails = async (sessionId: string) => {
+    try {
+      // Fetch donation details from the server using the session ID
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3002';
+      const response = await fetch(`${backendUrl}/api/donations/session/${sessionId}`);
+      
+      if (response.ok) {
+        const donation = await response.json();
+        setDonationDetails(donation);
+      } else {
+        // If donation not found, create a basic success message
+        setDonationDetails({
+          id: sessionId,
+          amount: 0,
+          isMonthly: false,
+          donorInfo: {
+            firstName: 'Donor',
+            lastName: '',
+            email: ''
+          },
+          message: '',
+          isPublic: true,
+          status: 'completed',
+          createdAt: new Date().toISOString()
+        });
+      }
+    } catch (err) {
+      console.error('Failed to fetch donation details:', err);
+      // Show basic success message even if fetch fails
+      setDonationDetails({
+        id: sessionId,
+        amount: 0,
+        isMonthly: false,
+        donorInfo: {
+          firstName: 'Donor',
+          lastName: '',
+          email: ''
+        },
+        message: '',
+        isPublic: true,
+        status: 'completed',
+        createdAt: new Date().toISOString()
+      });
     } finally {
       setIsLoading(false);
     }

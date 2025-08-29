@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import DonateSuccess from "@/pages/donate-success";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/navigation";
@@ -44,6 +45,7 @@ function Router() {
           <Route path="/blog/:id" component={BlogPost} />
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
+          <Route path="/donate-success" component={DonateSuccess} />
           <Route component={NotFound} />
         </Switch>
       </main>

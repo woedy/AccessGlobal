@@ -48,6 +48,8 @@ export interface DonationData {
   paymentMethod: 'card' | 'bank' | 'momo' | 'crypto' | 'stripe' | 'paypal';
   donorInfo: DonorInfo;
   paymentDetails: CardDetails | BankDetails | MomoDetails | CryptoDetails | StripeDetails | PayPalDetails;
+  message?: string;
+  isPublic?: boolean;
 }
 
 export interface DonationResponse {
@@ -56,6 +58,18 @@ export interface DonationResponse {
   message: string;
   error?: string;
   redirectUrl?: string; // For Stripe/PayPal redirects
+  donationId?: string;
+}
+
+// New interface for public donations
+export interface PublicDonation {
+  id: string;
+  amount: number;
+  isMonthly: boolean;
+  donorName: string;
+  message: string;
+  createdAt: string;
+  isAnonymous: boolean;
 }
 
 class DonationService {
@@ -93,6 +107,8 @@ class DonationService {
         isMonthly: donationData.isMonthly,
         monthlyPlan: donationData.monthlyPlan,
         donorInfo: donationData.donorInfo,
+        message: donationData.message,
+        isPublic: donationData.isPublic !== false, // Default to public unless explicitly set to false
         metadata: {
           foundation: 'Access Global Foundation',
           donation_type: donationData.isMonthly ? 'recurring' : 'one_time',
@@ -115,6 +131,7 @@ class DonationService {
           transactionId: session.id,
           message: 'Redirecting to Stripe checkout...',
           redirectUrl: session.url,
+          donationId: session.donationId,
         };
       } else {
         throw new Error('Failed to create Stripe checkout session');
@@ -130,9 +147,79 @@ class DonationService {
     }
   }
 
+  // Get public donations for display
+  async getPublicDonations(includeAnonymous: boolean = false): Promise<PublicDonation[]> {
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/donations/public?includeAnonymous=${includeAnonymous}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch public donations');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to fetch public donations:', error);
+      return [];
+    }
+  }
 
+  // Get donation by ID
+  async getDonation(id: string): Promise<any> {
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/donations/${id}`);
+      
+      if (!response.ok) {
+        throw new Error('Donation not found');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to fetch donation:', error);
+      return null;
+    }
+  }
 
+  // Get donations by email (for donor history)
+  async getDonationsByEmail(email: string): Promise<any[]> {
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/donations/by-email/${encodeURIComponent(email)}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch donations');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to fetch donations by email:', error);
+      return [];
+    }
+  }
 
+  // Update donation (for admin purposes)
+  async updateDonation(id: string, updates: { message?: string; isPublic?: boolean }): Promise<any> {
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const response = await fetch(`${backendUrl}/api/donations/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updates),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update donation');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to update donation:', error);
+      throw error;
+    }
+  }
 
   // Optional: Add other methods as needed for your static site
   async validatePayment(paymentMethod: string, paymentDetails: any): Promise<{ valid: boolean; message?: string }> {
@@ -159,7 +246,5 @@ class DonationService {
     return {};
   }
 }
-
-
 
 export const donationService = new DonationService(); 
