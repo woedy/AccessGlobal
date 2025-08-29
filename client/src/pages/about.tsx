@@ -14,10 +14,7 @@ export default function About() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Access Global Foundation
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We believe in a world where every individual, regardless of
-            background or geography, has the opportunity to thrive.
-          </p>
+     
 
         </div>
 
@@ -28,20 +25,20 @@ export default function About() {
               Who We Are
             </h2>
             <p className="text-gray-600 mb-4">
-              Access Global Foundation is a non-profit organization Founded by a
-              diverse group of global development professionals, educators, and
+              Access Global Foundation is a newly established non-profit organization. We're building a team of
+              global development professionals, educators, and
               community leaders dedicated to empowering communities through
               global access to education, resources, and sustainable development
               opportunities. Founded on the principle that barriers should never
-              define destiny, we work tirelessly to unlock potential and create
+              define destiny, we're committed to unlocking potential and creating
               pathways to success across the globe.
             </p>
             <p className="text-gray-600 mb-4">
-              Our approach is rooted in partnerships. We work
+              Our approach will be rooted in partnerships. We plan to work
               alongside local communities to identify their unique needs and
               co-create solutions that are culturally relevant and sustainable.
               From establishing digital learning centers in rural areas to
-              supporting women's cooperatives in Ghana, our work spans
+              supporting women's cooperatives in Ghana, our vision spans
               continents while remaining deeply personal and community-driven.
             </p>
 
@@ -75,8 +72,8 @@ export default function About() {
             <p className="font-bold text-lg text-primary-600 mb-4">Fighting Antisemitism & Building Unity</p>
 
             <p className="text-gray-600 mb-4">
-              Central to our mission is fighting antisemitism and all forms of
-              discrimination. We actively support Holocaust education programs,
+              Central to our mission from day one is fighting antisemitism and all forms of
+              discrimination. We're launching Holocaust education programs,
               interfaith dialogue initiatives, and community healing projects
               that address historical prejudices. We believe that combating
               hatred in all its forms is fundamental to creating the equitable
@@ -84,19 +81,19 @@ export default function About() {
             </p>
 
             <p className="text-gray-600 mb-4">
-              Our antisemitism prevention work includes comprehensive Holocaust education 
+              Our antisemitism prevention work will include comprehensive Holocaust education 
               programs in schools and communities, interfaith dialogue workshops that bring 
               together religious and community leaders, and digital platforms that promote 
-              understanding and combat online hate speech. We partner with museums, 
+              understanding and combat online hate speech. We're building partnerships with museums, 
               educational institutions, and community organizations to ensure that the 
               lessons of history are never forgotten.
             </p>
 
             <p className="text-gray-600 mb-4">
-              We also support initiatives that address contemporary antisemitism through 
+              We also plan to support initiatives that address contemporary antisemitism through 
               cultural exchange programs, youth leadership development, and community 
               resilience building. By fostering understanding and respect between different 
-              communities, we create stronger, more inclusive societies where every individual 
+              communities, we'll create stronger, more inclusive societies where every individual 
               can thrive regardless of their background or beliefs.
             </p>
           </div>
@@ -138,103 +135,34 @@ export default function About() {
           </div>
         </div>
 
-        {/* Team Section */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Our Leadership Team
-            </h2>
-            <p className="text-xl text-gray-600">
-              Experienced leaders committed to creating positive change
-              worldwide
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <i className="fas fa-user text-gray-400 text-4xl"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Sarah Johnson
-              </h3>
-              <p className="text-primary-500 mb-2">Executive Director</p>
-              <p className="text-gray-600 text-sm">
-                Sarah brings over two decades of experience in international
-                development, having worked with UNICEF and Doctors Without
-                Borders across four continents. She holds a Master's in
-                International Relations from Oxford and speaks five languages.
-                Her leadership philosophy centers on "leading by
-                listening"—ensuring that community voices guide every
-                initiative.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <i className="fas fa-user text-gray-400 text-4xl"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Dr. Michael Chen
-              </h3>
-              <p className="text-primary-500 mb-2">Program Director</p>
-              <p className="text-gray-600 text-sm">
-                A former World Health Organization advisor, Dr. Chen specialized
-                in designing scalable health interventions for underserved
-                populations. His innovative community health worker training
-                programs have been adopted by governments across Southeast Asia.
-                He brings both clinical expertise and deep understanding of
-                cultural nuances in health delivery.{" "}
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <i className="fas fa-user text-gray-400 text-4xl"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Amina Okafor
-              </h3>
-              <p className="text-primary-500 mb-2">Operations Director</p>
-              <p className="text-gray-600 text-sm">
-                Amina's expertise in sustainable development stems from her work
-                with the African Development Bank and her PhD in Environmental
-                Economics. She pioneered our community-partnership model and
-                oversees our environmental and agricultural programs. Her
-                approach combines rigorous impact measurement with genuine
-                community engagement.{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-
+   
         {/* Impact Numbers */}
         <div className="mt-20 bg-gradient-to-r from-primary-500 to-success-500 rounded-2xl p-8 lg:p-12 text-white">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">
-              Our Impact by the Numbers
+              Our Vision for Impact
             </h2>
             <p className="text-xl opacity-90">
-              Measurable change in communities worldwide
+              Help us achieve these ambitious targets in our first year
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">25+</div>
-              <div className="opacity-90">Countries</div>
+              <div className="text-4xl font-bold mb-2">15</div>
+              <div className="opacity-90">Countries to Reach</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">250+</div>
-              <div className="opacity-90">Communities</div>
+              <div className="text-4xl font-bold mb-2">50</div>
+              <div className="opacity-90">Communities to Serve</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">87</div>
-              <div className="opacity-90">Schools Built</div>
+              <div className="text-4xl font-bold mb-2">25</div>
+              <div className="opacity-90">Schools to Support</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">150K+</div>
-              <div className="opacity-90">Lives Impacted</div>
+              <div className="text-4xl font-bold mb-2">100</div>
+              <div className="opacity-90">Lives to Transform</div>
             </div>
           </div>
         </div>
@@ -255,8 +183,8 @@ export default function About() {
                 Community-Centered Design
               </h3>
               <p className="text-gray-600">
-                Every program begins with extensive community consultation. We
-                spend months understanding local needs, cultural dynamics, and
+                Every program will begin with extensive community consultation. We
+                plan to spend months understanding local needs, cultural dynamics, and
                 existing resources before designing interventions. This ensures
                 our programs are relevant, respectful, and sustainable.
               </p>
@@ -267,8 +195,8 @@ export default function About() {
                 Capacity Building
               </h3>
               <p className="text-gray-600">
-                Rather than creating dependency, we focus on building local
-                capacity. We train community members to become leaders,
+                Rather than creating dependency, we'll focus on building local
+                capacity. We plan to train community members to become leaders,
                 teachers, and advocates. Our goal is to work ourselves out of a
                 job in each community we serve.
               </p>
