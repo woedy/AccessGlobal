@@ -13,12 +13,12 @@ cmds = [
   # Build client (Vite/CRA both supported)
   "cd client && npm run build",
   # Ensure public dir exists
+  "mkdir -p server/public",
   # Copy Vite build (dist) if present
   "if [ -d client/dist ]; then cp -r client/dist/* server/public/; fi",
   # Copy CRA build if present
   "if [ -d client/build ]; then cp -r client/build/* server/public/; fi"
 ]
-  "mkdir -p server/public",
 
 # Do NOT define [phases.start]; it runs at build time.
 [start]
