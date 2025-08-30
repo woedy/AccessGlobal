@@ -7,6 +7,7 @@ export default function DonationFlow() {
   const [customAmount, setCustomAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [monthlyPlan, setMonthlyPlan] = useState('');
+  const [donationType, setDonationType] = useState<'oneTime' | 'monthly'>('oneTime');
   const [isProcessing, setIsProcessing] = useState(false);
   const [cardDetails, setCardDetails] = useState({
     cardNumber: '',
@@ -96,12 +97,28 @@ export default function DonationFlow() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your donation creates pathways to opportunity and transforms lives around the world.
           </p>
-          
+          <div className="flex justify-center mt-6">
+            <div className="inline-flex bg-gray-100 rounded-full p-1">
+              <button
+                onClick={() => setDonationType('oneTime')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold ${donationType==='oneTime' ? 'bg-white shadow text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                One-Time
+              </button>
+              <button
+                onClick={() => setDonationType('monthly')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold ${donationType==='monthly' ? 'bg-white shadow text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                Monthly
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Donation Amounts */}
+        {/* Donation Amounts (One-Time) */}
+        {donationType==='oneTime' && (
         <div className="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-8 mb-12">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">Choose Your Impact</h2>
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">One-Time Donation</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div 
@@ -161,8 +178,10 @@ export default function DonationFlow() {
             <p className="text-sm text-gray-600">All donations are secure and tax-deductible</p>
           </div>
         </div>
+        )}
 
         {/* Monthly Giving */}
+        {donationType==='monthly' && (
         <div className="bg-gray-50 rounded-2xl p-8 mb-12">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Monthly Supporter</h2>
           <p className="text-center text-gray-600 mb-8">
@@ -302,6 +321,7 @@ export default function DonationFlow() {
             Because with your help, the world truly is theirs.
           </p>
         </div>
+        )}
       </div>
     </div>
   );
@@ -314,7 +334,7 @@ export default function DonationFlow() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Payment Method</h2>
           <div className="bg-blue-50 rounded-lg p-4 mb-6">
             <p className="text-lg font-semibold text-blue-800">
-              Donating ${getFinalAmount()} {monthlyPlan ? 'per month' : 'one-time'}
+              Donating ${getFinalAmount().toLocaleString('en-US')} {monthlyPlan ? 'per month' : 'one-time'}
             </p>
           </div>
         </div>

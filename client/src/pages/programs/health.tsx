@@ -228,12 +228,16 @@ const HealthProgram = () => {
               Join us in launching these healthcare initiatives. Your support will help us bring essential medical services to communities that need them most.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg">
-                Support This Program
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-red-600 transition-colors">
-                Learn About Other Programs
-              </button>
+              <a href="/donate">
+                <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors shadow-lg">
+                  Support This Program
+                </button>
+              </a>
+              <a href="/programs">
+                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-red-600 transition-colors">
+                  Learn About Other Programs
+                </button>
+              </a>
             </div>
           </motion.div>
         </div>

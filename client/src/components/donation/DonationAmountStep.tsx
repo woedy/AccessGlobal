@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface DonationAmountStepProps {
@@ -19,6 +20,7 @@ export default function DonationAmountStep({
   onMonthlyPlanSelect,
   onDonateClick
 }: DonationAmountStepProps) {
+  const [donationType, setDonationType] = useState<'oneTime' | 'monthly'>('oneTime');
   const getFinalAmount = () => {
     if (monthlyPlan) {
       const monthlyAmounts: Record<string, number> = { education: 1000, global: 5000, impact: 50000 };
@@ -46,9 +48,28 @@ export default function DonationAmountStep({
           
         </div>
 
-        {/* Donation Amounts */}
+        {/* Donation Type Toggle */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex bg-gray-100 rounded-full p-1">
+            <button
+              onClick={() => setDonationType('oneTime')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${donationType==='oneTime' ? 'bg-white shadow text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              One-Time
+            </button>
+            <button
+              onClick={() => setDonationType('monthly')}
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${donationType==='monthly' ? 'bg-white shadow text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+            >
+              Monthly
+            </button>
+          </div>
+        </div>
+
+        {/* Donation Amounts (One-Time) */}
+        {donationType==='oneTime' && (
         <div className="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-8 mb-12">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">Choose Your Impact</h2>
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">One-Time Donation</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div 
@@ -108,8 +129,10 @@ export default function DonationAmountStep({
             <p className="text-sm text-gray-600">All donations are secure and tax-deductible</p>
           </div>
         </div>
+        )}
 
         {/* Monthly Giving */}
+        {donationType==='monthly' && (
         <div className="bg-gray-50 rounded-2xl p-8 mb-12">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Founding Supporter</h2>
           <p className="text-center text-gray-600 mb-8">
@@ -172,6 +195,7 @@ export default function DonationAmountStep({
             </div>
           </div>
         </div>
+        )}
 
         {/* Other Ways to Give */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">

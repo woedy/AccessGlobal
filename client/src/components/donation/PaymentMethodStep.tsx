@@ -21,11 +21,12 @@ export default function PaymentMethodStep({
 }: PaymentMethodStepProps) {
   const getFinalAmount = () => {
     if (monthlyPlan) {
-      const monthlyAmounts: Record<string, number> = { education: 100, global: 500, impact: 5000 };
+      const monthlyAmounts: Record<string, number> = { education: 1000, global: 5000, impact: 50000 };
       return monthlyAmounts[monthlyPlan] || 0;
     }
     return selectedAmount || parseInt(customAmount) || 0;
   };
+  const formatUsd = (n: number) => n.toLocaleString('en-US');
 
   const paymentMethods = [
     {
@@ -97,7 +98,7 @@ export default function PaymentMethodStep({
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Payment Method</h2>
           <div className="bg-purple-50 rounded-lg p-4 mb-6 border border-purple-200">
             <p className="text-lg font-semibold text-purple-800">
-              Donating ${getFinalAmount()} {monthlyPlan ? 'per month' : 'one-time'}
+              Donating ${formatUsd(getFinalAmount())} {monthlyPlan ? 'per month' : 'one-time'}
             </p>
             <p className="text-sm text-purple-700 mt-2">
               Stripe provides secure, professional payment processing

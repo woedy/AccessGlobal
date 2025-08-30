@@ -79,11 +79,12 @@ export default function PaymentDetailsStep({
 
   const getFinalAmount = () => {
     if (monthlyPlan) {
-      const monthlyAmounts: Record<string, number> = { education: 100, global: 500, impact: 5000 };
+      const monthlyAmounts: Record<string, number> = { education: 1000, global: 5000, impact: 50000 };
       return monthlyAmounts[monthlyPlan] || 0;
     }
     return selectedAmount || parseInt(customAmount) || 0;
   };
+  const formatUsd = (n: number) => n.toLocaleString('en-US');
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -470,7 +471,7 @@ export default function PaymentDetailsStep({
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Payment Details</h2>
           <div className="bg-blue-50 rounded-lg p-4 mb-4">
             <p className="text-lg font-semibold text-blue-800">
-              ${getFinalAmount()} {monthlyPlan ? 'per month' : 'one-time'}
+              ${formatUsd(getFinalAmount())} {monthlyPlan ? 'per month' : 'one-time'}
             </p>
             <p className="text-blue-600">
               Payment Method: {paymentMethod === 'card' ? 'Credit/Debit Card' : 
@@ -511,7 +512,7 @@ export default function PaymentDetailsStep({
                   Processing...
                 </div>
               ) : (
-                `Donate ${getFinalAmount()}`
+                `Donate ${formatUsd(getFinalAmount())}`
               )}
             </Button>
           </div>

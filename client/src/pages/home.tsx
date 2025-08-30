@@ -329,7 +329,7 @@ export default function Home() {
           <div className="text-center mb-20">
           
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Programs We're Launching
+              Programs We are Launching
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Help us launch these comprehensive initiatives designed to address critical needs and
