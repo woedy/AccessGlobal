@@ -381,13 +381,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             
           <a href="/donate">
-            <button className="group bg-white text-blue-600 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
+            <button className="group bg-yellow-500 text-black hover:bg-yellow-600 px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
               <Heart
                 className="mr-3 group-hover:text-red-500 group-hover:animate-pulse"
                 size={20}
               />
               Donate Now
-              <div className="ml-2 bg-blue-600 text-white rounded-full px-3 py-1 text-sm">
+              <div className="ml-2 bg-yellow-600 text-white rounded-full px-3 py-1 text-sm">
                 →
               </div>
               
@@ -403,24 +403,7 @@ export default function Home() {
 
          
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$1,000</div>
-              <div className="opacity-90">Outfits 100 students with school supplies for a year</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$5,000</div>
-              <div className="opacity-90">Funds comprehensive health screenings for 1,000 community members</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$10,000</div>
-              <div className="opacity-90">Plants 10,000 trees for environmental restoration</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$50,000</div>
-              <div className="opacity-90">Provides microfinance to 500 entrepreneurs</div>
-            </div>
-          </div>
+          
         </div>
       </section>
     </div>

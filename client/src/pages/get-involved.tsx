@@ -42,7 +42,7 @@ export default function GetInvolved() {
               Your financial support helps us reach more communities and expand our programs.
             </p>
             <Link href="/donate">
-              <Button className="bg-warning-500 hover:bg-warning-600 text-white">
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">
                 <i className="fas fa-heart mr-2"></i> Donate Today
               </Button>
             </Link>

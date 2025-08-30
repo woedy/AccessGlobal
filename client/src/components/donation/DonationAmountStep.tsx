@@ -171,7 +171,7 @@ export default function DonationAmountStep({
               <p className="text-sm text-gray-600 mb-4">Funds educational materials and teacher training</p>
               <Button 
                 onClick={onDonateClick}
-                className="bg-green-500 hover:bg-green-600 text-white w-full"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
               >
                 Support Education
               </Button>
@@ -189,7 +189,7 @@ export default function DonationAmountStep({
               <p className="text-sm text-gray-600 mb-4">Supports all four program areas comprehensively</p>
               <Button 
                 onClick={onDonateClick}
-                className="bg-blue-500 hover:bg-blue-600 text-white w-full"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
               >
                 Become a Champion
               </Button>
@@ -207,7 +207,7 @@ export default function DonationAmountStep({
               <p className="text-sm text-gray-600 mb-4">Enables major community development projects</p>
               <Button 
                 onClick={onDonateClick}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white w-full"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
               >
                 Partner With Us
               </Button>

@@ -507,7 +507,7 @@ export default function PaymentDetailsStep({
             <Button
               onClick={handleSubmit}
               disabled={isProcessing}
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+              className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black"
             >
               {isProcessing ? (
                 <div className="flex items-center">

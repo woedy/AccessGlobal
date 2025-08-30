@@ -390,7 +390,7 @@ const Programs = () => {
                 </button>
               </a>
               <a href="/donate">
-                <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-gray-900 transition-colors shadow-lg">
+                <button className="bg-yellow-500 text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-600 transition-colors shadow-lg">
                   Donate Now
                 </button>
               </a>
