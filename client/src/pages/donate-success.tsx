@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'wouter';
 import { stripeService } from '@/services/stripeService';
+import { api } from '@/config/api';
 
 export default function DonateSuccess() {
   const [location] = useLocation();
@@ -35,9 +36,7 @@ export default function DonateSuccess() {
   const fetchDonationDetails = async (sessionId: string) => {
     try {
       // Fetch donation details from the server using the session ID
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3002';
-      const response = await fetch(`${backendUrl}/api/donations/session/${sessionId}`);
-      
+      const response = await fetch(api(`donations/session/${sessionId}`));
       if (response.ok) {
         const donation = await response.json();
         setDonationDetails(donation);

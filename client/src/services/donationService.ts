@@ -1,4 +1,4 @@
-import { getApiUrl } from '@/config/api';
+import { api } from '@/config/api';
 import { stripeService, StripeDonationData } from './stripeService';
 
 // Types for donation data
@@ -150,13 +150,10 @@ class DonationService {
   // Get public donations for display
   async getPublicDonations(includeAnonymous: boolean = false): Promise<PublicDonation[]> {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/donations/public?includeAnonymous=${includeAnonymous}`);
-      
+      const response = await fetch(api(`donations/public?includeAnonymous=${includeAnonymous}`));
       if (!response.ok) {
         throw new Error('Failed to fetch public donations');
       }
-      
       return await response.json();
     } catch (error) {
       console.error('Failed to fetch public donations:', error);
@@ -167,13 +164,10 @@ class DonationService {
   // Get donation by ID
   async getDonation(id: string): Promise<any> {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/donations/${id}`);
-      
+      const response = await fetch(api(`donations/${id}`));
       if (!response.ok) {
         throw new Error('Donation not found');
       }
-      
       return await response.json();
     } catch (error) {
       console.error('Failed to fetch donation:', error);
@@ -184,13 +178,10 @@ class DonationService {
   // Get donations by email (for donor history)
   async getDonationsByEmail(email: string): Promise<any[]> {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/donations/by-email/${encodeURIComponent(email)}`);
-      
+      const response = await fetch(api(`donations/by-email/${encodeURIComponent(email)}`));
       if (!response.ok) {
         throw new Error('Failed to fetch donations');
       }
-      
       return await response.json();
     } catch (error) {
       console.error('Failed to fetch donations by email:', error);
@@ -201,19 +192,16 @@ class DonationService {
   // Update donation (for admin purposes)
   async updateDonation(id: string, updates: { message?: string; isPublic?: boolean }): Promise<any> {
     try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/donations/${id}`, {
+      const response = await fetch(api(`donations/${id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updates),
       });
-      
       if (!response.ok) {
         throw new Error('Failed to update donation');
       }
-      
       return await response.json();
     } catch (error) {
       console.error('Failed to update donation:', error);
