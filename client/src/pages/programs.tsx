@@ -229,7 +229,7 @@ const Programs = () => {
                 <img 
                   src="/assets/access_logo.jpg" 
                   alt="Access Global Foundation Logo" 
-                  className="h-16 w-auto mx-auto mb-4 rounded-full shadow-2xl"
+                  className="h-48 w-auto mx-auto mb-4 rounded-full shadow-2xl"
                 />
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -252,7 +252,7 @@ const Programs = () => {
               Breaking Barriers, Building Futures
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              At Access Global Foundation, we're designing programs to address interconnected challenges 
+              At Access Global Foundation, we are designing programs to address interconnected challenges 
               facing underserved communities worldwide. From education to environmental sustainability, from economic 
               empowerment to healthcare access, we'll create comprehensive solutions that transform lives and communities.
             </p>
@@ -391,7 +391,7 @@ const Programs = () => {
               </a>
               <a href="/donate">
                 <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-gray-900 transition-colors shadow-lg">
-                  Support Our Launch
+                  Donate Now
                 </button>
               </a>
               <a href="/get-involved">

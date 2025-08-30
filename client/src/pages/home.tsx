@@ -209,7 +209,7 @@ export default function Home() {
           
 
           <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-4xl mx-auto leading-relaxed">
-            We're a new foundation with big dreams. Help us create a world where every individual, regardless of
+            We are a new foundation with big dreams. Help us create a world where every individual, regardless of
             background or geography, has the opportunity to thrive and unlock
             their potential.
           </p>
@@ -220,7 +220,7 @@ export default function Home() {
           <a href="/donate">
             <button className="group bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-10 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl flex items-center">
               <Heart className="mr-3 group-hover:animate-pulse" size={20} />
-               Support Our Launch
+               Donate Now
 
               <div className="ml-2 bg-white/20 rounded-full px-3 py-1 text-sm">
                 →
@@ -298,7 +298,7 @@ export default function Home() {
 
               <div className="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-blue-500">
                 <blockquote className="text-2xl font-medium text-gray-800 italic mb-4">
-                  "The World is Yours, Let's make it accessible."
+                  "Let's make it accessible."
                 </blockquote>
                 <cite className="text-blue-600 font-bold">
                   - Access Global Foundation
@@ -386,7 +386,7 @@ export default function Home() {
                 className="mr-3 group-hover:text-red-500 group-hover:animate-pulse"
                 size={20}
               />
-              Support Our Launch
+              Donate Now
               <div className="ml-2 bg-blue-600 text-white rounded-full px-3 py-1 text-sm">
                 →
               </div>
@@ -405,28 +405,20 @@ export default function Home() {
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$10,000</div>
-              <div className="opacity-90">
-                Provides school supplies for one student for a month
-              </div>
+              <div className="text-2xl font-bold mb-2">$1,000</div>
+              <div className="opacity-90">Outfits 100 students with school supplies for a year</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$25,000</div>
-              <div className="opacity-90">
-                Funds health screenings for 10 community members
-              </div>
+              <div className="text-2xl font-bold mb-2">$5,000</div>
+              <div className="opacity-90">Funds comprehensive health screenings for 1,000 community members</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+              <div className="text-2xl font-bold mb-2">$10,000</div>
+              <div className="opacity-90">Plants 10,000 trees for environmental restoration</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
               <div className="text-2xl font-bold mb-2">$50,000</div>
-              <div className="opacity-90">
-                Plants 50 trees for environmental restoration
-              </div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$100,000</div>
-              <div className="opacity-90">
-                Supports microfinance for 5 entrepreneurs
-              </div>
+              <div className="opacity-90">Provides microfinance to 500 entrepreneurs</div>
             </div>
           </div>
         </div>

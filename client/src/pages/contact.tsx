@@ -10,7 +10,7 @@ export default function Contact() {
             <img 
               src="/assets/access_logo.jpg" 
               alt="Access Global Foundation Logo" 
-              className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
+              className="h-48 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get in Touch</h1>
@@ -103,9 +103,9 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
                     <p className="text-gray-600">
-                      General: info@accessglobal.org<br />
-                      Partnerships: partners@accessglobal.org<br />
-                      Volunteer: volunteer@accessglobal.org
+                      General: info@accessglobalfoundation.org<br />
+                      Partnerships: partners@accessglobalfoundation.org<br />
+                      Volunteer: volunteer@accessglobalfoundation.org
                     </p>
                   </div>
                 </div>

@@ -45,7 +45,7 @@ const EnergyProgram = () => {
                 Bringing Clean Energy to Communities
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching clean energy solutions that bring reliable, sustainable power to communities while protecting the environment. Our mission is to bridge the energy gap and promote sustainable development.
+                We are launching clean energy solutions that bring reliable, sustainable power to communities while protecting the environment. Our mission is to bridge the energy gap and promote sustainable development.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through solar installations, wind projects, and energy storage systems, we'll provide communities with access to modern energy while reducing carbon emissions and environmental impact.
@@ -114,7 +114,7 @@ const EnergyProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive renewable energy approach includes these key initiatives

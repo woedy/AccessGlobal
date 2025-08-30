@@ -45,7 +45,7 @@ const EducationProgram = () => {
                 Breaking Down Barriers to Learning
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching comprehensive educational programs that break down barriers to learning and create pathways to knowledge for underserved communities worldwide. Our vision is to ensure that every child, regardless of their background or location, has access to quality education.
+                We are launching comprehensive educational programs that break down barriers to learning and create pathways to knowledge for underserved communities worldwide. Our vision is to ensure that every child, regardless of their background or location, has access to quality education.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through strategic partnerships and community-driven approaches, we'll establish digital learning centers, provide scholarships, and build the infrastructure needed to transform education in communities that need it most.
@@ -114,7 +114,7 @@ const EducationProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive approach to educational transformation includes these key components

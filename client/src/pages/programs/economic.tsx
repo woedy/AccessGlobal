@@ -45,7 +45,7 @@ const EconomicProgram = () => {
                 Building Economic Foundations for Communities
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching comprehensive economic empowerment programs that provide skills, resources, and opportunities for sustainable livelihoods. Our vision is to create pathways to economic independence for individuals and communities.
+                We are launching comprehensive economic empowerment programs that provide skills, resources, and opportunities for sustainable livelihoods. Our vision is to create pathways to economic independence for individuals and communities.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through skills training, microfinance support, and mentorship networks, we'll connect local entrepreneurs with global opportunities and create sustainable economic growth.
@@ -114,7 +114,7 @@ const EconomicProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive economic empowerment approach includes these key initiatives

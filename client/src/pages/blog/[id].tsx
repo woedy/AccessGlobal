@@ -27,7 +27,7 @@ export default function BlogPost() {
       title: "Clean Water Project Completed in Rural Kenya",
       excerpt: "Our latest water infrastructure project brings clean, accessible water to over 2,000 residents in the Turkana region...",
       content: `
-        <p class="mb-6">In the arid landscapes of Kenya's Turkana region, access to clean water has long been a daily struggle for thousands of families. This December, we're proud to announce the successful completion of our most ambitious water infrastructure project to date, bringing sustainable access to clean water for over 2,000 residents.</p>
+        <p class="mb-6">In the arid landscapes of Kenya's Turkana region, access to clean water has long been a daily struggle for thousands of families. This December, we are proud to announce the successful completion of our most ambitious water infrastructure project to date, bringing sustainable access to clean water for over 2,000 residents.</p>
         
         <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-8">The Challenge</h2>
         <p class="mb-6">The Turkana region, located in northwestern Kenya, faces severe water scarcity due to its arid climate and limited infrastructure. Women and children often walk up to 10 kilometers daily to fetch water from contaminated sources, leading to waterborne diseases and preventing children from attending school regularly.</p>
@@ -69,9 +69,9 @@ export default function BlogPost() {
         </blockquote>
         
         <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-8">Looking Forward</h2>
-        <p class="mb-6">This project serves as a model for similar initiatives across East Africa. We're already planning to replicate this success in neighboring regions, with the goal of providing clean water access to 10,000 more people by the end of 2024.</p>
+        <p class="mb-6">This project serves as a model for similar initiatives across East Africa. We are already planning to replicate this success in neighboring regions, with the goal of providing clean water access to 10,000 more people by the end of 2024.</p>
         
-        <p class="mb-6">None of this would have been possible without the generous support of our donors and the tireless work of our local partners. Together, we're building a future where clean water is accessible to all.</p>
+        <p class="mb-6">None of this would have been possible without the generous support of our donors and the tireless work of our local partners. Together, we are building a future where clean water is accessible to all.</p>
       `,
       date: "December 15, 2023",
       image: "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
@@ -85,7 +85,7 @@ export default function BlogPost() {
       title: "New School Opens in Sierra Leone",
       excerpt: "Celebrating the opening of our 87th school, providing education access to 400 children in the Bo District...",
       content: `
-        <p class="mb-6">Education is the foundation of sustainable development, and we're thrilled to announce the opening of our 87th school in Sierra Leone's Bo District. This state-of-the-art facility will provide quality education to 400 children who previously had limited access to schooling.</p>
+        <p class="mb-6">Education is the foundation of sustainable development, and we are thrilled to announce the opening of our 87th school in Sierra Leone's Bo District. This state-of-the-art facility will provide quality education to 400 children who previously had limited access to schooling.</p>
         
         <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-8">The Need</h2>
         <p class="mb-6">The Bo District, while being Sierra Leone's second-largest city, still faces significant educational challenges. Many children, especially in rural areas, must travel long distances to reach the nearest school, often leading to high dropout rates and limited educational opportunities.</p>
@@ -209,7 +209,7 @@ export default function BlogPost() {
         </blockquote>
         
         <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-8">Future Expansion</h2>
-        <p class="mb-6">Based on the success of this initiative, we're planning to expand our mobile clinic program to reach 50 more communities by the end of 2024. We're also developing specialized clinics for maternal health and emergency response.</p>
+        <p class="mb-6">Based on the success of this initiative, we are planning to expand our mobile clinic program to reach 50 more communities by the end of 2024. We are also developing specialized clinics for maternal health and emergency response.</p>
       `,
       date: "December 5, 2023",
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",

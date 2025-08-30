@@ -21,7 +21,10 @@ export default function PaymentMethodStep({
 }: PaymentMethodStepProps) {
   const getFinalAmount = () => {
     if (monthlyPlan) {
-      const monthlyAmounts: Record<string, number> = { education: 1000, global: 5000, impact: 50000 };
+      if (monthlyPlan === 'custom') {
+        return parseInt(customAmount) || 0;
+      }
+      const monthlyAmounts: Record<string, number> = { education: 100, global: 500, impact: 2000 };
       return monthlyAmounts[monthlyPlan] || 0;
     }
     return selectedAmount || parseInt(customAmount) || 0;

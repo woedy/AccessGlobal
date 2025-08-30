@@ -45,7 +45,7 @@ const AgriTechProgram = () => {
                 Smart Farming for the Future
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching cutting-edge agri-tech programs that will revolutionize farming practices and boost agricultural productivity in underserved communities. Our vision is to bridge the technology gap and bring smart farming solutions to farmers who need them most.
+                We are launching cutting-edge agri-tech programs that will revolutionize farming practices and boost agricultural productivity in underserved communities. Our vision is to bridge the technology gap and bring smart farming solutions to farmers who need them most.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through strategic partnerships with tech innovators and agricultural experts, we'll deploy precision agriculture tools, IoT sensors, and data-driven farming solutions that will transform traditional farming into a modern, efficient, and sustainable practice.
@@ -117,7 +117,7 @@ const AgriTechProgram = () => {
               Our Launch Initiatives
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're preparing to launch these transformative agri-tech programs that will modernize farming practices and increase agricultural yields.
+              We are preparing to launch these transformative agri-tech programs that will modernize farming practices and increase agricultural yields.
             </p>
           </motion.div>
 
@@ -279,7 +279,7 @@ const AgriTechProgram = () => {
               <a href="/donate">
                 <button className="bg-white text-cyan-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-xl flex items-center">
                   <Heart className="mr-3" size={20} />
-                  Support Our Launch
+                  Donate Now
                   <ChevronRight size={20} className="ml-2" />
                 </button>
               </a>

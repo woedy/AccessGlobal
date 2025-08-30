@@ -8,7 +8,7 @@ export default function Stories() {
             <img 
               src="/assets/access_logo.jpg" 
               alt="Access Global Foundation Logo" 
-              className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
+              className="h-48 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Stories of Change</h1>

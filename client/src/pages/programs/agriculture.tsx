@@ -45,7 +45,7 @@ const AgricultureProgram = () => {
                 Modernizing Agriculture for Food Security
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching modern agricultural training programs that boost productivity, ensure food security, and create sustainable farming practices. Our mission is to empower farmers with the knowledge and tools they need to thrive.
+                We are launching modern agricultural training programs that boost productivity, ensure food security, and create sustainable farming practices. Our mission is to empower farmers with the knowledge and tools they need to thrive.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through comprehensive training, modern equipment, and sustainable practices, we'll help farmers increase yields while protecting the environment and building resilient communities.
@@ -114,7 +114,7 @@ const AgricultureProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive agricultural approach includes these key initiatives

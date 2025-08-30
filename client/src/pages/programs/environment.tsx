@@ -45,7 +45,7 @@ const EnvironmentProgram = () => {
                 Building a Sustainable Future Together
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching community-driven environmental initiatives that promote sustainability, combat climate change, and ensure access to clean resources. Our approach focuses on empowering local communities to become stewards of their environment.
+                We are launching community-driven environmental initiatives that promote sustainability, combat climate change, and ensure access to clean resources. Our approach focuses on empowering local communities to become stewards of their environment.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 From large-scale reforestation projects to clean water access systems, we'll work alongside communities to implement solutions that protect our planet while improving lives.
@@ -114,7 +114,7 @@ const EnvironmentProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive environmental approach includes these key initiatives

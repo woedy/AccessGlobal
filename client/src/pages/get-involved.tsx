@@ -11,7 +11,7 @@ export default function GetInvolved() {
             <img 
               src="/assets/access_logo.jpg" 
               alt="Access Global Foundation Logo" 
-              className="h-16 w-auto mx-auto mb-6 rounded-full shadow-lg"
+              className="h-48 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Be a Founding Supporter</h1>
@@ -67,9 +67,7 @@ export default function GetInvolved() {
             <p className="text-gray-600 mb-6">
               Organize fundraising events in your community to support our mission.
             </p>
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white">
-              <i className="fas fa-calendar-alt mr-2"></i> Start Fundraising
-            </Button>
+            
           </div>
 
           {/* Advocate */}
@@ -79,9 +77,7 @@ export default function GetInvolved() {
             <p className="text-gray-600 mb-6">
               Use your voice and platform to spread awareness about our cause.
             </p>
-            <Button className="bg-purple-500 hover:bg-purple-600 text-white">
-              <i className="fas fa-share-alt mr-2"></i> Share Our Mission
-            </Button>
+            
           </div>
 
           {/* Corporate Giving */}
@@ -91,9 +87,7 @@ export default function GetInvolved() {
             <p className="text-gray-600 mb-6">
               Engage your employees and customers through corporate social responsibility.
             </p>
-            <Button className="bg-gray-600 hover:bg-gray-700 text-white">
-              <i className="fas fa-briefcase mr-2"></i> Corporate Programs
-            </Button>
+            
           </div>
         </div>
 
@@ -122,7 +116,7 @@ export default function GetInvolved() {
             <div className="space-y-4">
               <div className="flex items-center">
                 <i className="fas fa-envelope text-primary-500 w-6 mr-3"></i>
-                <span className="text-gray-600">volunteer@accessglobal.org</span>
+                <span className="text-gray-600">volunteer@accessglobalfoundation.org</span>
               </div>
               <div className="flex items-center">
                 <i className="fas fa-phone text-primary-500 w-6 mr-3"></i>

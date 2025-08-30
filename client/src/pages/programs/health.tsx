@@ -45,7 +45,7 @@ const HealthProgram = () => {
                 Bringing Healthcare to Those Who Need It Most
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We're launching holistic healthcare initiatives that bring essential medical services and health education to remote and underserved areas. Our mission is to ensure that quality healthcare is accessible to everyone, regardless of their location or economic status.
+                We are launching holistic healthcare initiatives that bring essential medical services and health education to remote and underserved areas. Our mission is to ensure that quality healthcare is accessible to everyone, regardless of their location or economic status.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                 Through mobile clinics, community health worker training, and preventive care programs, we'll work to bridge the healthcare gap and improve health outcomes in communities worldwide.
@@ -114,7 +114,7 @@ const HealthProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              What We're Building
+              What We are Building
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive healthcare approach includes these key initiatives

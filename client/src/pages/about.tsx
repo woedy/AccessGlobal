@@ -8,7 +8,7 @@ export default function About() {
             <img 
               src="/assets/access_logo.jpg" 
               alt="Access Global Foundation Logo" 
-              className="h-40 w-auto mx-auto mb-6 rounded-full shadow-lg"
+              className="h-80 w-auto mx-auto mb-6 rounded-full shadow-lg"
             />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -25,12 +25,12 @@ export default function About() {
               Who We Are
             </h2>
             <p className="text-gray-600 mb-4">
-              Access Global Foundation is a newly established non-profit organization. We're building a team of
+              Access Global Foundation is a newly established non-profit organization. We are building a team of
               global development professionals, educators, and
               community leaders dedicated to empowering communities through
               global access to education, resources, and sustainable development
               opportunities. Founded on the principle that barriers should never
-              define destiny, we're committed to unlocking potential and creating
+              define destiny, we are committed to unlocking potential and creating
               pathways to success across the globe.
             </p>
             <p className="text-gray-600 mb-4">
@@ -73,7 +73,7 @@ export default function About() {
 
             <p className="text-gray-600 mb-4">
               Central to our mission from day one is fighting antisemitism and all forms of
-              discrimination. We're launching Holocaust education programs,
+              discrimination. We are launching Holocaust education programs,
               interfaith dialogue initiatives, and community healing projects
               that address historical prejudices. We believe that combating
               hatred in all its forms is fundamental to creating the equitable
@@ -84,7 +84,7 @@ export default function About() {
               Our antisemitism prevention work will include comprehensive Holocaust education 
               programs in schools and communities, interfaith dialogue workshops that bring 
               together religious and community leaders, and digital platforms that promote 
-              understanding and combat online hate speech. We're building partnerships with museums, 
+              understanding and combat online hate speech. We are building partnerships with museums, 
               educational institutions, and community organizations to ensure that the 
               lessons of history are never forgotten.
             </p>

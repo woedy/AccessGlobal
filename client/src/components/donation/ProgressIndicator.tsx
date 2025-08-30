@@ -9,7 +9,7 @@ export default function ProgressIndicator({ currentStep }: ProgressIndicatorProp
         {/* New Foundation Header */}
         <div className="text-center mb-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Help Us Launch Our Mission</h3>
-          <p className="text-sm text-gray-600">We're a new foundation with big dreams. Your support makes it possible.</p>
+          <p className="text-sm text-gray-600">We are a new foundation with big dreams. Your support makes it possible.</p>
         </div>
         
         <div className="flex items-center justify-between">
