@@ -135,25 +135,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Regional Offices */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Regional Offices</h2>
-              
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold text-gray-900">Africa</h3>
-                  <p className="text-gray-600">Nairobi, Kenya | Lagos, Nigeria</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Asia</h3>
-                  <p className="text-gray-600">Manila, Philippines | Dhaka, Bangladesh</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Latin America</h3>
-                  <p className="text-gray-600">Guatemala City, Guatemala | Lima, Peru</p>
-                </div>
-              </div>
-            </div>
+            
 
             {/* Social Media */}
             <div className="bg-white rounded-xl shadow-lg p-8">

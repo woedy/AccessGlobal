@@ -137,7 +137,6 @@ export default function DonateSuccess() {
           <p className="text-xl md:text-2xl mb-6 max-w-3xl mx-auto">
             Your donation has been processed successfully. You're now part of our mission to create pathways to opportunity for communities worldwide.
           </p>
-          <p className="text-3xl font-bold text-yellow-300 italic">The World is Yours.</p>
         </div>
       </div>
 

@@ -50,7 +50,7 @@ export default function About() {
           </div>
           <div>
             <img
-              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Diverse volunteers working together"
               className="rounded-xl shadow-lg w-full"
             />
@@ -143,25 +143,25 @@ export default function About() {
               Our Vision for Impact
             </h2>
             <p className="text-xl opacity-90">
-              Help us achieve these ambitious targets in our first year
+              Ambitious targets to achieve over the next five years
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">15</div>
+              <div className="text-4xl font-bold mb-2">100</div>
               <div className="opacity-90">Countries to Reach</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">50</div>
+              <div className="text-4xl font-bold mb-2">500</div>
               <div className="opacity-90">Communities to Serve</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">25</div>
+              <div className="text-4xl font-bold mb-2">300</div>
               <div className="opacity-90">Schools to Support</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">100</div>
+              <div className="text-4xl font-bold mb-2">50,000</div>
               <div className="opacity-90">Lives to Transform</div>
             </div>
           </div>

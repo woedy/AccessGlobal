@@ -182,19 +182,19 @@ const EnergyProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Help us achieve these ambitious renewable energy targets in our launch year
+              Ambitious renewable energy targets to achieve over the next five years
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "2,000+", label: "Homes to Power", color: "text-yellow-600" },
-              { number: "25+", label: "Communities", color: "text-blue-600" },
-              { number: "100", label: "Technicians", color: "text-green-600" },
-              { number: "5,000", label: "Tons CO2 Reduced", color: "text-orange-600" }
+              { number: "50,000+", label: "Homes to Power", color: "text-yellow-600" },
+              { number: "300+", label: "Communities", color: "text-blue-600" },
+              { number: "1,200", label: "Technicians", color: "text-green-600" },
+              { number: "200,000", label: "Tons CO2 Reduced", color: "text-orange-600" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

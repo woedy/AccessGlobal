@@ -182,19 +182,19 @@ const EconomicProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Help us achieve these ambitious economic empowerment targets in our launch year
+              Ambitious economic empowerment targets to achieve over the next five years
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "500+", label: "Entrepreneurs to Support", color: "text-purple-600" },
-              { number: "20+", label: "Communities to Reach", color: "text-blue-600" },
-              { number: "100", label: "Businesses to Launch", color: "text-green-600" },
-              { number: "50", label: "Mentors to Connect", color: "text-orange-600" }
+              { number: "10,000+", label: "Entrepreneurs to Support", color: "text-purple-600" },
+              { number: "250+", label: "Communities to Reach", color: "text-blue-600" },
+              { number: "2,500", label: "Businesses to Launch", color: "text-green-600" },
+              { number: "500", label: "Mentors to Connect", color: "text-orange-600" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

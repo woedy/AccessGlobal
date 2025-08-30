@@ -182,18 +182,18 @@ const AgricultureProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Help us achieve these ambitious agricultural targets in our launch year
+              Ambitious agricultural targets to achieve over the next five years
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "1,000+", label: "Farmers to Train", color: "text-amber-600" },
-              { number: "30+", label: "Communities", color: "text-green-600" },
-              { number: "50", label: "Cooperatives", color: "text-blue-600" },
+              { number: "25,000+", label: "Farmers to Train", color: "text-amber-600" },
+              { number: "300+", label: "Communities", color: "text-green-600" },
+              { number: "500", label: "Cooperatives", color: "text-blue-600" },
               { number: "60%", label: "Yield Increase Goal", color: "text-orange-600" }
             ].map((stat, index) => (
               <motion.div

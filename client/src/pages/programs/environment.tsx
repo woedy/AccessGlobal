@@ -182,19 +182,19 @@ const EnvironmentProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Help us achieve these ambitious environmental targets in our launch year
+              Ambitious environmental targets to achieve over the next five years
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "100K+", label: "Trees to Plant", color: "text-green-600" },
-              { number: "50+", label: "Clean Water Points", color: "text-blue-600" },
-              { number: "25", label: "Communities to Serve", color: "text-purple-600" },
-              { number: "75%", label: "Waste Reduction Goal", color: "text-orange-600" }
+              { number: "1M+", label: "Trees to Plant", color: "text-green-600" },
+              { number: "500+", label: "Clean Water Points", color: "text-blue-600" },
+              { number: "300", label: "Communities to Serve", color: "text-purple-600" },
+              { number: "80%", label: "Waste Reduction Goal", color: "text-orange-600" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

@@ -153,9 +153,7 @@ export default function Stories() {
               <div className="text-gray-400 text-sm">Active Projects</div>
             </div>
           </div>
-          <div className="mt-8 text-center">
-            <p className="text-warning-500 text-xl font-semibold italic">The World is Yours.</p>
-          </div>
+          
         </div>
 
         {/* Community Testimonials */}

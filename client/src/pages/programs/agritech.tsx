@@ -198,10 +198,10 @@ const AgriTechProgram = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              With your support, we aim to achieve these ambitious targets in our launch year and lay the foundation for long-term agricultural transformation.
+              With your support, we aim to achieve these ambitious targets over the next five years and lay the foundation for long-term agricultural transformation.
             </p>
           </motion.div>
 
@@ -213,7 +213,7 @@ const AgriTechProgram = () => {
               className="text-center"
             >
               <div className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white p-8 rounded-2xl mb-4">
-                <div className="text-4xl font-bold mb-2">500+</div>
+                <div className="text-4xl font-bold mb-2">15,000+</div>
                 <div className="text-lg">Farmers to Support</div>
               </div>
               <p className="text-gray-600">We'll provide agri-tech solutions and training to farmers in underserved communities.</p>
@@ -226,7 +226,7 @@ const AgriTechProgram = () => {
               className="text-center"
             >
               <div className="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-8 rounded-2xl mb-4">
-                <div className="text-4xl font-bold mb-2">20+</div>
+                <div className="text-4xl font-bold mb-2">250+</div>
                 <div className="text-lg">Communities to Reach</div>
               </div>
               <p className="text-gray-600">We'll establish agri-tech hubs in rural communities across multiple regions.</p>
@@ -252,7 +252,7 @@ const AgriTechProgram = () => {
               className="text-center"
             >
               <div className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-8 rounded-2xl mb-4">
-                <div className="text-4xl font-bold mb-2">15</div>
+                <div className="text-4xl font-bold mb-2">100</div>
                 <div className="text-lg">Tech Partners</div>
               </div>
               <p className="text-gray-600">We'll build partnerships with leading agri-tech companies and research institutions.</p>

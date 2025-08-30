@@ -258,22 +258,22 @@ const Programs = () => {
             </p>
           </div>
 
-          {/* Impact Stats */}
+          {/* Five-Year Impact Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">15</div>
+              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">100</div>
               <div className="text-gray-600 font-medium">Countries to Reach</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">50</div>
+              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">500</div>
               <div className="text-gray-600 font-medium">Communities to Serve</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">100</div>
+              <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">50,000</div>
               <div className="text-gray-600 font-medium">Lives to Transform</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">25</div>
+              <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">250</div>
               <div className="text-gray-600 font-medium">Projects to Launch</div>
             </div>
           </div>

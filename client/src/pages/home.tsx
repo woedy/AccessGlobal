@@ -178,12 +178,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with parallax effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-slate-700/70 to-indigo-800/80 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-slate-700/80 to-indigo-800/90 z-10"></div>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110"
           style={{
             backgroundImage:
-              "url('https://images.pexels.com/photos/8542360/pexels-photo-8542360.jpeg')",
+              "url('https://images.unsplash.com/photo-1734779205331-4566d6965fa2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
         ></div>
 
@@ -260,17 +260,17 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl opacity-90">
-              Help us achieve these ambitious targets in our launch year
+              Help us achieve these ambitious targets over the next five years
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <ImpactCounter target={15} label="Countries to Reach" />
-            <ImpactCounter target={100} label="Lives to Transform" />
-            <ImpactCounter target={50} label="Partnerships to Build" />
-            <ImpactCounter target={25} label="Projects to Launch" />
+            <ImpactCounter target={100} label="Countries to Reach" />
+            <ImpactCounter target={50000} label="Lives to Transform" />
+            <ImpactCounter target={500} label="Partnerships to Build" />
+            <ImpactCounter target={250} label="Projects to Launch" />
           </div>
         </div>
       </section>
@@ -298,7 +298,7 @@ export default function Home() {
 
               <div className="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-blue-500">
                 <blockquote className="text-2xl font-medium text-gray-800 italic mb-4">
-                  "The world is yours. Let's make it accessible."
+                  "The World is Yours, Let's make it accessible."
                 </blockquote>
                 <cite className="text-blue-600 font-bold">
                   - Access Global Foundation
@@ -405,25 +405,25 @@ export default function Home() {
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$1,000</div>
+              <div className="text-2xl font-bold mb-2">$10,000</div>
               <div className="opacity-90">
                 Provides school supplies for one student for a month
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$2,500</div>
+              <div className="text-2xl font-bold mb-2">$25,000</div>
               <div className="opacity-90">
                 Funds health screenings for 10 community members
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$5,000</div>
+              <div className="text-2xl font-bold mb-2">$50,000</div>
               <div className="opacity-90">
                 Plants 50 trees for environmental restoration
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="text-2xl font-bold mb-2">$10,000</div>
+              <div className="text-2xl font-bold mb-2">$100,000</div>
               <div className="opacity-90">
                 Supports microfinance for 5 entrepreneurs
               </div>

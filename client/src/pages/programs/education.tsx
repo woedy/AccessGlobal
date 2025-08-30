@@ -182,19 +182,19 @@ const EducationProgram = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Our First Year Goals
+              Our 5-Year Goals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Help us achieve these ambitious targets in our launch year
+              Ambitious education targets to achieve over the next five years
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "25", label: "Schools to Support", color: "text-blue-600" },
-              { number: "1,000+", label: "Students to Reach", color: "text-green-600" },
-              { number: "50", label: "Teachers to Train", color: "text-purple-600" },
-              { number: "15", label: "Communities to Serve", color: "text-orange-600" }
+              { number: "300", label: "Schools to Support", color: "text-blue-600" },
+              { number: "50,000+", label: "Students to Reach", color: "text-green-600" },
+              { number: "1,500+", label: "Teachers to Train", color: "text-purple-600" },
+              { number: "150", label: "Communities to Serve", color: "text-orange-600" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

@@ -63,7 +63,7 @@ export default function DonationFlow() {
 
   const getFinalAmount = (): number => {
     if (monthlyPlan) {
-      const monthlyAmounts: Record<string, number> = { education: 100, global: 500, impact: 5000 };
+      const monthlyAmounts: Record<string, number> = { education: 1000, global: 5000, impact: 50000 };
       return monthlyAmounts[monthlyPlan] || 0;
     }
     return selectedAmount || parseInt(customAmount) || 0;
@@ -72,6 +72,8 @@ export default function DonationFlow() {
   const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
     setCustomAmount('');
+    setMonthlyPlan('');
+    setCurrentStep(2);
   };
 
   const handleCustomAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +84,7 @@ export default function DonationFlow() {
     setMonthlyPlan(plan);
     setSelectedAmount(null);
     setCustomAmount('');
+    setCurrentStep(2);
   };
 
   const handleDonateClick = () => {

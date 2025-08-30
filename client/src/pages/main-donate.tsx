@@ -33,7 +33,7 @@ export default function DonationFlow() {
 
   const getFinalAmount = () => {
     if (monthlyPlan) {
-      const monthlyAmounts = { education: 100, global: 500, impact: 5000 };
+      const monthlyAmounts = { education: 1000, global: 5000, impact: 50000 };
       return monthlyAmounts[monthlyPlan] || 0;
     }
     return selectedAmount || parseInt(customAmount) || 0;
@@ -42,6 +42,8 @@ export default function DonationFlow() {
   const handleAmountSelect = (amount) => {
     setSelectedAmount(amount);
     setCustomAmount('');
+    setMonthlyPlan('');
+    setCurrentStep(2);
   };
 
   const handleCustomAmountChange = (e) => {
@@ -52,6 +54,7 @@ export default function DonationFlow() {
     setMonthlyPlan(plan);
     setSelectedAmount(null);
     setCustomAmount('');
+    setCurrentStep(2);
   };
 
   const handleDonateClick = () => {
@@ -93,7 +96,7 @@ export default function DonationFlow() {
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Your donation creates pathways to opportunity and transforms lives around the world.
           </p>
-          <p className="text-2xl font-bold text-yellow-500 mt-4 italic">The World is Yours.</p>
+          
         </div>
 
         {/* Donation Amounts */}
@@ -102,40 +105,40 @@ export default function DonationFlow() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div 
-              onClick={() => handleAmountSelect(100)}
+              onClick={() => handleAmountSelect(10000)}
               className={`bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 ${
-                selectedAmount === 100 ? 'border-blue-500 bg-blue-50' : 'hover:border-blue-500'
+                selectedAmount === 10000 ? 'border-blue-500 bg-blue-50' : 'hover:border-blue-500'
               }`}
             >
-              <div className="text-3xl font-bold text-blue-500 mb-2">$100</div>
-              <div className="text-sm text-gray-600">Provides school supplies for one student for a month</div>
+              <div className="text-3xl font-bold text-blue-500 mb-2">$10,000</div>
+              <div className="text-sm text-gray-600">Outfits 100 students with school supplies for a year</div>
             </div>
             <div 
-              onClick={() => handleAmountSelect(250)}
+              onClick={() => handleAmountSelect(25000)}
               className={`bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 ${
-                selectedAmount === 250 ? 'border-blue-500 bg-blue-50' : 'hover:border-blue-500'
+                selectedAmount === 25000 ? 'border-blue-500 bg-blue-50' : 'hover:border-blue-500'
               }`}
             >
-              <div className="text-3xl font-bold text-blue-500 mb-2">$250</div>
-              <div className="text-sm text-gray-600">Funds health screenings for 10 community members</div>
+              <div className="text-3xl font-bold text-blue-500 mb-2">$25,000</div>
+              <div className="text-sm text-gray-600">Funds comprehensive health screenings for 1,000 community members</div>
             </div>
             <div 
-              onClick={() => handleAmountSelect(500)}
+              onClick={() => handleAmountSelect(50000)}
               className={`bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 ${
-                selectedAmount === 500 ? 'border-yellow-500 bg-yellow-50' : 'hover:border-yellow-500'
+                selectedAmount === 50000 ? 'border-yellow-500 bg-yellow-50' : 'hover:border-yellow-500'
               }`}
             >
-              <div className="text-3xl font-bold text-yellow-500 mb-2">$500</div>
-              <div className="text-sm text-gray-600">Plants 50 trees for environmental restoration</div>
+              <div className="text-3xl font-bold text-yellow-500 mb-2">$50,000</div>
+              <div className="text-sm text-gray-600">Plants 5,000 trees for environmental restoration</div>
             </div>
             <div 
-              onClick={() => handleAmountSelect(1000)}
+              onClick={() => handleAmountSelect(100000)}
               className={`bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border-2 ${
-                selectedAmount === 1000 ? 'border-green-500 bg-green-50' : 'hover:border-green-500'
+                selectedAmount === 100000 ? 'border-green-500 bg-green-50' : 'hover:border-green-500'
               }`}
             >
-              <div className="text-3xl font-bold text-green-500 mb-2">$1000</div>
-              <div className="text-sm text-gray-600">Supports microfinance for 5 entrepreneurs</div>
+              <div className="text-3xl font-bold text-green-500 mb-2">$100,000</div>
+              <div className="text-sm text-gray-600">Provides microfinance to 500 entrepreneurs</div>
             </div>
           </div>
 
@@ -175,7 +178,7 @@ export default function DonationFlow() {
             >
               <i className="fas fa-graduation-cap text-green-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Education Supporter</h3>
-              <div className="text-2xl font-bold text-green-500 mb-2">$100/month</div>
+              <div className="text-2xl font-bold text-green-500 mb-2">$1,000/month</div>
               <p className="text-sm text-gray-600 mb-4">Funds educational materials and teacher training</p>
               <Button 
                 onClick={handleDonateClick}
@@ -193,7 +196,7 @@ export default function DonationFlow() {
             >
               <i className="fas fa-globe text-blue-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Global Champion</h3>
-              <div className="text-2xl font-bold text-blue-500 mb-2">$500/month</div>
+              <div className="text-2xl font-bold text-blue-500 mb-2">$5,000/month</div>
               <p className="text-sm text-gray-600 mb-4">Supports all four program areas comprehensively</p>
               <Button 
                 onClick={handleDonateClick}
@@ -211,7 +214,7 @@ export default function DonationFlow() {
             >
               <i className="fas fa-hands-helping text-yellow-500 text-3xl mb-4"></i>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Impact Partner</h3>
-              <div className="text-2xl font-bold text-yellow-500 mb-2">$5000/month</div>
+              <div className="text-2xl font-bold text-yellow-500 mb-2">$50,000/month</div>
               <p className="text-sm text-gray-600 mb-4">Enables major community development projects</p>
               <Button 
                 onClick={handleDonateClick}
@@ -276,18 +279,18 @@ export default function DonationFlow() {
 
         {/* Impact Statement */}
         <div className="text-center bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 lg:p-12 text-white">
-          <h2 className="text-2xl font-bold mb-4">Your Donation Creates Real Impact</h2>
+          <h2 className="text-2xl font-bold mb-4">Your Donation Launches Real Impact</h2>
           <div className="grid md:grid-cols-4 gap-6 mb-8">
             <div>
               <div className="text-3xl font-bold mb-2">98%</div>
               <div className="text-sm opacity-90">Goes directly to programs</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">45+</div>
+              <div className="text-3xl font-bold mb-2">100+</div>
               <div className="text-sm opacity-90">Countries impacted</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">500K+</div>
+              <div className="text-3xl font-bold mb-2">50,000+</div>
               <div className="text-sm opacity-90">Lives transformed</div>
             </div>
             <div>
