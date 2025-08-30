@@ -5,10 +5,15 @@ const donationDB = require('./database');
 require('dotenv').config();
 
 const app = express();
+
+const path = require('path');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Create Stripe Checkout Session with named donation support
 app.post('/api/create-checkout-session', async (req, res) => {
@@ -267,6 +272,11 @@ app.delete('/api/donations/:id', async (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
+// SPA fallback: serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3002;
