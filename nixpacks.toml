@@ -1,16 +1,25 @@
+[variables]
+NIXPACKS_NODE_VERSION = "18"
+NODE_ENV = "production"
+
+[phases.install]
+cmds = [
+  "cd client && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi",
+  "cd server && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi"
+]
 
 [phases.build]
 cmds = [
-  "cd client && npm install && npm run build",
-  "cd server && npm install",
+  # Build client (Vite/CRA both supported)
+  "cd client && npm run build",
+  # Ensure public dir exists
+  # Copy Vite build (dist) if present
+  "if [ -d client/dist ]; then cp -r client/dist/* server/public/; fi",
+  # Copy CRA build if present
+  "if [ -d client/build ]; then cp -r client/build/* server/public/; fi"
+]
   "mkdir -p server/public",
-  "cp -r client/dist/* server/public/"
-]
 
-[phases.start]
-cmds = [
-  "cd server && npm start"
-]
-
+# Do NOT define [phases.start]; it runs at build time.
 [start]
 cmd = "cd server && npm start"
