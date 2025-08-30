@@ -4,22 +4,33 @@ NODE_ENV = "production"
 
 [phases.install]
 cmds = [
+  # Install client deps (prefer lockfile for reproducible builds)
   "cd client && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi",
+  # Install server deps
   "cd server && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi"
 ]
 
 [phases.build]
 cmds = [
-  # Build client (Vite/CRA both supported)
+  # Build frontend (works for Vite or CRA)
   "cd client && npm run build",
-  # Ensure public dir exists
+
+  # Ensure target directory exists
   "mkdir -p server/public",
+
   # Copy Vite build (dist) if present
   "if [ -d client/dist ]; then cp -r client/dist/* server/public/; fi",
+
   # Copy CRA build if present
-  "if [ -d client/build ]; then cp -r client/build/* server/public/; fi"
+  "if [ -d client/build ]; then cp -r client/build/* server/public/; fi",
+
+  # Show what we shipped
+  "echo 'Contents of server/public:' && ls -la server/public || true",
+
+  # Fail the build if index.html is missing so we don't deploy a broken image
+  "test -f server/public/index.html || (echo 'ERROR: server/public/index.html not found after copy.' && exit 1)"
 ]
 
-# Do NOT define [phases.start]; it runs at build time.
+# Do NOT define [phases.start]; it runs during image build.
 [start]
 cmd = "cd server && npm start"
