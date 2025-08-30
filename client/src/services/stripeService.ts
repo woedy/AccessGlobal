@@ -1,3 +1,4 @@
+import { api } from '@/config/api';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { STRIPE_CONFIG } from '@/config/stripe';
 
@@ -85,8 +86,7 @@ class StripeService {
   async createOneTimeDonationSession(donationData: StripeDonationData): Promise<StripeCheckoutSession> {
     try {
       // Call backend to create Stripe Checkout session
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/create-checkout-session`, {
+  const response = await fetch(api('create-checkout-session'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,8 +128,7 @@ class StripeService {
   async createRecurringDonationSession(donationData: StripeDonationData): Promise<StripeCheckoutSession> {
     try {
       // Call backend to create Stripe Checkout session for recurring donations
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/create-checkout-session`, {
+  const response = await fetch(api('create-checkout-session'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
