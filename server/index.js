@@ -10,11 +10,10 @@ require('dotenv').config();
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-// ---- Middleware order matters ----
-// 1) CORS
+// ---- Order matters ----
 app.use(cors());
 
-// 2) Stripe webhook BEFORE express.json(), using raw body
+// Stripe webhook BEFORE express.json(), using raw body
 app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   try {
@@ -44,16 +43,22 @@ app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async
   }
 });
 
-// 3) JSON parser AFTER webhook so signatures aren’t broken
+// JSON parser AFTER webhook so signatures aren’t broken
 app.use(express.json());
 
 // ---- Static files ----
-// Pick the first folder that actually contains index.html
+// Support any of these build locations:
+// - server/public           (our copy target during build)
+// - repo root /dist         (Vite outDir: '../dist')
+// - client/dist             (default Vite)
+// - client/build            (CRA)
 const candidates = [
-  path.join(__dirname, 'public'),                  // server/public (what we copy into in build phase)
-  path.join(__dirname, '..', 'client', 'dist'),    // Vite build (fallback if copy failed)
-  path.join(__dirname, '..', 'client', 'build')    // CRA build (fallback if copy failed)
+  path.join(__dirname, 'public'),
+  path.join(__dirname, '..', 'dist'),
+  path.join(__dirname, '..', 'client', 'dist'),
+  path.join(__dirname, '..', 'client', 'build')
 ];
+
 const staticRoot =
   candidates.find(p => fs.existsSync(path.join(p, 'index.html'))) || candidates[0];
 
@@ -67,9 +72,8 @@ console.log(
 // Serve static assets (only does something if folder exists)
 app.use(express.static(staticRoot));
 
-// ---- API ROUTES ----
+// ====== API ROUTES ======
 
-// Create Stripe Checkout Session with named donation support
 app.post('/api/create-checkout-session', async (req, res) => {
   const { amount, isMonthly, donorInfo, metadata, message, isPublic } = req.body;
   try {
@@ -123,11 +127,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       }
     });
 
-    // Update donation with Stripe session ID
-    await donationDB.updateDonation(donationIntent.id, {
-      stripeSessionId: session.id
-    });
-
+    await donationDB.updateDonation(donationIntent.id, { stripeSessionId: session.id });
     res.json({ url: session.url, donationId: donationIntent.id });
   } catch (err) {
     console.error('Stripe session creation error:', err);
@@ -148,7 +148,7 @@ app.get('/api/donations/session/:sessionId', async (req, res) => {
   }
 });
 
-// Get all public donations (for display on website)
+// Get all public donations
 app.get('/api/donations/public', async (req, res) => {
   try {
     const includeAnonymous = req.query.includeAnonymous === 'true';
@@ -172,7 +172,7 @@ app.get('/api/donations/:id', async (req, res) => {
   }
 });
 
-// Get donations by email (for donor history)
+// Get donations by email
 app.get('/api/donations/by-email/:email', async (req, res) => {
   try {
     const donations = await donationDB.getDonationsByEmail(req.params.email);
@@ -183,7 +183,7 @@ app.get('/api/donations/by-email/:email', async (req, res) => {
   }
 });
 
-// Update donation (admin)
+// Update donation
 app.put('/api/donations/:id', async (req, res) => {
   try {
     const { message, isPublic } = req.body;
@@ -198,7 +198,7 @@ app.put('/api/donations/:id', async (req, res) => {
   }
 });
 
-// Delete donation (admin)
+// Delete donation
 app.delete('/api/donations/:id', async (req, res) => {
   try {
     await donationDB.deleteDonation(req.params.id);
