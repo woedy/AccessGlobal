@@ -128,7 +128,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
     });
 
     await donationDB.updateDonation(donationIntent.id, { stripeSessionId: session.id });
-    res.json({ url: session.url, donationId: donationIntent.id });
+    res.json({ url: session.url, donationId: donationIntent.id, sessionId: session.id });
   } catch (err) {
     console.error('Stripe session creation error:', err);
     res.status(500).json({ error: err.message, details: err });

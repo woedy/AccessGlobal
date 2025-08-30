@@ -8,6 +8,7 @@ export default function DonateSuccess() {
   const [isLoading, setIsLoading] = useState(true);
   const [donationDetails, setDonationDetails] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const [cleanSessionId, setCleanSessionId] = useState<string | null>(null);
 
   const params = new URLSearchParams(location.split('?')[1] || '');
   const sessionId = params.get('session_id');
@@ -15,8 +16,9 @@ export default function DonateSuccess() {
   useEffect(() => {
     if (sessionId) {
       // Remove duplicate session_id parameter if present
-      const cleanSessionId = sessionId.split('?')[0];
-      fetchDonationDetails(cleanSessionId);
+      const clean = sessionId.split('?')[0];
+      setCleanSessionId(clean);
+      fetchDonationDetails(clean);
     } else {
       setIsLoading(false);
     }
@@ -151,13 +153,13 @@ export default function DonateSuccess() {
             </p>
           </div>
 
-          {donationDetails && (
+          {(donationDetails || cleanSessionId) && (
             <div className="bg-gray-50 rounded-lg p-6 mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Donation Details</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-500">Session ID</p>
-                  <p className="font-medium text-gray-900">{donationDetails.sessionId}</p>
+                  <p className="font-medium text-gray-900">{cleanSessionId || donationDetails?.stripeSessionId || donationDetails?.id}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Status</p>

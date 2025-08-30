@@ -108,7 +108,7 @@ class StripeService {
       const data = await response.json();
       
       return {
-        id: data.url ? `session_${Date.now()}` : '',
+        id: data.sessionId || '',
         url: data.url,
         amount_total: donationData.amount,
         currency: STRIPE_CONFIG.CURRENCY,
@@ -150,7 +150,7 @@ class StripeService {
       const data = await response.json();
       
       return {
-        id: data.url ? `session_${Date.now()}` : '',
+        id: data.sessionId || '',
         url: data.url,
         amount_total: donationData.amount,
         currency: STRIPE_CONFIG.CURRENCY,
