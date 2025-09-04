@@ -48,17 +48,23 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex space-x-4 mb-4 md:mb-0">
-              <a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="Facebook">
                 <i className="fab fa-facebook text-xl"></i>
               </a>
-              <a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">
+              <a href="https://x.com/AccessGlobalFou" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="X (Twitter)">
                 <i className="fab fa-twitter text-xl"></i>
               </a>
-              <a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">
+              <a href="https://www.instagram.com/accessglobalfoundation/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="Instagram">
                 <i className="fab fa-instagram text-xl"></i>
               </a>
-              <a href="#" className="text-gray-300 hover:text-warning-500 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="LinkedIn">
                 <i className="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="https://www.youtube.com/@AccessGlobalFoundation" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="YouTube">
+                <i className="fab fa-youtube text-xl"></i>
+              </a>
+              <a href="https://www.tiktok.com/@accessglobalfoundation" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-warning-500 transition-colors" aria-label="TikTok">
+                <i className="fab fa-tiktok text-xl"></i>
               </a>
             </div>
             <div className="text-gray-400 text-sm">

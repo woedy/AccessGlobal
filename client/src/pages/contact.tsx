@@ -142,7 +142,7 @@ export default function Contact() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Follow Our Work</h2>
               
               <div className="grid grid-cols-2 gap-4">
-                <a href="#" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
                   <i className="fab fa-facebook text-blue-600 text-2xl mr-3"></i>
                   <div>
                     <div className="font-semibold text-gray-900">Facebook</div>
@@ -150,15 +150,15 @@ export default function Contact() {
                   </div>
                 </a>
                 
-                <a href="#" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                <a href="https://x.com/AccessGlobalFou" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
                   <i className="fab fa-twitter text-blue-400 text-2xl mr-3"></i>
                   <div>
-                    <div className="font-semibold text-gray-900">Twitter</div>
+                    <div className="font-semibold text-gray-900">X (Twitter)</div>
                     <div className="text-sm text-gray-600">News & insights</div>
                   </div>
                 </a>
                 
-                <a href="#" className="flex items-center p-4 rounded-lg bg-pink-50 hover:bg-pink-100 transition-colors">
+                <a href="https://www.instagram.com/accessglobalfoundation/" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-pink-50 hover:bg-pink-100 transition-colors">
                   <i className="fab fa-instagram text-pink-600 text-2xl mr-3"></i>
                   <div>
                     <div className="font-semibold text-gray-900">Instagram</div>
@@ -166,11 +166,27 @@ export default function Contact() {
                   </div>
                 </a>
                 
-                <a href="#" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
                   <i className="fab fa-linkedin text-blue-700 text-2xl mr-3"></i>
                   <div>
                     <div className="font-semibold text-gray-900">LinkedIn</div>
                     <div className="text-sm text-gray-600">Professional</div>
+                  </div>
+                </a>
+
+                <a href="https://www.youtube.com/@AccessGlobalFoundation" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-red-50 hover:bg-red-100 transition-colors">
+                  <i className="fab fa-youtube text-red-600 text-2xl mr-3"></i>
+                  <div>
+                    <div className="font-semibold text-gray-900">YouTube</div>
+                    <div className="text-sm text-gray-600">Videos & highlights</div>
+                  </div>
+                </a>
+
+                <a href="https://www.tiktok.com/@accessglobalfoundation" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <i className="fab fa-tiktok text-gray-900 text-2xl mr-3"></i>
+                  <div>
+                    <div className="font-semibold text-gray-900">TikTok</div>
+                    <div className="text-sm text-gray-600">Shorts & clips</div>
                   </div>
                 </a>
               </div>

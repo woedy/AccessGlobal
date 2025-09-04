@@ -132,17 +132,23 @@ export default function GetInvolved() {
           <div className="bg-white p-8 rounded-xl shadow-lg">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="Facebook">
                 <i className="fab fa-facebook"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://x.com/AccessGlobalFou" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="X (Twitter)">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://www.instagram.com/accessglobalfoundation/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="#" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="LinkedIn">
                 <i className="fab fa-linkedin"></i>
+              </a>
+              <a href="https://www.youtube.com/@AccessGlobalFoundation" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="YouTube">
+                <i className="fab fa-youtube"></i>
+              </a>
+              <a href="https://www.tiktok.com/@accessglobalfoundation" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-primary-500 text-black rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" aria-label="TikTok">
+                <i className="fab fa-tiktok"></i>
               </a>
             </div>
           </div>
