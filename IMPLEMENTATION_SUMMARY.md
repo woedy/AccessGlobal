@@ -5,6 +5,12 @@
 
 ## ✅ **WHAT'S BEEN IMPLEMENTED**
 
+### 0. Automatic Email Receipts
+- ✅ SMTP-based email receipts for one-time and recurring donations
+- ✅ Sends on Stripe checkout success and each recurring charge
+- ✅ Sends on NOWPayments (crypto) completion via IPN
+- ✅ Duplicate-safe using receipt history tracking
+
 ### **1. Full-Stack Stripe Integration**
 - ✅ Express backend for secure Stripe session creation
 - ✅ Stripe service with full payment processing

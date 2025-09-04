@@ -43,30 +43,20 @@ export default function PaymentMethodStep({
       available: true
     },
     {
-      id: 'card',
-      name: 'Credit/Debit Card',
-      description: 'Visa, Mastercard, American Express',
-      icon: 'fas fa-credit-card',
-      color: 'text-gray-400',
-      bgColor: 'bg-gray-50',
-      borderColor: 'border-gray-300',
-      available: false
+      id: 'crypto',
+      name: 'Cryptocurrency',
+      description: 'Pay with 200+ coins via NOWPayments',
+      icon: 'fab fa-bitcoin',
+      color: 'text-yellow-500',
+      bgColor: 'bg-yellow-50',
+      borderColor: 'border-yellow-500',
+      available: true
     },
     {
       id: 'paypal',
       name: 'PayPal',
       description: 'Pay with your PayPal account',
       icon: 'fab fa-paypal',
-      color: 'text-gray-400',
-      bgColor: 'bg-gray-50',
-      borderColor: 'border-gray-300',
-      available: false
-    },
-    {
-      id: 'crypto',
-      name: 'Cryptocurrency',
-      description: 'Bitcoin, Ethereum, and other crypto',
-      icon: 'fab fa-bitcoin',
       color: 'text-gray-400',
       bgColor: 'bg-gray-50',
       borderColor: 'border-gray-300',
@@ -110,7 +100,7 @@ export default function PaymentMethodStep({
           <div className="bg-blue-50 rounded-lg p-4 mb-6">
             <p className="text-sm text-blue-700">
               <i className="fas fa-info-circle mr-2"></i>
-              <strong>Note:</strong> Stripe is currently the only available payment method. Other methods will be added soon!
+              <strong>Note:</strong> You can donate via Stripe (card) or Cryptocurrency (NOWPayments).
             </p>
           </div>
         </div>

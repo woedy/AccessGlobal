@@ -179,8 +179,8 @@ export default function DonationFlow() {
       const response = await donationService.submitDonation(donationData);
       
       if (response.success) {
-        // Handle redirect for payment gateways
-        if (response.redirectUrl && (paymentMethod === 'stripe' || paymentMethod === 'paypal')) {
+        // Handle redirect for payment gateways (Stripe, PayPal, NOWPayments)
+        if (response.redirectUrl) {
           window.location.href = response.redirectUrl;
           return;
         }

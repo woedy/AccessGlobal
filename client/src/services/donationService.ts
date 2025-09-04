@@ -1,5 +1,6 @@
 import { api } from '@/config/api';
 import { stripeService, StripeDonationData } from './stripeService';
+import { nowPaymentsService } from './nowPaymentsService';
 
 // Types for donation data
 export interface DonorInfo {
@@ -76,16 +77,41 @@ class DonationService {
   
   async submitDonation(donationData: DonationData): Promise<DonationResponse> {
     try {
-      // Only Stripe payments are active for now
+      // Stripe Checkout
       if (donationData.paymentMethod === 'stripe') {
         return this.handleStripeCheckout(donationData);
+      }
+      // Crypto via NOWPayments invoice
+      if (donationData.paymentMethod === 'crypto') {
+        const resp = await nowPaymentsService.createInvoice({
+          amount: donationData.amount,
+          donorInfo: { email: donationData.donorInfo.email },
+          message: donationData.message,
+          isPublic: donationData.isPublic !== false,
+        });
+        if (resp.success && resp.url) {
+          window.location.href = resp.url;
+          return {
+            success: true,
+            transactionId: resp.invoiceId || '',
+            message: 'Redirecting to secure crypto checkout...',
+            redirectUrl: resp.url,
+            donationId: resp.donationId,
+          };
+        }
+        return {
+          success: false,
+          transactionId: '',
+          message: 'Failed to initiate crypto donation',
+          error: resp.error || 'NOWPayments error',
+        };
       }
       
       // All other payment methods are temporarily disabled
       return {
         success: false,
         transactionId: '',
-        message: 'This payment method is temporarily unavailable. Please use Stripe for secure donations.',
+        message: 'This payment method is temporarily unavailable. Please use Stripe or Crypto (NOWPayments).',
         error: 'Payment method not available',
       };
     } catch (error) {

@@ -161,12 +161,7 @@ export default function PaymentDetailsStep({
         newErrors.phoneNumber = 'Please enter a valid phone number';
       }
     } else if (paymentMethod === 'crypto') {
-      if (!cryptoDetails.cryptocurrency) {
-        newErrors.cryptocurrency = 'Please select a cryptocurrency';
-      }
-      if (!validateWalletAddress(cryptoDetails.walletAddress)) {
-        newErrors.walletAddress = 'Please enter a valid wallet address';
-      }
+      // No local validations; handled on NOWPayments checkout
     } else if (paymentMethod === 'stripe') {
       if (!validateEmail(stripeDetails.email)) {
         newErrors.stripeEmail = 'Please enter a valid email address';
@@ -356,49 +351,12 @@ export default function PaymentDetailsStep({
     } else if (paymentMethod === 'crypto') {
       return (
         <div className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Cryptocurrency *</label>
-            <select
-              value={cryptoDetails.cryptocurrency}
-              onChange={(e) => onCryptoDetailsChange('cryptocurrency', e.target.value)}
-              className={`w-full px-4 py-3 rounded-lg border focus:ring-1 focus:ring-blue-500 ${
-                errors.cryptocurrency ? 'border-red-500' : 'border-gray-300 focus:border-blue-500'
-              }`}
-              required
-            >
-              <option value="">Select cryptocurrency</option>
-              <option value="bitcoin">Bitcoin (BTC)</option>
-              <option value="ethereum">Ethereum (ETH)</option>
-              <option value="usdt">Tether (USDT)</option>
-              <option value="usdc">USD Coin (USDC)</option>
-              <option value="bnb">Binance Coin (BNB)</option>
-            </select>
-            {errors.cryptocurrency && (
-              <p className="text-red-500 text-sm mt-1">{errors.cryptocurrency}</p>
-            )}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Wallet Address *</label>
-            <input
-              type="text"
-              value={cryptoDetails.walletAddress}
-              onChange={(e) => onCryptoDetailsChange('walletAddress', e.target.value)}
-              placeholder="Enter your wallet address"
-              className={`w-full px-4 py-3 rounded-lg border focus:ring-1 focus:ring-blue-500 ${
-                errors.walletAddress ? 'border-red-500' : 'border-gray-300 focus:border-blue-500'
-              }`}
-              required
-            />
-            {errors.walletAddress && (
-              <p className="text-red-500 text-sm mt-1">{errors.walletAddress}</p>
-            )}
-          </div>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div className="flex items-start">
-              <i className="fas fa-info-circle text-yellow-600 mr-3 mt-1"></i>
-              <div className="text-sm text-yellow-800">
-                <p className="font-semibold">Important:</p>
-                <p>Please ensure you're sending the correct amount in the selected cryptocurrency. Exchange rates may vary.</p>
+              <i className="fas fa-info-circle text-blue-600 mr-3 mt-1"></i>
+              <div className="text-sm text-blue-800">
+                <p className="font-semibold">Crypto Checkout:</p>
+                <p>You will be redirected to a secure NOWPayments page to complete your donation using 200+ cryptocurrencies.</p>
               </div>
             </div>
           </div>
