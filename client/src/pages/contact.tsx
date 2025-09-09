@@ -57,7 +57,7 @@ export default function Contact() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                 <select className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                   <option>General Inquiry</option>
-                  <option>Volunteer Opportunities</option>
+                  <option>Contact</option>
                   <option>Partnership</option>
                   <option>Media & Press</option>
                   <option>Donation Questions</option>
@@ -105,7 +105,7 @@ export default function Contact() {
                     <p className="text-gray-600">
                       General: info@accessglobalfoundation.org<br />
                       Partnerships: partners@accessglobalfoundation.org<br />
-                      Volunteer: volunteer@accessglobalfoundation.org
+                      Contact: contact@accessglobalfoundation.org
                     </p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                     <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
                     <p className="text-gray-600">
                       Main: +1 (555) 123-4567<br />
-                      Volunteer Line: +1 (555) 123-4568
+                      Contact Line: +1 (555) 123-4568
                     </p>
                   </div>
                 </div>
@@ -200,9 +200,9 @@ export default function Contact() {
           
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How can I volunteer?</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">How can I contact you?</h3>
               <p className="text-gray-600 mb-4">
-                We offer both local and international volunteer opportunities. Visit our Get Involved page or contact our volunteer coordinator directly.
+                You can reach us via the contact form on this page or email our team directly at info@accessglobalfoundation.org.
               </p>
               
               <h3 className="font-semibold text-gray-900 mb-2">Are donations tax-deductible?</h3>
