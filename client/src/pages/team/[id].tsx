@@ -29,7 +29,7 @@ Dhalia brings a wealth of knowledge in educational leadership and community deve
     linkedin: 'https://linkedin.com',
     twitter: 'https://twitter.com',
     awards: [
-      'County of San Mateo, Caminar - Director of Services’ Outstanding Services',
+      "County of San Mateo, Caminar - Director of Services' Outstanding Services",
       'County of San Matteo, Caminar - Team Spirit Award',
       'County of San Francisco, Family Service Agency - Documentation Excellence',
       'Action Chapel International, Prayer Cathedral - The MVP',
@@ -37,15 +37,15 @@ Dhalia brings a wealth of knowledge in educational leadership and community deve
       'Outstanding Administrative Employee - Caminar'
     ],
     gallery: [
-      '/assets/dhalia_works/IMG-20250917-WA0004.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0005.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0009.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0011.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0015.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0017.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0019.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0022.jpg',
-      '/assets/dhalia_works/IMG-20250917-WA0025.jpg'
+      '/assets/optimized_gallery/IMG-20250917-WA0004.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0005.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0009.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0011.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0015.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0017.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0019.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0022.webp',
+      '/assets/optimized_gallery/IMG-20250917-WA0025.webp'
     ]
   }
 ];
