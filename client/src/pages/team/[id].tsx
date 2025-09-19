@@ -11,18 +11,21 @@ const teamMembers: TeamMember[] = [
     role: 'Director of Education & Training',
     bio: `Education and counseling professional with extensive experience in organizational leadership and community service. Currently pursuing a Doctor of Education in Organizational Change and Leadership at the University of Southern California (expected 2027).
 
-EDUCATION:
+
+EDUCATION
 • Doctor of Education in Organizational Change and Leadership - University of Southern California (Candidate 2027)
 • Ordination Program - Dominion Theological Seminary (2025)
 • Diploma in Apostolic and Ministry - Dominion Theological Seminary (2024)
 • M.A. in Guidance and Counseling - University of Ghana (2017)
 • B.Sc. in Business Administration - University of Phoenix (2007)
 
-PROFESSIONAL HIGHLIGHTS:
+
+PROFESSIONAL HIGHLIGHTS
 • Extensive training in cultural diversity, harm reduction, and motivational interviewing
 • Certified in First Aid and CPR (2022)
 • Experienced in project management and leadership development
 • Specialized in faith-based education and counseling
+
 
 Dhalia brings a wealth of knowledge in educational leadership and community development to our team.`,    
     image: '/assets/Dhalia Sabeh.jpg',
@@ -171,7 +174,9 @@ export default function TeamMemberPage() {
                   <p className="text-xl text-primary-600 font-medium mt-1">{member.role}</p>
                   
                   <div className="mt-6 space-y-4 text-gray-700">
-                    <p className="text-lg leading-relaxed">{member.bio}</p>
+                    <div className="text-lg leading-relaxed whitespace-pre-line">
+                    {member.bio}
+                  </div>
                     
                     {/* Additional details can be added here */}
                     <div className="mt-6 pt-6 border-t border-gray-200">
