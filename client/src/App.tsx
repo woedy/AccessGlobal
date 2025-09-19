@@ -22,6 +22,7 @@ import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 import Blog from "./pages/blog";
 import BlogPost from "./pages/blog/[id]";
+import TeamMemberPage from "./pages/team/[id]";
 
 function Router() {
   return (
@@ -46,6 +47,7 @@ function Router() {
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
           <Route path="/donate-success" component={DonateSuccess} />
+          <Route path="/team/:id" component={TeamMemberPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
