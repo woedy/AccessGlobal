@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import FloatingDonateButton from "@/components/floating-donate-button";
+import ScrollToTop from "@/components/scroll-to-top";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Programs from "@/pages/programs";
@@ -28,6 +29,7 @@ function Router() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
+      <ScrollToTop />
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
