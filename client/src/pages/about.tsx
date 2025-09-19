@@ -7,6 +7,7 @@ export interface TeamMember {
   linkedin?: string;
   twitter?: string;
   awards?: string[];
+  gallery?: string[];
 }
 
 const teamMembers: TeamMember[] = [
