@@ -28,12 +28,23 @@ npm run preview
 
 ## Deployment
 
-This project is configured for deployment on Vercel. Simply connect your repository to Vercel and it will automatically build and deploy your site.
+This project now ships with a combined frontend + backend deployment flow suitable for platforms such as **Coolify** (or any Node hosting provider).
 
-The build process:
-1. Runs `npm run build` to create a production build
-2. Serves the static files from the `dist` directory
-3. Handles client-side routing with proper rewrites
+### Coolify / Container Deployment
+
+1. **Build command**: `npm run build`
+   - Runs the Vite production build
+   - Automatically copies the generated assets into `server/public`
+2. **Start command**: `npm start`
+   - Boots the Express API (`server/index.js`) and serves the built frontend
+3. **Environment variables** (configure in Coolify):
+   - `PORT` – optional, defaults to `3002`
+   - `CLIENT_URL` – public URL of the deployed site (used for redirects + asset URLs)
+   - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`
+   - `ADMIN_API_KEY`
+   - Email/NOWPayments related keys as needed (`SMTP_*`, `NOWPAYMENTS_*`, etc.)
+
+Coolify users can either rely on the provided `nixpacks.toml` (Buildpack → Nixpacks) or build via Docker. The configuration installs dependencies, builds the frontend, verifies that `server/public/index.html` exists, and finally starts the Node server.
 
 ## Project Structure
 

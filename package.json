@@ -5,9 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:copy",
+    "build:client": "vite build",
+    "build:copy": "node scripts/copy-dist.mjs",
     "preview": "vite preview",
-    "check": "tsc"
+    "check": "tsc",
+    "start": "node server/index.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

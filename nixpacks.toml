@@ -4,40 +4,22 @@ NODE_ENV = "production"
 
 [phases.install]
 cmds = [
-  # Install client deps
-  "cd client && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi",
-  # Install server deps
+  # Install frontend/tooling dependencies (includes Vite + build tooling)
+  "npm ci",
+  # Install backend runtime dependencies (omit dev-only tools like nodemon)
   "cd server && if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi"
 ]
 
 [phases.build]
 cmds = [
-  # Build frontend (Vite/CRA)
-  "cd client && npm run build",
-
-  # Ensure target directory exists
-  "mkdir -p server/public",
-
-  # Copy from ALL possible build locations:
-  # 1 Root-level dist (common when Vite outDir = '../dist')
-  "if [ -d dist ]; then cp -r dist/* server/public/; fi",
-
-  # 2 Vite default location
-  "if [ -d client/dist ]; then cp -r client/dist/* server/public/; fi",
-
-  # 3 CRA build location
-  "if [ -d client/build ]; then cp -r client/build/* server/public/; fi",
-
+  # Build the frontend bundle and copy it into server/public
+  "npm run build",
   # Debug what we have (helpful in logs)
-  "echo 'Contents of repo root dist (if exists):' && ls -la dist || true",
-  "echo 'Contents of client/dist (if exists):' && ls -la client/dist || true",
-  "echo 'Contents of client/build (if exists):' && ls -la client/build || true",
   "echo 'Contents of server/public:' && ls -la server/public || true",
-
   # Fail build if index.html is still missing so we don’t deploy a broken image
-  "test -f server/public/index.html || (echo 'ERROR: server/public/index.html not found after copy.' && exit 1)"
+  "test -f server/public/index.html || (echo 'ERROR: server/public/index.html not found after build.' && exit 1)"
 ]
 
 # Do NOT define [phases.start]; it runs during image build.
 [start]
-cmd = "cd server && npm start"
+cmd = "npm start"
