@@ -1,4 +1,4 @@
-// server/index.js
+﻿// server/index.js
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -7,14 +7,59 @@ const Stripe = require('stripe');
 const https = require('https');
 const crypto = require('crypto');
 const donationDB = require('./database');
-const { sendDonationReceipt } = require('./email');
+const orderDB = require('./orderDatabase');
+const productDB = require('./productDatabase');
+const { sendDonationReceipt, sendStoreOrderReceipt } = require('./email');
 require('dotenv').config();
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+const PUBLIC_BASE_URL = process.env.CLIENT_URL || process.env.PUBLIC_URL || '';
+const CLIENT_ORIGIN = (process.env.CLIENT_URL || process.env.PUBLIC_URL || 'http://localhost:3000').replace(/\/$/, '');
+const STORE_SHIPPING_COUNTRIES = (process.env.STORE_SHIPPING_COUNTRIES || 'US,CA,GB')
+  .split(',')
+  .map(code => code.trim().toUpperCase())
+  .filter(Boolean);
 
 // ---- Order matters ----
 app.use(cors());
+
+let adminKeyMissingWarningShown = false;
+function requireAdminKey(req, res, next) {
+  if (!ADMIN_API_KEY) {
+    if (!adminKeyMissingWarningShown) {
+      console.warn('ADMIN_API_KEY not set; allowing admin endpoints without authentication for development.');
+      adminKeyMissingWarningShown = true;
+    }
+    return next();
+  }
+
+  const provided = req.headers['x-admin-key'] || req.query.adminKey || req.headers['authorization'];
+  const cleaned = typeof provided === 'string' && provided.startsWith('Bearer ')
+    ? provided.substring(7)
+    : provided;
+  if (cleaned !== ADMIN_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  return next();
+}
+
+function resolveImageUrl(imagePath) {
+  if (!imagePath || typeof imagePath !== 'string') return undefined;
+  if (/^https?:\/\//i.test(imagePath)) {
+    return imagePath;
+  }
+  if (!PUBLIC_BASE_URL) {
+    return undefined;
+  }
+  try {
+    return new URL(imagePath, PUBLIC_BASE_URL).toString();
+  } catch (err) {
+    console.warn('Failed to resolve product image URL', imagePath, err?.message);
+    return undefined;
+  }
+}
 
 // Stripe webhook BEFORE express.json(), using raw body
 app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -145,7 +190,7 @@ app.post('/api/now/ipn', express.raw({ type: 'application/json' }), async (req, 
   }
 });
 
-// JSON parser AFTER webhook so signatures aren’t broken
+// JSON parser AFTER webhook so signatures arenâ€™t broken
 app.use(express.json());
 
 // ---- Static files ----
@@ -405,7 +450,323 @@ app.delete('/api/donations/:id', async (req, res) => {
   }
 });
 
+// ===== Store Checkout =====
+app.post('/api/store/checkout', async (req, res) => {
+  try {
+    const { items, successUrl, cancelUrl, customer } = req.body || {};
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'No items in cart' });
+    }
+
+    const stripeLineItems = [];
+    const summaryItems = [];
+    let subtotal = 0;
+
+    for (const rawItem of items) {
+      const productId = rawItem && rawItem.productId ? String(rawItem.productId).trim() : '';
+      const slug = rawItem && rawItem.slug ? String(rawItem.slug).trim() : '';
+      const quantity = Number(rawItem.quantity || 0);
+
+      if ((!productId && !slug) || !Number.isFinite(quantity) || quantity <= 0) {
+        return res.status(400).json({ error: 'Invalid cart item' });
+      }
+
+      let product = productId ? await productDB.getProductById(productId) : null;
+      if (!product && slug) {
+        product = await productDB.getProductBySlug(slug);
+      }
+
+      if (!product) {
+        return res.status(404).json({ error: `Product not found (${productId || slug})` });
+      }
+
+      if (product.inStock === false) {
+        return res.status(400).json({ error: `${product.name} is currently out of stock` });
+      }
+
+      const variantId = rawItem.variantId || rawItem.selectedVariantId || null;
+      const variant = Array.isArray(product.variants)
+        ? product.variants.find(v => v.id === variantId)
+        : null;
+
+      if (variant && variant.stock !== undefined && quantity > variant.stock) {
+        return res.status(400).json({ error: `Only ${variant.stock} left for ${variant.name}` });
+      }
+
+      if (!variant && product.stock !== undefined && quantity > product.stock) {
+        return res.status(400).json({ error: `Only ${product.stock} left for ${product.name}` });
+      }
+
+      const unitPrice = Number(
+        variant && variant.price !== undefined ? variant.price : product.price
+      );
+
+      if (!Number.isFinite(unitPrice) || unitPrice <= 0) {
+        return res.status(400).json({ error: `Invalid price for product ${product.name}` });
+      }
+
+      const displayName = variant ? `${product.name} (${variant.name})` : product.name;
+      const lineDescription = variant && product.description
+        ? `${product.description} - Variant: ${variant.name}`
+        : product.description || undefined;
+      const imageUrl = resolveImageUrl((variant && variant.image) || (product.images && product.images[0]));
+
+      subtotal += unitPrice * quantity;
+
+      const productData = {
+        name: displayName,
+      };
+      if (lineDescription) {
+        productData.description = lineDescription;
+      }
+      if (imageUrl) {
+        productData.images = [imageUrl];
+      }
+
+      const metadata = {
+        productId: product.id,
+      };
+      if (variant && variant.id) {
+        metadata.variantId = variant.id;
+      }
+      productData.metadata = metadata;
+
+      stripeLineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: productData,
+          unit_amount: Math.round(unitPrice * 100),
+        },
+        quantity,
+      });
+
+      summaryItems.push({
+        productId: product.id,
+        productName: product.name,
+        variantId: variant ? variant.id : null,
+        variantName: variant ? variant.name : null,
+        quantity,
+        unitPrice,
+        lineTotal: Number((unitPrice * quantity).toFixed(2)),
+        image: (variant && variant.image) || (product.images && product.images[0]) || null,
+        sku: (variant && variant.sku) || product.sku || null,
+      });
+    }
+
+    const orderTotal = Number(subtotal.toFixed(2));
+    const safeCustomer = customer && typeof customer === 'object'
+      ? {
+          name: customer.name ? String(customer.name).trim() : null,
+          email: customer.email ? String(customer.email).trim() : null,
+          phone: customer.phone ? String(customer.phone).trim() : null,
+          notes: customer.notes ? String(customer.notes).trim() : null,
+        }
+      : { name: null, email: null, phone: null, notes: null };
+
+    const order = await orderDB.createOrder({
+      items: stripeLineItems,
+      summary: {
+        items: summaryItems,
+        subtotal: orderTotal,
+        notes: safeCustomer.notes || null,
+      },
+      status: 'pending',
+      currency: 'usd',
+      total: orderTotal,
+      customer: safeCustomer,
+      deliveryStatus: 'pending',
+      notes: safeCustomer.notes || null,
+    });
+
+    const shippingCountries = STORE_SHIPPING_COUNTRIES.length
+      ? STORE_SHIPPING_COUNTRIES
+      : ['US'];
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: stripeLineItems,
+      success_url: successUrl || `${CLIENT_ORIGIN}/order/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: cancelUrl || `${CLIENT_ORIGIN}/cart`,
+      metadata: {
+        orderId: order.id,
+        type: 'store_order',
+      },
+      client_reference_id: order.id,
+      customer_email: safeCustomer.email || undefined,
+      shipping_address_collection: {
+        allowed_countries: shippingCountries,
+      },
+      phone_number_collection: {
+        enabled: true,
+      },
+      allow_promotion_codes: true,
+    });
+
+    await orderDB.updateOrder(order.id, {
+      stripeSessionId: session.id,
+      checkoutUrl: session.url || null,
+    });
+
+    res.json({ sessionId: session.id });
+  } catch (error) {
+    console.error('Store checkout error:', error);
+    res.status(500).json({ error: 'Failed to create checkout session' });
+  }
+});
+// ===== Store Catalog =====
+app.get('/api/store/products', async (req, res) => {
+  try {
+    const products = await productDB.getAllProducts();
+    res.json(products);
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
+});
+
+app.get('/api/store/products/slug/:slug', async (req, res) => {
+  try {
+    const product = await productDB.getProductBySlug(req.params.slug);
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error('Failed to fetch product by slug:', error);
+    res.status(500).json({ error: 'Failed to fetch product' });
+  }
+});
+
+app.get('/api/store/products/:id', async (req, res) => {
+  try {
+    const product = await productDB.getProductById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    res.status(500).json({ error: 'Failed to fetch product' });
+  }
+});
+
+app.post('/api/store/products', requireAdminKey, async (req, res) => {
+  try {
+    const product = await productDB.createProduct(req.body || {});
+    res.status(201).json(product);
+  } catch (error) {
+    console.error('Failed to create product:', error);
+    res.status(error.message && error.message.includes('exists') ? 409 : 400).json({ error: error.message || 'Failed to create product' });
+  }
+});
+
+app.put('/api/store/products/:id', requireAdminKey, async (req, res) => {
+  try {
+    const product = await productDB.updateProduct(req.params.id, req.body || {});
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error('Failed to update product:', error);
+    res.status(error.message && error.message.includes('exists') ? 409 : 400).json({ error: error.message || 'Failed to update product' });
+  }
+});
+
+app.delete('/api/store/products/:id', requireAdminKey, async (req, res) => {
+  try {
+    const removed = await productDB.deleteProduct(req.params.id);
+    if (!removed) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Failed to delete product:', error);
+    res.status(500).json({ error: 'Failed to delete product' });
+  }
+});
+
+// ===== Store Orders (Admin) =====
+app.get('/api/store/orders', requireAdminKey, async (req, res) => {
+  try {
+    const orders = await orderDB.getAllOrders();
+    res.json(orders);
+  } catch (error) {
+    console.error('Failed to fetch orders:', error);
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+app.get('/api/store/orders/:id', requireAdminKey, async (req, res) => {
+  try {
+    const order = await orderDB.getOrder(req.params.id);
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json(order);
+  } catch (error) {
+    console.error('Failed to fetch order:', error);
+    res.status(500).json({ error: 'Failed to fetch order' });
+  }
+});
+
+app.patch('/api/store/orders/:id', requireAdminKey, async (req, res) => {
+  try {
+    const updates = {};
+    const payload = req.body || {};
+
+    if (payload.status) {
+      updates.status = payload.status;
+    }
+    if (payload.deliveryStatus) {
+      updates.deliveryStatus = payload.deliveryStatus;
+    }
+    if (payload.notes !== undefined) {
+      updates.notes = payload.notes;
+    }
+    if (payload.delivery) {
+      updates.delivery = {
+        ...(payload.delivery || {}),
+      };
+    }
+    if (payload.customer) {
+      updates.customer = payload.customer;
+    }
+    if (Array.isArray(payload.fulfillmentHistory)) {
+      updates.fulfillmentHistory = payload.fulfillmentHistory;
+    }
+    if (Array.isArray(payload.emailHistory)) {
+      updates.emailHistory = payload.emailHistory;
+    }
+    if (payload.metadata) {
+      updates.metadata = payload.metadata;
+    }
+
+    const order = await orderDB.updateOrder(req.params.id, updates);
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json(order);
+  } catch (error) {
+    console.error('Failed to update order:', error);
+    res.status(500).json({ error: 'Failed to update order' });
+  }
+});
 // Health check
+// Order lookup by Stripe session id
+app.get('/api/orders/session/:sessionId', async (req, res) => {
+  try {
+    const order = await orderDB.getOrderByStripeSession(req.params.sessionId);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+    res.json(order);
+  } catch (e) {
+    console.error('Failed to fetch order by session:', e);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
@@ -420,6 +781,84 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // ===== handlers =====
 async function handleCheckoutCompleted(session) {
+  // Handle store orders
+  if (session?.metadata?.type === 'store_order') {
+    try {
+      const amountTotal = (session.amount_total ?? 0) / 100;
+      const amountSubtotal = session.amount_subtotal !== undefined ? (session.amount_subtotal / 100) : undefined;
+      const orderId = session.metadata.orderId;
+
+      let orderRecord = null;
+      if (orderId) {
+        orderRecord = await orderDB.getOrder(orderId);
+      }
+      if (!orderRecord && session.id) {
+        orderRecord = await orderDB.getOrderByStripeSession(session.id);
+      }
+
+      if (!orderRecord) {
+        console.warn('Store order webhook received for unknown order', session.id);
+        return;
+      }
+
+      const summaryItems = Array.isArray(orderRecord.summary?.items) && orderRecord.summary.items.length
+        ? orderRecord.summary.items
+        : Array.isArray(orderRecord.items) ? orderRecord.items : [];
+
+      const customerEmail = session?.customer_details?.email || orderRecord?.customer?.email || null;
+      const customerName = session?.customer_details?.name || orderRecord?.customer?.name || null;
+      const customerPhone = session?.customer_details?.phone || orderRecord?.customer?.phone || null;
+
+      const updatePayload = {
+        status: 'completed',
+        deliveryStatus: orderRecord.deliveryStatus === 'pending' ? 'processing' : orderRecord.deliveryStatus || 'processing',
+        stripeCustomerId: session.customer,
+        paymentIntentId: session.payment_intent || null,
+        amount_total: amountTotal,
+        total: amountTotal,
+        currency: (session.currency || 'usd').toUpperCase(),
+        summary: {
+          items: summaryItems,
+          subtotal: amountSubtotal !== undefined ? amountSubtotal : (orderRecord.summary?.subtotal || amountTotal),
+          notes: orderRecord.summary?.notes ?? orderRecord.notes ?? null,
+        },
+        shipping_details: session.shipping_details || null,
+        customer_details: session.customer_details || null,
+        completedAt: new Date().toISOString(),
+      };
+
+      if (customerEmail || customerName || customerPhone) {
+        updatePayload.customer = {
+          ...(orderRecord.customer || {}),
+          email: customerEmail || orderRecord.customer?.email || null,
+          name: customerName || orderRecord.customer?.name || null,
+          phone: customerPhone || orderRecord.customer?.phone || null,
+        };
+      }
+
+      const updatedOrder = await orderDB.updateOrder(orderRecord.id, updatePayload);
+
+      if (customerEmail && updatedOrder) {
+        const history = Array.isArray(updatedOrder.emailHistory) ? updatedOrder.emailHistory : [];
+        const alreadySent = history.some(entry => entry && entry.sessionId === session.id && entry.type === 'order_confirmation');
+
+        if (!alreadySent) {
+          try {
+            await sendStoreOrderReceipt({ to: customerEmail, order: updatedOrder });
+            await orderDB.updateOrder(updatedOrder.id, {
+              emailHistory: [...history, { type: 'order_confirmation', sessionId: session.id, sentAt: new Date().toISOString() }]
+            });
+          } catch (emailError) {
+            console.error('Failed to send store order receipt email:', emailError);
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Failed to finalize store order:', e);
+    }
+    return;
+  }
+
   const donationId = session.metadata?.donationId;
   if (!donationId) {
     console.error('No donation ID found in session metadata');
@@ -537,3 +976,13 @@ async function handleSubscriptionDeleted(subscription) {
     console.error('Failed to handle subscription cancellation:', error);
   }
 }
+
+
+
+
+
+
+
+
+
+

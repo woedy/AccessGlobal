@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
+import CartIcon from "./CartIcon";
 
 export default function Navigation() {
   const [location] = useLocation();
@@ -10,6 +11,7 @@ export default function Navigation() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Programs", href: "/programs" },
+    { name: "Store", href: "/store" },
     { name: "Get Involved", href: "/get-involved" },
     { name: "Donate", href: "/donate" },
     { name: "Contact", href: "/contact" },
@@ -68,8 +70,9 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-3">
+          {/* Cart + Mobile Menu Button */}
+          <div className="flex items-center space-x-4">
+            <CartIcon />
             <button
               className="md:hidden text-gray-600 hover:text-primary-500"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -86,6 +89,9 @@ export default function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
               {navigation.map((item) => renderNavLink(item, true))}
+              <div className="px-3 pt-2">
+                <CartIcon />
+              </div>
             </div>
           </div>
         )}
