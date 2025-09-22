@@ -22,6 +22,26 @@ const STORE_SHIPPING_COUNTRIES = (process.env.STORE_SHIPPING_COUNTRIES || 'US,CA
   .map(code => code.trim().toUpperCase())
   .filter(Boolean);
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function sanitizeString(value) {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  return trimmed ? trimmed : null;
+}
+
+function buildStripeMetadata(entries = {}) {
+  return Object.entries(entries).reduce((acc, [key, value]) => {
+    if (value === undefined || value === null) {
+      return acc;
+    }
+    acc[key] = String(value);
+    return acc;
+  }, {});
+}
+
+const isValidEmail = (email) => EMAIL_REGEX.test(email || '');
+
 // ---- Order matters ----
 app.use(cors());
 
@@ -524,13 +544,22 @@ app.post('/api/store/checkout', async (req, res) => {
         productData.images = [imageUrl];
       }
 
-      const metadata = {
+      const metadata = buildStripeMetadata({
         productId: product.id,
-      };
-      if (variant && variant.id) {
-        metadata.variantId = variant.id;
+        slug: product.slug,
+        productName: product.name,
+        variantId: variant ? variant.id : null,
+        variantName: variant ? variant.name : null,
+        sku: (variant && variant.sku) || product.sku || null,
+        quantity,
+        unitPrice: unitPrice.toFixed(2),
+        lineTotal: (unitPrice * quantity).toFixed(2),
+        currency: 'USD',
+        image: imageUrl,
+      });
+      if (Object.keys(metadata).length) {
+        productData.metadata = metadata;
       }
-      productData.metadata = metadata;
 
       stripeLineItems.push({
         price_data: {
@@ -551,18 +580,25 @@ app.post('/api/store/checkout', async (req, res) => {
         lineTotal: Number((unitPrice * quantity).toFixed(2)),
         image: (variant && variant.image) || (product.images && product.images[0]) || null,
         sku: (variant && variant.sku) || product.sku || null,
+        currency: 'USD',
       });
     }
 
     const orderTotal = Number(subtotal.toFixed(2));
-    const safeCustomer = customer && typeof customer === 'object'
-      ? {
-          name: customer.name ? String(customer.name).trim() : null,
-          email: customer.email ? String(customer.email).trim() : null,
-          phone: customer.phone ? String(customer.phone).trim() : null,
-          notes: customer.notes ? String(customer.notes).trim() : null,
-        }
-      : { name: null, email: null, phone: null, notes: null };
+    const rawCustomer = customer && typeof customer === 'object' ? customer : {};
+    const safeCustomer = {
+      name: sanitizeString(rawCustomer.name),
+      email: sanitizeString(rawCustomer.email),
+      phone: sanitizeString(rawCustomer.phone),
+      notes: sanitizeString(rawCustomer.notes),
+    };
+
+    if (!safeCustomer.name || !safeCustomer.email) {
+      return res.status(400).json({ error: 'Customer name and email are required' });
+    }
+    if (!isValidEmail(safeCustomer.email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
+    }
 
     const order = await orderDB.createOrder({
       items: stripeLineItems,
@@ -589,15 +625,28 @@ app.post('/api/store/checkout', async (req, res) => {
       line_items: stripeLineItems,
       success_url: successUrl || `${CLIENT_ORIGIN}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: cancelUrl || `${CLIENT_ORIGIN}/cart`,
-      metadata: {
+      metadata: buildStripeMetadata({
         orderId: order.id,
         type: 'store_order',
-      },
+        orderSubtotal: orderTotal.toFixed(2),
+        source: 'store_checkout',
+      }),
       client_reference_id: order.id,
       customer_email: safeCustomer.email || undefined,
+      customer_creation: 'if_required',
+      payment_intent_data: {
+        metadata: buildStripeMetadata({
+          orderId: order.id,
+          type: 'store_order',
+          customerEmail: safeCustomer.email,
+          customerName: safeCustomer.name,
+        }),
+        receipt_email: safeCustomer.email || undefined,
+      },
       shipping_address_collection: {
         allowed_countries: shippingCountries,
       },
+      billing_address_collection: 'auto',
       phone_number_collection: {
         enabled: true,
       },
@@ -784,8 +833,12 @@ async function handleCheckoutCompleted(session) {
   // Handle store orders
   if (session?.metadata?.type === 'store_order') {
     try {
-      const amountTotal = (session.amount_total ?? 0) / 100;
-      const amountSubtotal = session.amount_subtotal !== undefined ? (session.amount_subtotal / 100) : undefined;
+      const amountTotalCents = session.amount_total ?? 0;
+      const amountSubtotalCents = session.amount_subtotal ?? null;
+      const amountTotal = Number((amountTotalCents / 100).toFixed(2));
+      const amountSubtotal = amountSubtotalCents !== null
+        ? Number((amountSubtotalCents / 100).toFixed(2))
+        : undefined;
       const orderId = session.metadata.orderId;
 
       let orderRecord = null;
@@ -805,6 +858,68 @@ async function handleCheckoutCompleted(session) {
         ? orderRecord.summary.items
         : Array.isArray(orderRecord.items) ? orderRecord.items : [];
 
+      let finalSummaryItems = summaryItems;
+      try {
+        const lineItemsResponse = await stripe.checkout.sessions.listLineItems(session.id, {
+          limit: 100,
+          expand: ['data.price.product'],
+        });
+        if (Array.isArray(lineItemsResponse?.data) && lineItemsResponse.data.length) {
+          finalSummaryItems = lineItemsResponse.data.map(item => {
+            const metadata = (item.price?.product && item.price.product.metadata) || {};
+            const fallback = summaryItems.find(entry => {
+              if (metadata.productId && entry.productId === metadata.productId) return true;
+              if (metadata.variantId && entry.variantId === metadata.variantId) return true;
+              const entryName = entry.productName || entry.variantName || '';
+              const compareName = metadata.productName || item.description || '';
+              return entryName && compareName && entryName === compareName;
+            }) || {};
+
+            const quantityCandidates = [
+              item.quantity,
+              metadata.quantity !== undefined ? Number(metadata.quantity) : undefined,
+              fallback.quantity,
+            ];
+            let quantity = 1;
+            for (const candidate of quantityCandidates) {
+              const value = Number(candidate);
+              if (Number.isFinite(value) && value > 0) {
+                quantity = value;
+                break;
+              }
+            }
+
+            const amountTotalLineCents = item.amount_total ?? item.amount_subtotal ?? 0;
+            const amountTotalLine = Number((amountTotalLineCents / 100).toFixed(2));
+            const metadataUnit = metadata.unitPrice !== undefined ? Number(parseFloat(metadata.unitPrice)) : undefined;
+            const fallbackUnit = typeof fallback.unitPrice === 'number'
+              ? fallback.unitPrice
+              : (fallback.price_data?.unit_amount ? fallback.price_data.unit_amount / 100 : undefined);
+            const computedUnit = quantity > 0
+              ? Number(((amountTotalLineCents / quantity) / 100).toFixed(2))
+              : undefined;
+            const finalUnitPrice = Number((metadataUnit ?? computedUnit ?? fallbackUnit ?? amountTotalLine).toFixed(2));
+            const resolvedCurrency = (item.currency || session.currency || 'usd').toUpperCase();
+
+            return {
+              productId: metadata.productId || fallback.productId || null,
+              productName: metadata.productName || fallback.productName || item.description || 'Item',
+              variantId: metadata.variantId || fallback.variantId || null,
+              variantName: metadata.variantName || fallback.variantName || null,
+              quantity,
+              unitPrice: finalUnitPrice,
+              lineTotal: amountTotalLine,
+              currency: resolvedCurrency,
+              stripeLineItemId: item.id,
+              sku: metadata.sku || fallback.sku || null,
+              image: metadata.image || fallback.image || null,
+            };
+          });
+        }
+      } catch (lineItemError) {
+        console.warn('Failed to retrieve Stripe line items for order', orderId || session.id, lineItemError);
+      }
+
       const customerEmail = session?.customer_details?.email || orderRecord?.customer?.email || null;
       const customerName = session?.customer_details?.name || orderRecord?.customer?.name || null;
       const customerPhone = session?.customer_details?.phone || orderRecord?.customer?.phone || null;
@@ -818,10 +933,11 @@ async function handleCheckoutCompleted(session) {
         total: amountTotal,
         currency: (session.currency || 'usd').toUpperCase(),
         summary: {
-          items: summaryItems,
+          items: finalSummaryItems,
           subtotal: amountSubtotal !== undefined ? amountSubtotal : (orderRecord.summary?.subtotal || amountTotal),
           notes: orderRecord.summary?.notes ?? orderRecord.notes ?? null,
         },
+        items: finalSummaryItems,
         shipping_details: session.shipping_details || null,
         customer_details: session.customer_details || null,
         completedAt: new Date().toISOString(),

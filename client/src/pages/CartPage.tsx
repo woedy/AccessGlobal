@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'wouter';
 import { useCart } from '@/contexts/CartContext';
 import type { CartItem } from '@/types/product';
@@ -6,6 +6,10 @@ import { processCheckout, type CheckoutCustomerInfo } from '@/services/storeChec
 
 const formatCurrency = (amount: number, currency = 'USD') =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+
+type FieldErrors = Partial<Record<keyof CheckoutCustomerInfo, string>>;
+
+const CHECKOUT_CUSTOMER_STORAGE_KEY = 'access_global_checkout_customer';
 
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, totalPrice } = useCart();
@@ -17,19 +21,77 @@ export default function CartPage() {
     notes: '',
   });
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [loading, setLoading] = useState(false);
 
   const itemCount = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const stored = window.localStorage.getItem(CHECKOUT_CUSTOMER_STORAGE_KEY);
+      if (!stored) return;
+      const parsed = JSON.parse(stored);
+      if (parsed && typeof parsed === 'object') {
+        setCustomer(prev => ({
+          ...prev,
+          ...parsed,
+        }));
+      }
+    } catch (err) {
+      console.warn('Unable to restore checkout contact info:', err);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.localStorage.setItem(CHECKOUT_CUSTOMER_STORAGE_KEY, JSON.stringify(customer));
+    } catch (err) {
+      console.warn('Unable to persist checkout contact info:', err);
+    }
+  }, [customer]);
+
   const onChangeField = (field: keyof CheckoutCustomerInfo) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setCustomer(prev => ({ ...prev, [field]: e.target.value }));
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const value = e.target.value;
+      setCustomer(prev => ({ ...prev, [field]: value }));
+      setFieldErrors(prev => {
+        if (!prev[field]) return prev;
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    };
 
   const unitPrice = (item: CartItem) => item.selectedVariant?.price ?? item.price;
   const lineTotal = (item: CartItem) => unitPrice(item) * item.quantity;
 
+  const validateCustomer = () => {
+    const errors: FieldErrors = {};
+    const name = customer.name?.trim() ?? '';
+    const email = customer.email?.trim() ?? '';
+
+    if (!name) {
+      errors.name = 'Please provide the name we can address your receipt to.';
+    }
+    if (!email) {
+      errors.email = 'An email is required so we can send your receipt.';
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errors.email = 'Enter a valid email address.';
+    }
+
+    return errors;
+  };
+
   const handleCheckout = async () => {
     setError(null);
+    const nextErrors = validateCustomer();
+    setFieldErrors(nextErrors);
+    if (Object.keys(nextErrors).length) {
+      return;
+    }
+
     try {
       setLoading(true);
       await processCheckout(items, customer);
@@ -92,6 +154,26 @@ export default function CartPage() {
                 <span className="text-gray-500">Calculated at checkout</span>
               </div>
             </div>
+            <div className="mt-4 border-t border-gray-200 pt-4 space-y-3">
+              {items.map(item => {
+                const price = unitPrice(item);
+                return (
+                  <div key={`${item.id}:${item.selectedVariant?.id ?? 'base'}`} className="flex justify-between text-sm">
+                    <div>
+                      <p className="font-medium text-gray-900">{item.name}</p>
+                      {item.selectedVariant?.name && (
+                        <p className="text-xs text-gray-500">Option: {item.selectedVariant.name}</p>
+                      )}
+                      <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900">{formatCurrency(lineTotal(item))}</p>
+                      <p className="text-xs text-gray-500">{formatCurrency(price)} each</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
             <div className="mt-4 border-t pt-4 flex justify-between text-gray-900 font-semibold">
               <span>Total</span>
               <span>{formatCurrency(totalPrice)}</span>
@@ -107,6 +189,9 @@ export default function CartPage() {
                   value={customer.name}
                   onChange={onChangeField('name')}
                 />
+                {fieldErrors.name && (
+                  <p className="mt-1 text-xs text-red-600">{fieldErrors.name}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -117,6 +202,9 @@ export default function CartPage() {
                   value={customer.email}
                   onChange={onChangeField('email')}
                 />
+                {fieldErrors.email && (
+                  <p className="mt-1 text-xs text-red-600">{fieldErrors.email}</p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Phone (optional)</label>
@@ -148,7 +236,7 @@ export default function CartPage() {
                 disabled={loading}
                 className="w-full inline-flex justify-center items-center px-6 py-3 rounded-md bg-amber-600 text-white font-semibold hover:bg-amber-700 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {loading ? 'Redirecting...' : 'Checkout with Stripe'}
+                {loading ? 'Redirecting to Stripe…' : 'Checkout with Stripe'}
               </button>
               <Link
                 href="/store"

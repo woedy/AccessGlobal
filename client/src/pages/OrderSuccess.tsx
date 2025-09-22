@@ -5,18 +5,21 @@ import { useCart } from '../contexts/CartContext';
 import { api } from '@/config/api';
 
 type OrderSummaryItem = {
-  productId?: string;
-  productName?: string;
+  productId?: string | null;
+  productName?: string | null;
   variantId?: string | null;
   variantName?: string | null;
   quantity: number;
   unitPrice: number;
   lineTotal?: number;
+  currency?: string;
+  stripeLineItemId?: string | null;
   price_data?: {
     product_data?: { name?: string };
     unit_amount?: number;
     currency?: string;
   };
+  sku?: string | null;
 };
 
 type OrderSummary = {
@@ -241,8 +244,10 @@ export default function OrderSuccess() {
               {lineItems.map((item, index) => {
                 const baseName = item.productName || item.price_data?.product_data?.name || `Item ${index + 1}`;
                 const name = item.variantName ? `${baseName} (${item.variantName})` : baseName;
-                const unitPrice = item.unitPrice ?? (item.price_data?.unit_amount ? item.price_data.unit_amount / 100 : 0);
+                const unitPrice = item.unitPrice
+                  ?? (item.price_data?.unit_amount ? item.price_data.unit_amount / 100 : 0);
                 const lineTotal = item.lineTotal ?? unitPrice * (item.quantity || 0);
+                const itemCurrency = item.currency || item.price_data?.currency || displayCurrency;
                 return (
                   <li key={index} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
                     <div>
@@ -250,8 +255,8 @@ export default function OrderSuccess() {
                       <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                     </div>
                     <div className="text-right text-gray-900 font-semibold">
-                      <p>{formatCurrency(lineTotal, displayCurrency)}</p>
-                      <p className="text-xs text-gray-400">{formatCurrency(unitPrice, displayCurrency)} each</p>
+                      <p>{formatCurrency(lineTotal, itemCurrency)}</p>
+                      <p className="text-xs text-gray-400">{formatCurrency(unitPrice, itemCurrency)} each</p>
                     </div>
                   </li>
                 );

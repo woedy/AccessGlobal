@@ -1,7 +1,7 @@
-﻿import { loadStripe } from '@stripe/stripe-js';
-import { CartItem } from '../types/product';
+import { loadStripe, type Stripe } from '@stripe/stripe-js';
 import { api } from '@/config/api';
 import { STRIPE_CONFIG } from '@/config/stripe';
+import type { CartItem } from '@/types/product';
 
 export interface CheckoutCustomerInfo {
   name: string;
@@ -10,7 +10,34 @@ export interface CheckoutCustomerInfo {
   notes?: string;
 }
 
-const stripePromise = loadStripe(STRIPE_CONFIG.PUBLISHABLE_KEY);
+let stripePromise: Promise<Stripe | null> | null = null;
+
+const getStripe = async () => {
+  if (!STRIPE_CONFIG.PUBLISHABLE_KEY) {
+    throw new Error('Stripe is not configured. Add VITE_STRIPE_PUBLISHABLE_KEY to your environment.');
+  }
+
+  if (!stripePromise) {
+    stripePromise = loadStripe(STRIPE_CONFIG.PUBLISHABLE_KEY);
+  }
+
+  return stripePromise;
+};
+
+const sanitizeField = (value?: string | null) => {
+  if (typeof value !== 'string') return '';
+  return value.trim();
+};
+
+const serializeCartItems = (items: CartItem[]) =>
+  items.map(item => ({
+    productId: item.id,
+    slug: item.slug,
+    quantity: item.quantity,
+    variantId: item.selectedVariant?.id,
+    name: item.name,
+    variantName: item.selectedVariant?.name,
+  }));
 
 export const processCheckout = async (items: CartItem[], customer: CheckoutCustomerInfo) => {
   if (!items.length) {
@@ -18,10 +45,10 @@ export const processCheckout = async (items: CartItem[], customer: CheckoutCusto
   }
 
   const sanitizedCustomer = {
-    name: customer?.name?.trim() || '',
-    email: customer?.email?.trim() || '',
-    phone: customer?.phone?.trim() || '',
-    notes: customer?.notes?.trim() || '',
+    name: sanitizeField(customer?.name),
+    email: sanitizeField(customer?.email),
+    phone: sanitizeField(customer?.phone),
+    notes: sanitizeField(customer?.notes),
   };
 
   if (!sanitizedCustomer.name) {
@@ -33,12 +60,7 @@ export const processCheckout = async (items: CartItem[], customer: CheckoutCusto
 
   try {
     const payload = {
-      items: items.map(item => ({
-        productId: item.id,
-        slug: item.slug,
-        quantity: item.quantity,
-        variantId: item.selectedVariant?.id,
-      })),
+      items: serializeCartItems(items),
       customer: sanitizedCustomer,
       successUrl: `${window.location.origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: `${window.location.origin}/cart`,
@@ -63,7 +85,7 @@ export const processCheckout = async (items: CartItem[], customer: CheckoutCusto
       throw new Error('Checkout endpoint did not return a sessionId');
     }
 
-    const stripe = await stripePromise;
+    const stripe = await getStripe();
     if (!stripe) {
       throw new Error('Failed to load Stripe');
     }
