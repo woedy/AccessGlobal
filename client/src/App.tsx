@@ -65,7 +65,6 @@ function Router() {
         </Switch>
       </main>
       <Footer />
-      <FloatingDonateButton />
     </div>
   );
 }
