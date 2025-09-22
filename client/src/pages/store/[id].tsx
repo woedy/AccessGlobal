@@ -192,7 +192,7 @@ export default function ProductDetailPage() {
                         } ${outOfStock ? 'cursor-not-allowed opacity-60' : ''}`}
                       >
                         {variant.name}
-                        {variant.price !== product.price && ` · ${formatCurrency(variant.price)}`}
+                        {variant.price !== product.price && ` + ${formatCurrency(variant.price)}`}
                         {outOfStock ? ' (Out of stock)' : ''}
                       </button>
                     );
