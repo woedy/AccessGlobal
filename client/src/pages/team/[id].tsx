@@ -6,6 +6,63 @@ import { useState, useEffect } from 'react';
 // This would typically come from an API or shared data
 const teamMembers: TeamMember[] = [
   {
+    id: 'engel-moses',
+    name: 'Engel Moses',
+    role: 'Executive Director, Access Global Foundation',
+    bio: `Moses is a distinguished international business consultant, technologist, and humanitarian leader dedicated to leveraging global markets, innovation, and social impact. Moses has built a multifaceted career spanning consulting, technology, and philanthropy, earning respect for his ability to merge economic opportunity with positive societal change.
+
+
+PROFESSIONAL EXPERTISE
+• International Business Consulting
+• Technology Strategy & Innovation
+• Market Entry & Expansion
+• Financial Technology (FinTech)
+• Blockchain & AI Applications
+• Social Impact & Sustainability
+
+
+CAREER HIGHLIGHTS
+• Advised organizations across North America, Africa, and Europe
+• Specializes in business strategy and technology-driven transformation
+• Expert in navigating complex regulatory and cultural landscapes
+• Early adopter and advocate of cutting-edge technologies
+• Focus on transparency and financial inclusion
+
+
+LEADERSHIP AT ACCESS GLOBAL FOUNDATION
+• Leads the organization's vision and strategic initiatives
+• Focuses on empowering vulnerable communities through:
+  - Education and digital literacy
+  - Healthcare access
+  - Skills training
+  - Infrastructure development
+  - Food security programs
+• Champions innovative solutions for sustainable development
+
+
+THOUGHT LEADERSHIP
+• Sought-after speaker at international forums and conferences
+• Regular panelist on technology and development topics
+• Advocate for ethical technology adoption
+• Promotes business models that balance profit and purpose
+
+
+CORE PHILOSOPHY
+"Real leadership blends ambition with empathy. Success is not merely about financial or business victories. It is about the impact left behind: the lives lifted, the systems improved, the communities empowered."`,
+    image: '/assets/Engel Moses.jpg',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    awards: [
+      'Recognized international business consultant',
+      'Technology and innovation thought leader',
+      'Humanitarian and social impact advocate',
+      'Speaker at international forums and conferences'
+    ],
+    gallery: [
+      '/assets/Engel Moses.jpg'
+    ]
+  },
+  {
     id: 'dhalia-sabeh',
     name: 'Dhalia Sabeh',
     role: 'Director of Education & Training',
@@ -49,6 +106,56 @@ Dhalia brings a wealth of knowledge in educational leadership and community deve
       '/assets/optimized_gallery/IMG-20250917-WA0019.webp',
       '/assets/optimized_gallery/IMG-20250917-WA0022.webp',
       '/assets/optimized_gallery/IMG-20250917-WA0025.webp'
+    ]
+  },
+  {
+    id: 'levytska-oksana',
+    name: 'Levytska Oksana',
+    role: 'Education and Research Specialist',
+    bio: `PhD, Associate Professor with extensive experience in higher education and academic research. Expert in law, philosophy, and pharmaceutical education.
+
+
+EDUCATION
+• PhD in Law - National University "Lviv Polytechnic" (2019)
+• Associate Professor title (2021)
+• Bachelor's degree in Pharmacy - Lviv National Medical University (2019)
+
+
+PROFESSIONAL EXPERIENCE
+• Extensive teaching experience in leading higher education institutions of Ukraine
+• Lecturer in multiple disciplines including:
+  - Rhetoric
+  - Canon Law
+  - Philosophy and Philosophy of Law
+  - Sociology and Sociology of Law
+  - History of Philosophy of Law
+  - Pharmaceutical Law
+
+• Taught at prestigious institutions:
+  - Lviv National Medical University
+  - Lviv National University of Veterinary Medicine and Biotechnologies
+  - National University "Lviv Polytechnic"
+
+• Professional experience in politics and electoral law
+• Authored over 86 books, including children's literature and novels
+• Creator of unique children's adventure series
+
+
+CURRENT FOCUS
+• Continuing academic and teaching career in France
+• Authoring educational and literary works
+• Contributing to international academic research`,    
+    image: '/assets/Levytska Oksana.jpg',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    awards: [
+      'PhD in Law (2019)',
+      'Associate Professor title (2021)',
+      'Published author of 86+ books',
+      'Recipient of multiple academic excellence awards'
+    ],
+    gallery: [
+      '/assets/Levytska Oksana.jpg'
     ]
   }
 ];

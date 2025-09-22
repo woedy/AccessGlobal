@@ -12,16 +12,43 @@ export interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
+    id: 'engel-moses',
+    name: 'Engel Moses',
+    role: 'Executive Director',
+    bio: 'International business consultant, technologist, and humanitarian leader dedicated to leveraging global markets, innovation, and social impact.',
+    image: '/assets/Engel Moses.jpg',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    awards: [
+      'Recognized international business consultant',
+      'Technology and innovation advocate',
+      'Humanitarian leader'
+    ]
+  },
+  {
     id: 'dhalia-sabeh',
     name: 'Dhalia Sabeh',
     role: 'Director of Education & Training',
     bio: 'Education and counseling professional with extensive experience in organizational leadership and community service.',
-    image: '/assets/Dhalia Sabeh.jpg',  // Image should be in public/assets/ directory
+    image: '/assets/Dhalia Sabeh.jpg',
     linkedin: 'https://linkedin.com',
     twitter: 'https://twitter.com',
     awards: [
       "County of San Mateo, Caminar - Director of Services' Outstanding Services",
       'Outstanding Administrative Employee - Caminar'
+    ]
+  },
+  {
+    id: 'levytska-oksana',
+    name: 'Levytska Oksana',
+    role: 'Education and Research Specialist',
+    bio: 'PhD, Associate Professor with extensive experience in higher education and academic research. Expert in law, philosophy, and pharmaceutical education.',
+    image: '/assets/Levytska Oksana.jpg',
+    linkedin: 'https://linkedin.com',
+    twitter: 'https://twitter.com',
+    awards: [
+      'PhD in Law',
+      'Associate Professor title (2021)'
     ]
   }
 ];
