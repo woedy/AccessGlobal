@@ -1,4 +1,4 @@
-﻿export interface ProductVariant {
+export interface ProductVariant {
   id: string;
   name: string;
   price: number;
@@ -39,8 +39,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'apparel',
     images: [
-      '/assets/store_items/T-Shirt white.png',
-      '/assets/store_items/T-Shirt Black.png'
+      '/assets/optimized_store_items/T-Shirt white.webp',
+      '/assets/optimized_store_items/T-Shirt Black.webp'
     ],
     variants: [
       {
@@ -51,7 +51,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/T-Shirt white.png'
+        image: '/assets/optimized_store_items/T-Shirt white.webp'
       },
       {
         id: '1-white-m',
@@ -61,7 +61,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/T-Shirt white.png'
+        image: '/assets/optimized_store_items/T-Shirt white.webp'
       },
       {
         id: '1-white-l',
@@ -71,7 +71,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/T-Shirt white.png'
+        image: '/assets/optimized_store_items/T-Shirt white.webp'
       },
       {
         id: '1-black-s',
@@ -81,7 +81,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/T-Shirt Black.png'
+        image: '/assets/optimized_store_items/T-Shirt Black.webp'
       },
       {
         id: '1-black-m',
@@ -91,7 +91,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/T-Shirt Black.png'
+        image: '/assets/optimized_store_items/T-Shirt Black.webp'
       },
       {
         id: '1-black-l',
@@ -101,7 +101,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-TS-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/T-Shirt Black.png'
+        image: '/assets/optimized_store_items/T-Shirt Black.webp'
       }
     ],
     featured: true,
@@ -119,8 +119,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'apparel',
     images: [
-      '/assets/store_items/Hoodie Girl white.png',
-      '/assets/store_items/Hoodie Girl Black.png'
+      '/assets/optimized_store_items/Hoodie Girl white.webp',
+      '/assets/optimized_store_items/Hoodie Girl Black.webp'
     ],
     variants: [
       {
@@ -131,7 +131,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Hoodie Girl white.png'
+        image: '/assets/optimized_store_items/Hoodie Girl white.webp'
       },
       {
         id: '2-white-m',
@@ -141,7 +141,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Hoodie Girl white.png'
+        image: '/assets/optimized_store_items/Hoodie Girl white.webp'
       },
       {
         id: '2-white-l',
@@ -151,7 +151,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Hoodie Girl white.png'
+        image: '/assets/optimized_store_items/Hoodie Girl white.webp'
       },
       {
         id: '2-black-s',
@@ -161,7 +161,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Hoodie Girl Black.png'
+        image: '/assets/optimized_store_items/Hoodie Girl Black.webp'
       },
       {
         id: '2-black-m',
@@ -171,7 +171,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Hoodie Girl Black.png'
+        image: '/assets/optimized_store_items/Hoodie Girl Black.webp'
       },
       {
         id: '2-black-l',
@@ -181,7 +181,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Hoodie Girl Black.png'
+        image: '/assets/optimized_store_items/Hoodie Girl Black.webp'
       }
     ],
     featured: true,
@@ -199,8 +199,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'accessories',
     images: [
-      '/assets/store_items/Mug White.png',
-      '/assets/store_items/Mug Black.png'
+      '/assets/optimized_store_items/Mug White.webp',
+      '/assets/optimized_store_items/Mug Black.webp'
     ],
     variants: [
       {
@@ -211,7 +211,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Mug White.png'
+        image: '/assets/optimized_store_items/Mug White.webp'
       },
       {
         id: '3-white-m',
@@ -221,7 +221,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Mug White.png'
+        image: '/assets/optimized_store_items/Mug White.webp'
       },
       {
         id: '3-white-l',
@@ -231,7 +231,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Mug White.png'
+        image: '/assets/optimized_store_items/Mug White.webp'
       },
       {
         id: '3-black-s',
@@ -241,7 +241,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Mug Black.png'
+        image: '/assets/optimized_store_items/Mug Black.webp'
       },
       {
         id: '3-black-m',
@@ -251,7 +251,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Mug Black.png'
+        image: '/assets/optimized_store_items/Mug Black.webp'
       },
       {
         id: '3-black-l',
@@ -261,7 +261,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-MG-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Mug Black.png'
+        image: '/assets/optimized_store_items/Mug Black.webp'
       }
     ],
     featured: false,
@@ -279,8 +279,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'apparel',
     images: [
-      '/assets/store_items/Hoodie Boy White.png',
-      '/assets/store_items/Hoodie Boy Black.png'
+      '/assets/optimized_store_items/Hoodie Boy White.webp',
+      '/assets/optimized_store_items/Hoodie Boy Black.webp'
     ],
     variants: [
       {
@@ -291,7 +291,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Hoodie Boy White.png'
+        image: '/assets/optimized_store_items/Hoodie Boy White.webp'
       },
       {
         id: '4-white-m',
@@ -301,7 +301,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Hoodie Boy White.png'
+        image: '/assets/optimized_store_items/Hoodie Boy White.webp'
       },
       {
         id: '4-white-l',
@@ -311,7 +311,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Hoodie Boy White.png'
+        image: '/assets/optimized_store_items/Hoodie Boy White.webp'
       },
       {
         id: '4-black-s',
@@ -321,7 +321,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Hoodie Boy Black.png'
+        image: '/assets/optimized_store_items/Hoodie Boy Black.webp'
       },
       {
         id: '4-black-m',
@@ -331,7 +331,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Hoodie Boy Black.png'
+        image: '/assets/optimized_store_items/Hoodie Boy Black.webp'
       },
       {
         id: '4-black-l',
@@ -341,7 +341,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-HD-CLS-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Hoodie Boy Black.png'
+        image: '/assets/optimized_store_items/Hoodie Boy Black.webp'
       }
     ],
     featured: false,
@@ -359,8 +359,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'outerwear',
     images: [
-      '/assets/store_items/Jacket Boy White.png',
-      '/assets/store_items/Jacket Boy Black.png'
+      '/assets/optimized_store_items/Jacket Boy White.webp',
+      '/assets/optimized_store_items/Jacket Boy Black.webp'
     ],
     variants: [
       {
@@ -371,7 +371,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Jacket Boy White.png'
+        image: '/assets/optimized_store_items/Jacket Boy White.webp'
       },
       {
         id: '5-white-m',
@@ -381,7 +381,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Jacket Boy White.png'
+        image: '/assets/optimized_store_items/Jacket Boy White.webp'
       },
       {
         id: '5-white-l',
@@ -391,7 +391,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Jacket Boy White.png'
+        image: '/assets/optimized_store_items/Jacket Boy White.webp'
       },
       {
         id: '5-black-s',
@@ -401,7 +401,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Jacket Boy Black.png'
+        image: '/assets/optimized_store_items/Jacket Boy Black.webp'
       },
       {
         id: '5-black-m',
@@ -411,7 +411,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Jacket Boy Black.png'
+        image: '/assets/optimized_store_items/Jacket Boy Black.webp'
       },
       {
         id: '5-black-l',
@@ -421,7 +421,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-MNS-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Jacket Boy Black.png'
+        image: '/assets/optimized_store_items/Jacket Boy Black.webp'
       }
     ],
     featured: true,
@@ -439,8 +439,8 @@ export const mockProducts: Product[] = [
     price: 29.99,
     category: 'outerwear',
     images: [
-      '/assets/store_items/Jacket Girl white.png',
-      '/assets/store_items/Jacket Girl Black.png'
+      '/assets/optimized_store_items/Jacket Girl white.webp',
+      '/assets/optimized_store_items/Jacket Girl Black.webp'
     ],
     variants: [
       {
@@ -451,7 +451,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Jacket Girl white.png'
+        image: '/assets/optimized_store_items/Jacket Girl white.webp'
       },
       {
         id: '6-white-m',
@@ -461,7 +461,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Jacket Girl white.png'
+        image: '/assets/optimized_store_items/Jacket Girl white.webp'
       },
       {
         id: '6-white-l',
@@ -471,7 +471,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Jacket Girl white.png'
+        image: '/assets/optimized_store_items/Jacket Girl white.webp'
       },
       {
         id: '6-black-s',
@@ -481,7 +481,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Jacket Girl Black.png'
+        image: '/assets/optimized_store_items/Jacket Girl Black.webp'
       },
       {
         id: '6-black-m',
@@ -491,7 +491,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Jacket Girl Black.png'
+        image: '/assets/optimized_store_items/Jacket Girl Black.webp'
       },
       {
         id: '6-black-l',
@@ -501,7 +501,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-JK-WNS-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Jacket Girl Black.png'
+        image: '/assets/optimized_store_items/Jacket Girl Black.webp'
       }
     ],
     featured: false,
@@ -519,8 +519,8 @@ export const mockProducts: Product[] = [
     price: 19.99,
     category: 'accessories',
     images: [
-      '/assets/store_items/Socks White.png',
-      '/assets/store_items/Socks Black.png'
+      '/assets/optimized_store_items/Socks White.webp',
+      '/assets/optimized_store_items/Socks Black.webp'
     ],
     variants: [
       {
@@ -531,7 +531,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-WHT-S',
         color: 'White',
         size: 'S',
-        image: '/assets/store_items/Socks White.png'
+        image: '/assets/optimized_store_items/Socks White.webp'
       },
       {
         id: '7-white-m',
@@ -541,7 +541,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-WHT-M',
         color: 'White',
         size: 'M',
-        image: '/assets/store_items/Socks White.png'
+        image: '/assets/optimized_store_items/Socks White.webp'
       },
       {
         id: '7-white-l',
@@ -551,7 +551,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-WHT-L',
         color: 'White',
         size: 'L',
-        image: '/assets/store_items/Socks White.png'
+        image: '/assets/optimized_store_items/Socks White.webp'
       },
       {
         id: '7-black-s',
@@ -561,7 +561,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-BLK-S',
         color: 'Black',
         size: 'S',
-        image: '/assets/store_items/Socks Black.png'
+        image: '/assets/optimized_store_items/Socks Black.webp'
       },
       {
         id: '7-black-m',
@@ -571,7 +571,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-BLK-M',
         color: 'Black',
         size: 'M',
-        image: '/assets/store_items/Socks Black.png'
+        image: '/assets/optimized_store_items/Socks Black.webp'
       },
       {
         id: '7-black-l',
@@ -581,7 +581,7 @@ export const mockProducts: Product[] = [
         sku: 'AG-SK-BLK-L',
         color: 'Black',
         size: 'L',
-        image: '/assets/store_items/Socks Black.png'
+        image: '/assets/optimized_store_items/Socks Black.webp'
       }
     ],
     featured: true,

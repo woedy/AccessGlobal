@@ -1,8 +1,9 @@
-﻿import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'wouter';
 import { useCart } from '../contexts/CartContext';
 import { Product, mockProducts } from '../types/product';
 import { fetchProducts } from '@/services/productService';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function StorePage() {
   const [products, setProducts] = useState<Product[]>(mockProducts);
@@ -140,10 +141,11 @@ function ProductCard({ product, fallback }: { product: Product; fallback?: boole
   return (
     <Link href={`/store/${product.slug}`} className="group block">
       <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
-        <img
+        <OptimizedImage
           src={product.images[0]}
           alt={product.name}
           className="h-full w-full object-cover object-center transition-opacity group-hover:opacity-75"
+          priority={product.featured}
           onError={(event) => {
             const target = event.target as HTMLImageElement;
             target.src = 'https://placehold.co/600x800/1e3a8a/white?text=Image+Not+Found';

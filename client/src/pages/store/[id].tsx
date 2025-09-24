@@ -3,6 +3,7 @@ import { useParams } from 'wouter';
 import { useCart } from '../../contexts/CartContext';
 import { Product, mockProducts } from '../../types/product';
 import { fetchProductBySlug } from '@/services/productService';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const formatCurrency = (amount: number, currency = 'USD') =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
@@ -283,10 +284,11 @@ export default function ProductDetailPage() {
                 }
               }}
             >
-              <img
+              <OptimizedImage
                 src={displayImage}
                 alt={product.name}
                 className="h-full w-full object-cover object-center"
+                priority
                 onError={(event) => {
                   const target = event.target as HTMLImageElement;
                   target.src = 'https://placehold.co/600x800/1e3a8a/white?text=Image+Not+Found';
@@ -306,7 +308,7 @@ export default function ProductDetailPage() {
                     }`}
                     aria-label={`View ${product.name} preview`}
                   >
-                    <img
+                    <OptimizedImage
                       src={image}
                       alt={`${product.name} ${index + 1}`}
                       className="h-full w-full object-cover object-center"
@@ -469,10 +471,11 @@ export default function ProductDetailPage() {
             >
               ×
             </button>
-            <img
+            <OptimizedImage
               src={lightboxImage}
               alt={`${product.name} enlarged`}
               className="max-h-[85vh] max-w-[85vw] rounded-lg object-contain shadow-2xl"
+              priority
               onError={(event) => {
                 const target = event.target as HTMLImageElement;
                 target.src = 'https://placehold.co/1200x1200/1e3a8a/white?text=Image+Not+Found';
