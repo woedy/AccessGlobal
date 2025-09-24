@@ -510,6 +510,86 @@ export const mockProducts: Product[] = [
     numReviews: 11,
     createdAt: '2025-02-28T00:00:00Z',
     updatedAt: '2025-02-28T00:00:00Z'
+  },
+  {
+    id: '7',
+    name: 'Access Global Socks',
+    slug: 'access-global-socks',
+    description: 'Cozy rib-knit socks featuring the Access Global emblem at the cuff.',
+    price: 19.99,
+    category: 'accessories',
+    images: [
+      '/assets/store_items/Socks White.png',
+      '/assets/store_items/Socks Black.png'
+    ],
+    variants: [
+      {
+        id: '7-white-s',
+        name: 'White / Small',
+        price: 19.99,
+        stock: 40,
+        sku: 'AG-SK-WHT-S',
+        color: 'White',
+        size: 'S',
+        image: '/assets/store_items/Socks White.png'
+      },
+      {
+        id: '7-white-m',
+        name: 'White / Medium',
+        price: 19.99,
+        stock: 45,
+        sku: 'AG-SK-WHT-M',
+        color: 'White',
+        size: 'M',
+        image: '/assets/store_items/Socks White.png'
+      },
+      {
+        id: '7-white-l',
+        name: 'White / Large',
+        price: 19.99,
+        stock: 35,
+        sku: 'AG-SK-WHT-L',
+        color: 'White',
+        size: 'L',
+        image: '/assets/store_items/Socks White.png'
+      },
+      {
+        id: '7-black-s',
+        name: 'Black / Small',
+        price: 19.99,
+        stock: 40,
+        sku: 'AG-SK-BLK-S',
+        color: 'Black',
+        size: 'S',
+        image: '/assets/store_items/Socks Black.png'
+      },
+      {
+        id: '7-black-m',
+        name: 'Black / Medium',
+        price: 19.99,
+        stock: 45,
+        sku: 'AG-SK-BLK-M',
+        color: 'Black',
+        size: 'M',
+        image: '/assets/store_items/Socks Black.png'
+      },
+      {
+        id: '7-black-l',
+        name: 'Black / Large',
+        price: 19.99,
+        stock: 35,
+        sku: 'AG-SK-BLK-L',
+        color: 'Black',
+        size: 'L',
+        image: '/assets/store_items/Socks Black.png'
+      }
+    ],
+    featured: true,
+    inStock: true,
+    rating: 4.4,
+    numReviews: 6,
+    createdAt: '2025-03-10T00:00:00Z',
+    updatedAt: '2025-03-10T00:00:00Z'
   }
 ];
 
