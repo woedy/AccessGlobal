@@ -1,8 +1,9 @@
-﻿import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, Link } from 'wouter';
 import { CheckCircle, Home, ShoppingBag, Package } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { api } from '@/config/api';
+import OptimizedImage from '@/components/OptimizedImage';
 
 type OrderSummaryItem = {
   productId?: string | null;
@@ -257,11 +258,30 @@ export default function OrderSuccess() {
                   ?? (item.price_data?.unit_amount ? item.price_data.unit_amount / 100 : 0);
                 const lineTotal = item.lineTotal ?? unitPrice * (item.quantity || 0);
                 const itemCurrency = item.currency || item.price_data?.currency || displayCurrency;
+                // Try to find the product image from the cart items or use a placeholder
+                const productImage = item.productId 
+                  ? `/assets/optimized_store_items/${item.productName?.replace(/\s+/g, ' ').trim()}.webp`
+                  : 'https://placehold.co/100x100/eee/aaa?text=Product';
+
                 return (
                   <li key={index} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
-                    <div>
-                      <p className="font-medium text-gray-900">{name}</p>
-                      <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex-shrink-0 w-16 h-16 bg-gray-100 rounded-md overflow-hidden">
+                        <OptimizedImage
+                          src={productImage}
+                          alt={name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = 'https://placehold.co/100x100/eee/aaa?text=Image';
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{name}</p>
+                        {item.sku && <p className="text-xs text-gray-500">SKU: {item.sku}</p>}
+                        <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                      </div>
                     </div>
                     <div className="text-right text-gray-900 font-semibold">
                       <p>{formatCurrency(lineTotal, itemCurrency)}</p>
