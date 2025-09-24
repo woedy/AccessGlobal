@@ -1,1 +1,233 @@
-[]
+[
+  {
+    "id": "prod-access-tee",
+    "name": "Access Global T-Shirt",
+    "slug": "access-global-t-shirt",
+    "description": "Comfortable cotton t-shirt with Access Global logo",
+    "price": 2.99,
+    "category": "apparel",
+    "images": [
+      "/assets/store/access-tshirt-1.png",
+      "/assets/store/access-tshirt-1.png"
+    ],
+    "variants": [
+      {
+        "id": "tee-black-s",
+        "name": "Black / Small",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-TS-BLK-S",
+        "color": "Black",
+        "size": "S"
+      },
+      {
+        "id": "tee-black-m",
+        "name": "Black / Medium",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-TS-BLK-M",
+        "color": "Black",
+        "size": "M"
+      },
+      {
+        "id": "tee-black-l",
+        "name": "Black / Large",
+        "price": 2.99,
+        "stock": 20,
+        "sku": "AG-TS-BLK-L",
+        "color": "Black",
+        "size": "L"
+      },
+      {
+        "id": "tee-white-s",
+        "name": "White / Small",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-TS-WHT-S",
+        "color": "White",
+        "size": "S"
+      },
+      {
+        "id": "tee-white-m",
+        "name": "White / Medium",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-TS-WHT-M",
+        "color": "White",
+        "size": "M"
+      },
+      {
+        "id": "tee-white-l",
+        "name": "White / Large",
+        "price": 2.99,
+        "stock": 20,
+        "sku": "AG-TS-WHT-L",
+        "color": "White",
+        "size": "L"
+      }
+    ],
+    "featured": true,
+    "inStock": true,
+    "rating": 4.5,
+    "numReviews": 12,
+    "stock": null,
+    "sku": "AG-TS-BASE",
+    "metadata": {},
+    "createdAt": "2025-01-15T00:00:00Z",
+    "updatedAt": "2025-01-15T00:00:00Z"
+  },
+  {
+    "id": "prod-access-hoodie",
+    "name": "Access Global Hoodie",
+    "slug": "access-global-hoodie",
+    "description": "Warm and cozy hoodie with embroidered logo",
+    "price": 2.99,
+    "category": "apparel",
+    "images": [
+      "/assets/store/Hoodie.png",
+      "/assets/store/Hoodie.png"
+    ],
+    "variants": [
+      {
+        "id": "hoodie-black-s",
+        "name": "Black / Small",
+        "price": 2.99,
+        "stock": 20,
+        "sku": "AG-HD-BLK-S",
+        "color": "Black",
+        "size": "S"
+      },
+      {
+        "id": "hoodie-black-m",
+        "name": "Black / Medium",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-HD-BLK-M",
+        "color": "Black",
+        "size": "M"
+      },
+      {
+        "id": "hoodie-black-l",
+        "name": "Black / Large",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-HD-BLK-L",
+        "color": "Black",
+        "size": "L"
+      },
+      {
+        "id": "hoodie-white-s",
+        "name": "White / Small",
+        "price": 2.99,
+        "stock": 20,
+        "sku": "AG-HD-WHT-S",
+        "color": "White",
+        "size": "S"
+      },
+      {
+        "id": "hoodie-white-m",
+        "name": "White / Medium",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-HD-WHT-M",
+        "color": "White",
+        "size": "M"
+      },
+      {
+        "id": "hoodie-white-l",
+        "name": "White / Large",
+        "price": 2.99,
+        "stock": 25,
+        "sku": "AG-HD-WHT-L",
+        "color": "White",
+        "size": "L"
+      }
+    ],
+    "featured": true,
+    "inStock": true,
+    "rating": 4.8,
+    "numReviews": 8,
+    "stock": null,
+    "sku": "AG-HD-BASE",
+    "metadata": {},
+    "createdAt": "2025-02-10T00:00:00Z",
+    "updatedAt": "2025-02-10T00:00:00Z"
+  },
+  {
+    "id": "prod-access-mug",
+    "name": "Access Global Mug",
+    "slug": "access-global-mug",
+    "description": "Ceramic mug with Access Global design",
+    "price": 2.99,
+    "category": "accessories",
+    "images": [
+      "/assets/store/Cup.png",
+      "/assets/store/Cup.png"
+    ],
+    "variants": [
+      {
+        "id": "mug-black-s",
+        "name": "Black / Small",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-BLK-S",
+        "color": "Black",
+        "size": "S"
+      },
+      {
+        "id": "mug-black-m",
+        "name": "Black / Medium",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-BLK-M",
+        "color": "Black",
+        "size": "M"
+      },
+      {
+        "id": "mug-black-l",
+        "name": "Black / Large",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-BLK-L",
+        "color": "Black",
+        "size": "L"
+      },
+      {
+        "id": "mug-white-s",
+        "name": "White / Small",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-WHT-S",
+        "color": "White",
+        "size": "S"
+      },
+      {
+        "id": "mug-white-m",
+        "name": "White / Medium",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-WHT-M",
+        "color": "White",
+        "size": "M"
+      },
+      {
+        "id": "mug-white-l",
+        "name": "White / Large",
+        "price": 2.99,
+        "stock": 30,
+        "sku": "AG-MG-WHT-L",
+        "color": "White",
+        "size": "L"
+      }
+    ],
+    "featured": false,
+    "inStock": true,
+    "rating": 4.2,
+    "numReviews": 5,
+    "stock": null,
+    "sku": "AG-MG-BASE",
+    "metadata": {},
+    "createdAt": "2025-03-05T00:00:00Z",
+    "updatedAt": "2025-03-05T00:00:00Z"
+  }
+]

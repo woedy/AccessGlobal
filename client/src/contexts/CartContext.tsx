@@ -9,6 +9,8 @@ interface CartContextType {
   clearCart: () => void;
   totalPrice: number;
   totalItems: number;
+  subtotal: number;
+  bundleDiscount: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -45,6 +47,36 @@ const matchesLine = (item: CartItem, productId: string, variantId?: string | nul
 };
 
 const getUnitPrice = (item: CartItem) => item.selectedVariant?.price ?? item.price;
+
+const BUNDLE_PAIR_PRICE = 50;
+
+const collectUnitPrices = (items: CartItem[]) => {
+  const unitPrices: number[] = [];
+  for (const item of items) {
+    const price = getUnitPrice(item);
+    for (let i = 0; i < item.quantity; i += 1) {
+      unitPrices.push(price);
+    }
+  }
+  return unitPrices;
+};
+
+const calculateBundleDiscount = (items: CartItem[]) => {
+  const unitPrices = collectUnitPrices(items);
+  if (unitPrices.length < 2) return 0;
+
+  const originalTotal = unitPrices.reduce((sum, price) => sum + price, 0);
+  unitPrices.sort((a, b) => b - a);
+
+  const pairCount = Math.floor(unitPrices.length / 2);
+  let adjustedTotal = pairCount * BUNDLE_PAIR_PRICE;
+  if (unitPrices.length % 2 === 1) {
+    adjustedTotal += unitPrices[unitPrices.length - 1];
+  }
+
+  const adjustment = Number((originalTotal - adjustedTotal).toFixed(2));
+  return Object.is(adjustment, -0) ? 0 : adjustment;
+};
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => readStoredCart());
@@ -94,7 +126,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + getUnitPrice(item) * item.quantity, 0);
+  const subtotal = Number(
+    items.reduce((sum, item) => sum + getUnitPrice(item) * item.quantity, 0).toFixed(2)
+  );
+  const bundleDiscount = calculateBundleDiscount(items);
+  const totalPriceRaw = Number((subtotal - bundleDiscount).toFixed(2));
+  const totalPrice = Object.is(totalPriceRaw, -0) ? 0 : totalPriceRaw;
 
   return (
     <CartContext.Provider
@@ -106,6 +143,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         totalPrice,
         totalItems,
+        subtotal,
+        bundleDiscount,
       }}
     >
       {children}

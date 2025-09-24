@@ -23,6 +23,7 @@ const STORE_SHIPPING_COUNTRIES = (process.env.STORE_SHIPPING_COUNTRIES || 'US,CA
   .filter(Boolean);
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BUNDLE_PAIR_PRICE = 50;
 
 function sanitizeString(value) {
   if (typeof value !== 'string') return null;
@@ -482,6 +483,7 @@ app.post('/api/store/checkout', async (req, res) => {
     const stripeLineItems = [];
     const summaryItems = [];
     let subtotal = 0;
+    const unitPricesForCheckout = [];
 
     for (const rawItem of items) {
       const productId = rawItem && rawItem.productId ? String(rawItem.productId).trim() : '';
@@ -533,6 +535,9 @@ app.post('/api/store/checkout', async (req, res) => {
       const imageUrl = resolveImageUrl((variant && variant.image) || (product.images && product.images[0]));
 
       subtotal += unitPrice * quantity;
+      for (let i = 0; i < quantity; i += 1) {
+        unitPricesForCheckout.push(unitPrice);
+      }
 
       const productData = {
         name: displayName,
@@ -584,7 +589,25 @@ app.post('/api/store/checkout', async (req, res) => {
       });
     }
 
-    const orderTotal = Number(subtotal.toFixed(2));
+    const subtotalRounded = Number(subtotal.toFixed(2));
+    let orderTotal = subtotalRounded;
+    let bundleDiscount = 0;
+    if (unitPricesForCheckout.length >= 2) {
+      const sortedPrices = [...unitPricesForCheckout].sort((a, b) => b - a);
+      const pairCount = Math.floor(sortedPrices.length / 2);
+      let adjustedTotal = pairCount * BUNDLE_PAIR_PRICE;
+      if (sortedPrices.length % 2 === 1) {
+        adjustedTotal += sortedPrices[sortedPrices.length - 1];
+      }
+      orderTotal = Number(adjustedTotal.toFixed(2));
+      bundleDiscount = Number((subtotalRounded - orderTotal).toFixed(2));
+      if (Object.is(orderTotal, -0)) {
+        orderTotal = 0;
+      }
+      if (Object.is(bundleDiscount, -0)) {
+        bundleDiscount = 0;
+      }
+    }
     const rawCustomer = customer && typeof customer === 'object' ? customer : {};
     const safeCustomer = {
       name: sanitizeString(rawCustomer.name),
@@ -604,7 +627,8 @@ app.post('/api/store/checkout', async (req, res) => {
       items: stripeLineItems,
       summary: {
         items: summaryItems,
-        subtotal: orderTotal,
+        subtotal: subtotalRounded,
+        discount: bundleDiscount,
         notes: safeCustomer.notes || null,
       },
       status: 'pending',
@@ -619,7 +643,18 @@ app.post('/api/store/checkout', async (req, res) => {
       ? STORE_SHIPPING_COUNTRIES
       : ['US'];
 
-    const session = await stripe.checkout.sessions.create({
+    let appliedCouponId = null;
+    if (bundleDiscount > 0) {
+      const coupon = await stripe.coupons.create({
+        name: 'Bundle discount',
+        amount_off: Math.round(bundleDiscount * 100),
+        currency: 'usd',
+        duration: 'once',
+      });
+      appliedCouponId = coupon?.id || null;
+    }
+
+    const sessionConfig = {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: stripeLineItems,
@@ -629,6 +664,7 @@ app.post('/api/store/checkout', async (req, res) => {
         orderId: order.id,
         type: 'store_order',
         orderSubtotal: orderTotal.toFixed(2),
+        bundleDiscount: bundleDiscount ? bundleDiscount.toFixed(2) : undefined,
         source: 'store_checkout',
       }),
       client_reference_id: order.id,
@@ -651,7 +687,13 @@ app.post('/api/store/checkout', async (req, res) => {
         enabled: true,
       },
       allow_promotion_codes: true,
-    });
+    };
+
+    if (appliedCouponId) {
+      sessionConfig.discounts = [{ coupon: appliedCouponId }];
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     await orderDB.updateOrder(order.id, {
       stripeSessionId: session.id,

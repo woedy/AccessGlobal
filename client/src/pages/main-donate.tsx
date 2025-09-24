@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Button } from "@/components/ui/button";
 
 export default function DonationFlow() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [selectedAmount, setSelectedAmount] = useState(null);
-  const [customAmount, setCustomAmount] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [monthlyPlan, setMonthlyPlan] = useState('');
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [customAmount, setCustomAmount] = useState<string>('');
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'bank' | 'momo' | ''>('');
+  const [monthlyPlan, setMonthlyPlan] = useState<'education' | 'global' | 'impact' | 'custom' | ''>('');
   const [donationType, setDonationType] = useState<'oneTime' | 'monthly'>('oneTime');
   const [isProcessing, setIsProcessing] = useState(false);
   const [cardDetails, setCardDetails] = useState({
@@ -32,7 +32,7 @@ export default function DonationFlow() {
     address: ''
   });
 
-  const getFinalAmount = () => {
+  const getFinalAmount = (): number => {
     if (monthlyPlan) {
       if (monthlyPlan === 'custom') {
         return parseInt(customAmount) || 0;
@@ -43,18 +43,18 @@ export default function DonationFlow() {
     return selectedAmount || parseInt(customAmount) || 0;
   };
 
-  const handleAmountSelect = (amount) => {
+  const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
     setCustomAmount('');
     setMonthlyPlan('');
     setCurrentStep(2);
   };
 
-  const handleCustomAmountChange = (e) => {
+  const handleCustomAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCustomAmount(e.target.value);
   };
 
-  const handleMonthlyPlanSelect = (plan) => {
+  const handleMonthlyPlanSelect = (plan: 'education' | 'global' | 'impact') => {
     setMonthlyPlan(plan);
     setSelectedAmount(null);
     setCustomAmount('');
@@ -202,158 +202,161 @@ export default function DonationFlow() {
 
         {/* Monthly Giving */}
         {donationType==='monthly' && (
-        <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Monthly Supporter</h2>
-          <p className="text-center text-gray-600 mb-8">
-            Join our community of monthly donors and create sustained impact in communities worldwide.
-          </p>
-          <div className="text-center mb-8">
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="number" 
-                placeholder="Custom monthly amount"
-                value={customAmount}
-                onChange={handleCustomAmountChange}
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 text-gray-900"
-              />
-              <Button 
-                onClick={() => { setMonthlyPlan('custom'); handleDonateClick(); }}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black px-8"
-              >
-                <i className="fas fa-heart mr-2"></i> Donate Monthly
-              </Button>
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div 
-              onClick={() => handleMonthlyPlanSelect('education')}
-              className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
-                monthlyPlan === 'education' ? 'border-green-500 bg-green-50' : 'hover:border-green-500'
-              }`}
-            >
-              <i className="fas fa-graduation-cap text-green-500 text-3xl mb-4"></i>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Education Supporter</h3>
-              <div className="text-2xl font-bold text-green-500 mb-2">$100/month</div>
-              <p className="text-sm text-gray-600 mb-4">Funds educational materials and teacher training</p>
-              <Button 
-                onClick={handleDonateClick}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
-              >
-                Support Education
-              </Button>
+          <>
+            <div className="bg-gray-50 rounded-2xl p-8 mb-12">
+              <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Become a Monthly Supporter</h2>
+              <p className="text-center text-gray-600 mb-8">
+                Join our community of monthly donors and create sustained impact in communities worldwide.
+              </p>
+              <div className="text-center mb-8">
+                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input
+                    type="number"
+                    placeholder="Custom monthly amount"
+                    value={customAmount}
+                    onChange={handleCustomAmountChange}
+                    className="flex-1 px-4 py-3 rounded-lg border border-gray-300 text-gray-900"
+                  />
+                  <Button
+                    onClick={() => {
+                      setMonthlyPlan('custom');
+                      handleDonateClick();
+                    }}
+                    className="bg-yellow-500 hover:bg-yellow-600 text-black px-8"
+                  >
+                    <i className="fas fa-heart mr-2"></i> Donate Monthly
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <div
+                  onClick={() => handleMonthlyPlanSelect('education')}
+                  className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
+                    monthlyPlan === 'education' ? 'border-green-500 bg-green-50' : 'hover:border-green-500'
+                  }`}
+                >
+                  <i className="fas fa-graduation-cap text-green-500 text-3xl mb-4"></i>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Education Supporter</h3>
+                  <div className="text-2xl font-bold text-green-500 mb-2">$100/month</div>
+                  <p className="text-sm text-gray-600 mb-4">Funds educational materials and teacher training</p>
+                  <Button
+                    onClick={handleDonateClick}
+                    className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
+                  >
+                    Support Education
+                  </Button>
+                </div>
+
+                <div
+                  onClick={() => handleMonthlyPlanSelect('global')}
+                  className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
+                    monthlyPlan === 'global' ? 'border-blue-500 bg-blue-50' : 'border-blue-500'
+                  }`}
+                >
+                  <i className="fas fa-globe text-blue-500 text-3xl mb-4"></i>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Global Champion</h3>
+                  <div className="text-2xl font-bold text-blue-500 mb-2">$500/month</div>
+                  <p className="text-sm text-gray-600 mb-4">Supports all four program areas comprehensively</p>
+                  <Button
+                    onClick={handleDonateClick}
+                    className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
+                  >
+                    Become a Champion
+                  </Button>
+                </div>
+
+                <div
+                  onClick={() => handleMonthlyPlanSelect('impact')}
+                  className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
+                    monthlyPlan === 'impact' ? 'border-yellow-500 bg-yellow-50' : 'hover:border-yellow-500'
+                  }`}
+                >
+                  <i className="fas fa-hands-helping text-yellow-500 text-3xl mb-4"></i>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Impact Partner</h3>
+                  <div className="text-2xl font-bold text-yellow-500 mb-2">$2,000/month</div>
+                  <p className="text-sm text-gray-600 mb-4">Enables major community development projects</p>
+                  <Button
+                    onClick={handleDonateClick}
+                    className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
+                  >
+                    Partner With Us
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <div 
-              onClick={() => handleMonthlyPlanSelect('global')}
-              className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
-                monthlyPlan === 'global' ? 'border-blue-500 bg-blue-50' : 'border-blue-500'
-              }`}
-            >
-              <i className="fas fa-globe text-blue-500 text-3xl mb-4"></i>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Global Champion</h3>
-              <div className="text-2xl font-bold text-blue-500 mb-2">$500/month</div>
-              <p className="text-sm text-gray-600 mb-4">Supports all four program areas comprehensively</p>
-              <Button 
-                onClick={handleDonateClick}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
-              >
-                Become a Champion
-              </Button>
+            {/* Other Ways to Give */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Corporate Sponsorship</h3>
+                <p className="text-gray-600 mb-6">
+                  Partner with us to create lasting impact while building your company's social responsibility profile.
+                </p>
+                <ul className="space-y-2 text-gray-600 mb-6">
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Custom partnership packages</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Employee engagement opportunities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Impact reporting and recognition</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-white rounded-xl p-8 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Legacy Giving</h3>
+                <p className="text-gray-600 mb-6">
+                  Create a lasting legacy that continues to open doors and create opportunities for generations to come.
+                </p>
+                <ul className="space-y-2 text-gray-600 mb-6">
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Planned giving options</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Memorial and tribute gifts</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
+                    <span>Endowment opportunities</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div 
-              onClick={() => handleMonthlyPlanSelect('impact')}
-              className={`bg-white rounded-xl p-6 text-center shadow-md cursor-pointer border-2 transition-all ${
-                monthlyPlan === 'impact' ? 'border-yellow-500 bg-yellow-50' : 'hover:border-yellow-500'
-              }`}
-            >
-              <i className="fas fa-hands-helping text-yellow-500 text-3xl mb-4"></i>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Impact Partner</h3>
-              <div className="text-2xl font-bold text-yellow-500 mb-2">$2,000/month</div>
-              <p className="text-sm text-gray-600 mb-4">Enables major community development projects</p>
-              <Button 
-                onClick={handleDonateClick}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black w-full"
-              >
-                Partner With Us
-              </Button>
+            {/* Impact Statement */}
+            <div className="text-center bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 lg:p-12 text-white">
+              <h2 className="text-2xl font-bold mb-4">Your Donation Launches Real Impact</h2>
+              <div className="grid md:grid-cols-4 gap-6 mb-8">
+                <div>
+                  <div className="text-3xl font-bold mb-2">98%</div>
+                  <div className="text-sm opacity-90">Goes directly to programs</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">100+</div>
+                  <div className="text-sm opacity-90">Countries impacted</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">50,000+</div>
+                  <div className="text-sm opacity-90">Lives transformed</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">24/7</div>
+                  <div className="text-sm opacity-90">Impact happening</div>
+                </div>
+              </div>
+              <p className="text-xl opacity-90 italic">
+                Because with your help, the world truly is theirs.
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* Other Ways to Give */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-xl p-8 shadow-lg">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Corporate Sponsorship</h3>
-            <p className="text-gray-600 mb-6">
-              Partner with us to create lasting impact while building your company's social responsibility profile.
-            </p>
-            <ul className="space-y-2 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Custom partnership packages</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Employee engagement opportunities</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Impact reporting and recognition</span>
-              </li>
-            </ul>
-            
-          </div>
-
-          <div className="bg-white rounded-xl p-8 shadow-lg">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Legacy Giving</h3>
-            <p className="text-gray-600 mb-6">
-              Create a lasting legacy that continues to open doors and create opportunities for generations to come.
-            </p>
-            <ul className="space-y-2 text-gray-600 mb-6">
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Planned giving options</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Memorial and tribute gifts</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-check text-blue-500 mt-1 mr-3"></i>
-                <span>Endowment opportunities</span>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-
-        {/* Impact Statement */}
-        <div className="text-center bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-8 lg:p-12 text-white">
-          <h2 className="text-2xl font-bold mb-4">Your Donation Launches Real Impact</h2>
-          <div className="grid md:grid-cols-4 gap-6 mb-8">
-            <div>
-              <div className="text-3xl font-bold mb-2">98%</div>
-              <div className="text-sm opacity-90">Goes directly to programs</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">100+</div>
-              <div className="text-sm opacity-90">Countries impacted</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">50,000+</div>
-              <div className="text-sm opacity-90">Lives transformed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">24/7</div>
-              <div className="text-sm opacity-90">Impact happening</div>
-            </div>
-          </div>
-          <p className="text-xl opacity-90 italic">
-            Because with your help, the world truly is theirs.
-          </p>
-        </div>
+          </>
         )}
       </div>
     </div>

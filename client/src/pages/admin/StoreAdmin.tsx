@@ -262,7 +262,7 @@ export default function StoreAdmin() {
         productTotals.set(item.productName, existing);
       });
     });
-    const topSelling = [...productTotals.values()].sort((a, b) => b.quantity - a.quantity)[0] || null;
+    const topSelling = Array.from(productTotals.values()).sort((a, b) => b.quantity - a.quantity)[0] || null;
 
     return {
       totalProducts,

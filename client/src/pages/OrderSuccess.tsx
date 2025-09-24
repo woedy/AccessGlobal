@@ -69,9 +69,18 @@ type OrderDetails = {
 const formatCurrency = (amount: number, currency = 'USD') =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
 
-const formatAddress = (address?: OrderDetails['shipping_details'] extends { address: infer A } ? A : never) => {
+type ShippingAddress = NonNullable<OrderDetails['shipping_details']>['address'];
+
+const formatAddress = (address?: ShippingAddress | null) => {
   if (!address) return null;
-  const parts = [address.line1, address.line2, address.city, address.state, address.postal_code, address.country].filter(Boolean);
+  const parts = [
+    address.line1,
+    address.line2,
+    address.city,
+    address.state,
+    address.postal_code,
+    address.country,
+  ].filter(Boolean);
   return parts.length ? parts.join(', ') : null;
 };
 

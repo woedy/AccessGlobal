@@ -12,7 +12,7 @@ type FieldErrors = Partial<Record<keyof CheckoutCustomerInfo, string>>;
 const CHECKOUT_CUSTOMER_STORAGE_KEY = 'access_global_checkout_customer';
 
 export default function CartPage() {
-  const { items, updateQuantity, removeFromCart, totalPrice } = useCart();
+  const { items, updateQuantity, removeFromCart, totalPrice, subtotal, bundleDiscount } = useCart();
 
   const [customer, setCustomer] = useState<CheckoutCustomerInfo>({
     name: '',
@@ -147,13 +147,29 @@ export default function CartPage() {
             <div className="mt-4 space-y-2 text-sm text-gray-700">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-medium">{formatCurrency(totalPrice)}</span>
+                <span className="font-medium">{formatCurrency(subtotal)}</span>
               </div>
+              {bundleDiscount !== 0 && (
+                <div
+                  className={`flex justify-between ${
+                    bundleDiscount > 0 ? 'text-emerald-700' : 'text-amber-700'
+                  }`}
+                >
+                  <span>Bundle pricing adjustment</span>
+                  <span>
+                    {bundleDiscount > 0 ? '-' : '+'}
+                    {formatCurrency(Math.abs(bundleDiscount))}
+                  </span>
+                </div>
+              )}
               <div className="flex justify-between">
                 <span>Shipping</span>
                 <span className="text-gray-500">Calculated at checkout</span>
               </div>
             </div>
+            <p className="mt-2 text-xs text-gray-500">
+              Each item is $2.99 on its own; buy any two together to lock in the $50 bundle pricing automatically.
+            </p>
             <div className="mt-4 border-t border-gray-200 pt-4 space-y-3">
               {items.map(item => {
                 const price = unitPrice(item);
@@ -162,7 +178,12 @@ export default function CartPage() {
                     <div>
                       <p className="font-medium text-gray-900">{item.name}</p>
                       {item.selectedVariant?.name && (
-                        <p className="text-xs text-gray-500">Option: {item.selectedVariant.name}</p>
+                        <p className="text-xs text-gray-500">{item.selectedVariant.name}</p>
+                      )}
+                      {(item.selectedVariant?.color || item.selectedVariant?.size) && (
+                        <p className="text-xs text-gray-500">
+                          {[item.selectedVariant?.color, item.selectedVariant?.size].filter(Boolean).join(' • ')}
+                        </p>
                       )}
                       <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
                     </div>
@@ -262,7 +283,9 @@ function CartRow({
   onChangeQty: (q: number) => void;
 }) {
   const price = item.selectedVariant?.price ?? item.price;
-  const name = item.selectedVariant ? `${item.name} (${item.selectedVariant.name})` : item.name;
+  const variant = item.selectedVariant;
+  const name = item.name;
+  const variantMeta = [variant?.color, variant?.size].filter(Boolean).join(' • ');
   const handleDec = () => onChangeQty(Math.max(1, item.quantity - 1));
   const handleInc = () => onChangeQty(item.quantity + 1);
 
@@ -280,7 +303,11 @@ function CartRow({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-base font-medium text-gray-900">{name}</p>
-            <p className="mt-1 text-sm text-gray-500">{formatCurrency(price)}</p>
+            {variant?.name && (
+              <p className="text-xs text-gray-500">{variant.name}</p>
+            )}
+            {variantMeta && <p className="text-xs text-gray-500">{variantMeta}</p>}
+            <p className="mt-1 text-sm text-gray-500">{formatCurrency(price)} each</p>
           </div>
           <button
             onClick={onRemove}

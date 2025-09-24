@@ -15,7 +15,8 @@ export default function ProductDetailPage() {
   const [variantError, setVariantError] = useState<string | null>(null);
   const [usingFallback, setUsingFallback] = useState(false);
   const { addToCart } = useCart();
-  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,18 +55,101 @@ export default function ProductDetailPage() {
   }, [params?.id]);
 
   useEffect(() => {
-    if (!product || !Array.isArray(product.variants) || product.variants.length === 0) {
-      setSelectedVariantId(null);
+    if (!product?.variants?.length) {
+      setSelectedColor(null);
+      setSelectedSize(null);
       return;
     }
-    const firstAvailableVariant = product.variants.find(variant => variant.stock === undefined || variant.stock > 0);
-    setSelectedVariantId((firstAvailableVariant || product.variants[0]).id);
+    const firstAvailableVariant =
+      product.variants.find(variant => variant.stock === undefined || variant.stock > 0) || product.variants[0];
+    setSelectedColor(firstAvailableVariant.color || null);
+    setSelectedSize(firstAvailableVariant.size || null);
   }, [product]);
 
   const selectedVariant = useMemo(() => {
-    if (!product?.variants || product.variants.length === 0) return null;
-    return product.variants.find(variant => variant.id === selectedVariantId) || null;
-  }, [product, selectedVariantId]);
+    if (!product?.variants?.length) return null;
+    return (
+      product.variants.find(variant => {
+        const matchesColor = selectedColor ? variant.color === selectedColor : true;
+        const matchesSize = selectedSize ? variant.size === selectedSize : true;
+        return matchesColor && matchesSize;
+      }) || null
+    );
+  }, [product, selectedColor, selectedSize]);
+
+  const availableColors = useMemo(() => {
+    if (!product?.variants?.length) return [] as string[];
+    return Array.from(
+      new Set(
+        product.variants
+          .map(variant => variant.color)
+          .filter((color): color is string => Boolean(color))
+      )
+    );
+  }, [product]);
+
+  const availableSizes = useMemo(() => {
+    if (!product?.variants?.length) return [] as string[];
+    return Array.from(
+      new Set(
+        product.variants
+          .map(variant => variant.size)
+          .filter((size): size is string => Boolean(size))
+      )
+    );
+  }, [product]);
+
+  const isColorUnavailable = (color: string) => {
+    if (!product?.variants?.length) return false;
+    const options = product.variants.filter(variant => variant.color === color);
+    if (!options.length) return true;
+    return options.every(variant => variant.stock !== undefined && variant.stock <= 0);
+  };
+
+  const isSizeUnavailable = (size: string) => {
+    if (!product?.variants?.length) return false;
+    const options = product.variants.filter(variant => {
+      if (selectedColor) {
+        return variant.size === size && variant.color === selectedColor;
+      }
+      return variant.size === size;
+    });
+    if (!options.length) return true;
+    return options.every(variant => variant.stock !== undefined && variant.stock <= 0);
+  };
+
+  const handleSelectColor = (color: string) => {
+    if (isColorUnavailable(color)) return;
+    setSelectedColor(color);
+    const matchingVariant = product?.variants?.find(variant => {
+      if (variant.color !== color) return false;
+      if (selectedSize && variant.size !== selectedSize) return false;
+      return variant.stock === undefined || variant.stock > 0;
+    });
+    if (matchingVariant) {
+      setSelectedSize(matchingVariant.size || null);
+    } else {
+      const fallback =
+        product?.variants?.find(variant => variant.color === color && (variant.stock === undefined || variant.stock > 0)) ||
+        product?.variants?.find(variant => variant.color === color);
+      setSelectedSize(fallback?.size || null);
+    }
+    setVariantError(null);
+  };
+
+  const handleSelectSize = (size: string) => {
+    if (isSizeUnavailable(size)) return;
+    setSelectedSize(size);
+    const matchingVariant = product?.variants?.find(variant => {
+      if (variant.size !== size) return false;
+      if (selectedColor && variant.color !== selectedColor) return false;
+      return variant.stock === undefined || variant.stock > 0;
+    });
+    if (matchingVariant) {
+      setSelectedColor(matchingVariant.color || null);
+    }
+    setVariantError(null);
+  };
 
   const displayPrice = product ? selectedVariant?.price ?? product.price : 0;
   const canAddToCart = Boolean(
@@ -77,7 +161,7 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (!product) return;
     if (product.variants?.length && !selectedVariant) {
-      setVariantError('Please choose an option before adding to cart.');
+      setVariantError('Please choose a color and size before adding to cart.');
       return;
     }
     addToCart(product, selectedVariant ?? undefined);
@@ -167,37 +251,71 @@ export default function ProductDetailPage() {
               {selectedVariant?.sku && (
                 <p className="mt-1 text-sm text-gray-500">SKU: {selectedVariant.sku}</p>
               )}
+              {product.variants?.length ? (
+                <p className="mt-2 text-sm text-gray-600">
+                  {selectedColor && <span className="mr-2">Color: <strong>{selectedColor}</strong></span>}
+                  {selectedSize && <span>Size: <strong>{selectedSize}</strong></span>}
+                </p>
+              ) : null}
             </div>
 
             {product.variants && product.variants.length > 0 && (
-              <div className="mt-6">
-                <h3 className="text-sm font-medium text-gray-900">Choose an option</h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {product.variants.map(variant => {
-                    const isSelected = variant.id === selectedVariantId;
-                    const outOfStock = variant.stock !== undefined && variant.stock <= 0;
-                    return (
-                      <button
-                        key={variant.id}
-                        type="button"
-                        onClick={() => {
-                          if (outOfStock) return;
-                          setSelectedVariantId(variant.id);
-                          setVariantError(null);
-                        }}
-                        className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                          isSelected
-                            ? 'border-amber-600 bg-amber-50 text-amber-700'
-                            : 'border-gray-300 text-gray-700 hover:border-amber-500 hover:text-amber-600'
-                        } ${outOfStock ? 'cursor-not-allowed opacity-60' : ''}`}
-                      >
-                        {variant.name}
-                        {variant.price !== product.price && ` + ${formatCurrency(variant.price)}`}
-                        {outOfStock ? ' (Out of stock)' : ''}
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="mt-6 space-y-5">
+                {availableColors.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-900">Choose a color</h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {availableColors.map(color => {
+                        const isSelected = color === selectedColor;
+                        const unavailable = isColorUnavailable(color);
+                        return (
+                          <button
+                            key={color}
+                            type="button"
+                            onClick={() => handleSelectColor(color)}
+                            disabled={unavailable}
+                            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                              isSelected
+                                ? 'border-amber-600 bg-amber-50 text-amber-700'
+                                : 'border-gray-300 text-gray-700 hover:border-amber-500 hover:text-amber-600'
+                            } ${unavailable ? 'cursor-not-allowed opacity-60' : ''}`}
+                          >
+                            {color}
+                            {unavailable ? ' (Out of stock)' : ''}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {availableSizes.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-900">Choose a size</h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {availableSizes.map(size => {
+                        const isSelected = size === selectedSize;
+                        const unavailable = isSizeUnavailable(size);
+                        return (
+                          <button
+                            key={size}
+                            type="button"
+                            onClick={() => handleSelectSize(size)}
+                            disabled={unavailable}
+                            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                              isSelected
+                                ? 'border-amber-600 bg-amber-50 text-amber-700'
+                                : 'border-gray-300 text-gray-700 hover:border-amber-500 hover:text-amber-600'
+                            } ${unavailable ? 'cursor-not-allowed opacity-60' : ''}`}
+                          >
+                            {size}
+                            {unavailable ? ' (Unavailable)' : ''}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

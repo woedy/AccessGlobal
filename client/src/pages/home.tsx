@@ -13,24 +13,30 @@ import {
 } from "lucide-react";
 
 // Impact Counter Component with animation
-const ImpactCounter = ({ target, label, duration = 2000 }) => {
-  const [count, setCount] = useState(0);
+type ImpactCounterProps = {
+  target: number;
+  label: string;
+  duration?: number;
+};
+
+const ImpactCounter = ({ target, label, duration = 2000 }: ImpactCounterProps) => {
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     let start = 0;
     const increment = target / (duration / 50);
 
-    const timer = setInterval(() => {
+    const timer = window.setInterval(() => {
       start += increment;
       if (start >= target) {
         setCount(target);
-        clearInterval(timer);
+        window.clearInterval(timer);
       } else {
         setCount(Math.floor(start));
       }
     }, 50);
 
-    return () => clearInterval(timer);
+    return () => window.clearInterval(timer);
   }, [target, duration]);
 
   return (
@@ -63,7 +69,16 @@ const FloatingElements = () => (
 );
 
 // Program Card Component
-const ProgramCard = ({ icon: Icon, title, description, color, image, id }) => (
+type ProgramCardProps = {
+  icon: React.ComponentType<{ size?: number | string }>;
+  title: string;
+  description: string;
+  color: string;
+  image: string;
+  id: string;
+};
+
+const ProgramCard = ({ icon: Icon, title, description, color, image, id }: ProgramCardProps) => (
   <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
     <div className="relative overflow-hidden">
       <img
@@ -100,7 +115,7 @@ export default function Home() {
     setIsVisible(true);
   }, []);
 
-  const programs = [
+  const programs: ProgramCardProps[] = [
     {
       id: "education",
       icon: Globe,

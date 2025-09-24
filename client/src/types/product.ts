@@ -36,7 +36,7 @@ export const mockProducts: Product[] = [
     name: 'Access Global T-Shirt',
     slug: 'access-global-t-shirt',
     description: 'Comfortable cotton t-shirt with Access Global logo',
-    price: 29.99,
+    price: 2.99,
     category: 'apparel',
     images: [
       '/assets/store/access-tshirt-1.png',
@@ -44,22 +44,58 @@ export const mockProducts: Product[] = [
     ],
     variants: [
       {
-        id: '1-1',
-        name: 'Small',
-        price: 29.99,
-        stock: 10,
-        sku: 'AG-TS-S',
+        id: '1-black-s',
+        name: 'Black / Small',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-TS-BLK-S',
         color: 'Black',
         size: 'S'
       },
       {
-        id: '1-2',
-        name: 'Medium',
-        price: 29.99,
-        stock: 15,
-        sku: 'AG-TS-M',
+        id: '1-black-m',
+        name: 'Black / Medium',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-TS-BLK-M',
         color: 'Black',
         size: 'M'
+      },
+      {
+        id: '1-black-l',
+        name: 'Black / Large',
+        price: 2.99,
+        stock: 20,
+        sku: 'AG-TS-BLK-L',
+        color: 'Black',
+        size: 'L'
+      },
+      {
+        id: '1-white-s',
+        name: 'White / Small',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-TS-WHT-S',
+        color: 'White',
+        size: 'S'
+      },
+      {
+        id: '1-white-m',
+        name: 'White / Medium',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-TS-WHT-M',
+        color: 'White',
+        size: 'M'
+      },
+      {
+        id: '1-white-l',
+        name: 'White / Large',
+        price: 2.99,
+        stock: 20,
+        sku: 'AG-TS-WHT-L',
+        color: 'White',
+        size: 'L'
       }
     ],
     featured: true,
@@ -74,11 +110,67 @@ export const mockProducts: Product[] = [
     name: 'Access Global Hoodie',
     slug: 'access-global-hoodie',
     description: 'Warm and cozy hoodie with embroidered logo',
-    price: 59.99,
+    price: 2.99,
     category: 'apparel',
     images: [
       '/assets/store/Hoodie.png',
       '/assets/store/Hoodie.png' // Using the same image as placeholder for back
+    ],
+    variants: [
+      {
+        id: '2-black-s',
+        name: 'Black / Small',
+        price: 2.99,
+        stock: 20,
+        sku: 'AG-HD-BLK-S',
+        color: 'Black',
+        size: 'S'
+      },
+      {
+        id: '2-black-m',
+        name: 'Black / Medium',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-HD-BLK-M',
+        color: 'Black',
+        size: 'M'
+      },
+      {
+        id: '2-black-l',
+        name: 'Black / Large',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-HD-BLK-L',
+        color: 'Black',
+        size: 'L'
+      },
+      {
+        id: '2-white-s',
+        name: 'White / Small',
+        price: 2.99,
+        stock: 20,
+        sku: 'AG-HD-WHT-S',
+        color: 'White',
+        size: 'S'
+      },
+      {
+        id: '2-white-m',
+        name: 'White / Medium',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-HD-WHT-M',
+        color: 'White',
+        size: 'M'
+      },
+      {
+        id: '2-white-l',
+        name: 'White / Large',
+        price: 2.99,
+        stock: 25,
+        sku: 'AG-HD-WHT-L',
+        color: 'White',
+        size: 'L'
+      }
     ],
     featured: true,
     inStock: true,
@@ -92,11 +184,67 @@ export const mockProducts: Product[] = [
     name: 'Access Global Mug',
     slug: 'access-global-mug',
     description: 'Ceramic mug with Access Global design',
-    price: 19.99,
+    price: 2.99,
     category: 'accessories',
     images: [
       '/assets/store/Cup.png',
       '/assets/store/Cup.png' // Using the same image as placeholder for back
+    ],
+    variants: [
+      {
+        id: '3-black-s',
+        name: 'Black / Small',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-BLK-S',
+        color: 'Black',
+        size: 'S'
+      },
+      {
+        id: '3-black-m',
+        name: 'Black / Medium',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-BLK-M',
+        color: 'Black',
+        size: 'M'
+      },
+      {
+        id: '3-black-l',
+        name: 'Black / Large',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-BLK-L',
+        color: 'Black',
+        size: 'L'
+      },
+      {
+        id: '3-white-s',
+        name: 'White / Small',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-WHT-S',
+        color: 'White',
+        size: 'S'
+      },
+      {
+        id: '3-white-m',
+        name: 'White / Medium',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-WHT-M',
+        color: 'White',
+        size: 'M'
+      },
+      {
+        id: '3-white-l',
+        name: 'White / Large',
+        price: 2.99,
+        stock: 30,
+        sku: 'AG-MG-WHT-L',
+        color: 'White',
+        size: 'L'
+      }
     ],
     featured: false,
     inStock: true,
@@ -118,6 +266,8 @@ export interface CartState {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  subtotal: number;
+  bundleDiscount: number;
   isOpen: boolean;
 }
 

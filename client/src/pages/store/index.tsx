@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { mockProducts } from '../../types/product';
 import { Product } from '../../types/product';
-import Link from 'next/link';
+import { Link } from 'wouter';
 
 export default function StorePage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   
   // Get unique categories
-  const categories = ['all', ...new Set(mockProducts.map(p => p.category))];
+  const categories = ['all', ...Array.from(new Set(mockProducts.map(p => p.category ?? 'uncategorized')))]
+    .filter((category, index, allCategories) => allCategories.indexOf(category) === index);
   
   // Filter products by selected category
   const filteredProducts = selectedCategory === 'all' 

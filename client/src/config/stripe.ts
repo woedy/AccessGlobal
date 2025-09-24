@@ -19,4 +19,4 @@ export const STRIPE_CONFIG = {
     ONE_TIME: 'payment',
     RECURRING: 'subscription'
   }
-};
+} as const;
