@@ -480,7 +480,7 @@ app.post('/api/store/checkout', async (req, res) => {
       return res.status(400).json({ error: 'No items in cart' });
     }
 
-    const stripeLineItems = [];
+    const checkoutEntries = [];
     const summaryItems = [];
     let subtotal = 0;
     const unitPricesForCheckout = [];
@@ -539,40 +539,33 @@ app.post('/api/store/checkout', async (req, res) => {
         unitPricesForCheckout.push(unitPrice);
       }
 
-      const productData = {
+      const baseProductData = {
         name: displayName,
       };
       if (lineDescription) {
-        productData.description = lineDescription;
+        baseProductData.description = lineDescription;
       }
       if (imageUrl) {
-        productData.images = [imageUrl];
+        baseProductData.images = [imageUrl];
       }
 
-      const metadata = buildStripeMetadata({
+      const baseMetadata = {
         productId: product.id,
         slug: product.slug,
         productName: product.name,
         variantId: variant ? variant.id : null,
         variantName: variant ? variant.name : null,
         sku: (variant && variant.sku) || product.sku || null,
-        quantity,
-        unitPrice: unitPrice.toFixed(2),
-        lineTotal: (unitPrice * quantity).toFixed(2),
         currency: 'USD',
         image: imageUrl,
-      });
-      if (Object.keys(metadata).length) {
-        productData.metadata = metadata;
-      }
+        originalUnitPrice: unitPrice.toFixed(2),
+      };
 
-      stripeLineItems.push({
-        price_data: {
-          currency: 'usd',
-          product_data: productData,
-          unit_amount: Math.round(unitPrice * 100),
-        },
+      checkoutEntries.push({
+        productData: baseProductData,
+        metadata: baseMetadata,
         quantity,
+        unitPrice,
       });
 
       summaryItems.push({
@@ -592,6 +585,7 @@ app.post('/api/store/checkout', async (req, res) => {
     const subtotalRounded = Number(subtotal.toFixed(2));
     let orderTotal = subtotalRounded;
     let bundleDiscount = 0;
+    let discountedUnitsPerEntry = new Array(checkoutEntries.length).fill(0);
     if (unitPricesForCheckout.length >= 2) {
       const sortedPrices = [...unitPricesForCheckout].sort((a, b) => b - a);
       const pairCount = Math.floor(sortedPrices.length / 2);
@@ -607,7 +601,60 @@ app.post('/api/store/checkout', async (req, res) => {
       if (Object.is(bundleDiscount, -0)) {
         bundleDiscount = 0;
       }
+
+      if (pairCount > 0) {
+        const discountedUnitTotal = pairCount * 2;
+        const unitAssignments = [];
+        checkoutEntries.forEach((entry, entryIndex) => {
+          for (let i = 0; i < entry.quantity; i += 1) {
+            unitAssignments.push({ entryIndex, price: entry.unitPrice });
+          }
+        });
+        unitAssignments.sort((a, b) => b.price - a.price);
+        discountedUnitsPerEntry = new Array(checkoutEntries.length).fill(0);
+        for (let i = 0; i < discountedUnitTotal && i < unitAssignments.length; i += 1) {
+          const assignment = unitAssignments[i];
+          discountedUnitsPerEntry[assignment.entryIndex] += 1;
+        }
+      }
     }
+
+    const stripeLineItems = checkoutEntries.reduce((acc, entry, entryIndex) => {
+      const discountedUnits = discountedUnitsPerEntry[entryIndex] || 0;
+      const regularUnits = entry.quantity - discountedUnits;
+
+      const buildLineItem = (quantity, effectiveUnitPrice, discounted) => {
+        const productData = { ...entry.productData };
+        const metadata = buildStripeMetadata({
+          ...entry.metadata,
+          quantity,
+          unitPrice: effectiveUnitPrice.toFixed(2),
+          lineTotal: (effectiveUnitPrice * quantity).toFixed(2),
+          discountType: discounted ? 'bundle_pair' : undefined,
+        });
+        if (Object.keys(metadata).length) {
+          productData.metadata = metadata;
+        }
+
+        return {
+          price_data: {
+            currency: 'usd',
+            product_data: productData,
+            unit_amount: Math.round(effectiveUnitPrice * 100),
+          },
+          quantity,
+        };
+      };
+
+      if (discountedUnits > 0) {
+        acc.push(buildLineItem(discountedUnits, BUNDLE_PAIR_PRICE / 2, true));
+      }
+      if (regularUnits > 0) {
+        acc.push(buildLineItem(regularUnits, entry.unitPrice, false));
+      }
+
+      return acc;
+    }, []);
     const rawCustomer = customer && typeof customer === 'object' ? customer : {};
     const safeCustomer = {
       name: sanitizeString(rawCustomer.name),
@@ -643,17 +690,6 @@ app.post('/api/store/checkout', async (req, res) => {
       ? STORE_SHIPPING_COUNTRIES
       : ['US'];
 
-    let appliedCouponId = null;
-    if (bundleDiscount > 0) {
-      const coupon = await stripe.coupons.create({
-        name: 'Bundle discount',
-        amount_off: Math.round(bundleDiscount * 100),
-        currency: 'usd',
-        duration: 'once',
-      });
-      appliedCouponId = coupon?.id || null;
-    }
-
     const sessionConfig = {
       payment_method_types: ['card'],
       mode: 'payment',
@@ -688,10 +724,6 @@ app.post('/api/store/checkout', async (req, res) => {
       },
       allow_promotion_codes: true,
     };
-
-    if (appliedCouponId) {
-      sessionConfig.discounts = [{ coupon: appliedCouponId }];
-    }
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
