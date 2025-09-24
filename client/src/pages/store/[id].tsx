@@ -17,6 +17,8 @@ export default function ProductDetailPage() {
   const { addToCart } = useCart();
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -66,6 +68,33 @@ export default function ProductDetailPage() {
     setSelectedSize(firstAvailableVariant.size || null);
   }, [product]);
 
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsLightboxOpen(false);
+        setLightboxImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isLightboxOpen]);
+
+  useEffect(() => {
+    setIsLightboxOpen(false);
+    setLightboxImage(null);
+  }, [product?.id]);
+
   const selectedVariant = useMemo(() => {
     if (!product?.variants?.length) return null;
     return (
@@ -76,6 +105,23 @@ export default function ProductDetailPage() {
       }) || null
     );
   }, [product, selectedColor, selectedSize]);
+
+  const galleryImages = useMemo(() => {
+    if (!product) return [] as string[];
+    const variantImages = (product.variants || [])
+      .map(variant => variant.image)
+      .filter((image): image is string => Boolean(image));
+    const combined = [...variantImages, ...(product.images || [])];
+    return Array.from(new Set(combined));
+  }, [product]);
+
+  const displayImage =
+    selectedVariant?.image ||
+    galleryImages[0] ||
+    product?.images?.[0] ||
+    'https://placehold.co/600x800/1e3a8a/white?text=Image+Not+Found';
+
+  const thumbnails = galleryImages.length ? galleryImages : product?.images ?? [];
 
   const availableColors = useMemo(() => {
     if (!product?.variants?.length) return [] as string[];
@@ -158,6 +204,17 @@ export default function ProductDetailPage() {
     (!product.variants?.length || (selectedVariant && (selectedVariant.stock === undefined || selectedVariant.stock > 0)))
   );
 
+  const handleOpenLightbox = (image?: string) => {
+    if (!image) return;
+    setLightboxImage(image);
+    setIsLightboxOpen(true);
+  };
+
+  const handleCloseLightbox = () => {
+    setIsLightboxOpen(false);
+    setLightboxImage(null);
+  };
+
   const handleAddToCart = () => {
     if (!product) return;
     if (product.variants?.length && !selectedVariant) {
@@ -213,9 +270,21 @@ export default function ProductDetailPage() {
       <div className="max-w-7xl mx-auto">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8">
           <div className="space-y-4">
-            <div className="aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
+            <div
+              className="aspect-square w-full overflow-hidden rounded-lg bg-gray-100 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-amber-500"
+              role="button"
+              tabIndex={0}
+              aria-label={`View larger image of ${product.name}`}
+              onClick={() => handleOpenLightbox(displayImage)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  handleOpenLightbox(displayImage);
+                }
+              }}
+            >
               <img
-                src={product.images[0]}
+                src={displayImage}
                 alt={product.name}
                 className="h-full w-full object-cover object-center"
                 onError={(event) => {
@@ -225,15 +294,26 @@ export default function ProductDetailPage() {
               />
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {product.images.map((image, index) => (
-                <div key={index} className="aspect-square overflow-hidden rounded-lg bg-gray-100">
-                  <img
-                    src={image}
-                    alt={`${product.name} ${index + 1}`}
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-              ))}
+              {thumbnails.map((image, index) => {
+                const isActive = image === displayImage;
+                return (
+                  <button
+                    key={image}
+                    type="button"
+                    onClick={() => handleOpenLightbox(image)}
+                    className={`aspect-square overflow-hidden rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-zoom-in ${
+                      isActive ? 'ring-2 ring-amber-500 ring-offset-2' : ''
+                    }`}
+                    aria-label={`View ${product.name} preview`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name} ${index + 1}`}
+                      className="h-full w-full object-cover object-center"
+                    />
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -373,6 +453,34 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+      {isLightboxOpen && lightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={handleCloseLightbox}
+        >
+          <div className="relative max-h-full max-w-full" onClick={event => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={handleCloseLightbox}
+              className="absolute -top-3 -right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold text-gray-700 shadow-lg transition hover:bg-white"
+              aria-label="Close image preview"
+            >
+              ×
+            </button>
+            <img
+              src={lightboxImage}
+              alt={`${product.name} enlarged`}
+              className="max-h-[85vh] max-w-[85vw] rounded-lg object-contain shadow-2xl"
+              onError={(event) => {
+                const target = event.target as HTMLImageElement;
+                target.src = 'https://placehold.co/1200x1200/1e3a8a/white?text=Image+Not+Found';
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

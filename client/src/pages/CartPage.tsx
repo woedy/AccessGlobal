@@ -168,7 +168,7 @@ export default function CartPage() {
               </div>
             </div>
             <p className="mt-2 text-xs text-gray-500">
-              Each item is $2.99 on its own; buy any two together to lock in the $50 bundle pricing automatically.
+              Each item is $29.99 on its own; buy any two together to lock in the $50 bundle pricing automatically.
             </p>
             <div className="mt-4 border-t border-gray-200 pt-4 space-y-3">
               {items.map(item => {
