@@ -1,1 +1,71 @@
-[]
+[
+  {
+    "id": "1a2dcaff-8044-4783-bb84-bdb5d1cde15f",
+    "status": "pending",
+    "deliveryStatus": "pending",
+    "currency": "usd",
+    "total": 50,
+    "items": [
+      {
+        "price_data": {
+          "currency": "usd",
+          "product_data": {
+            "name": "Access Global Hoodie (Black / Small)",
+            "description": "Warm and cozy hoodie with embroidered logo - Variant: Black / Small",
+            "metadata": {
+              "productId": "prod-access-hoodie",
+              "slug": "access-global-hoodie",
+              "productName": "Access Global Hoodie",
+              "variantId": "hoodie-black-s",
+              "variantName": "Black / Small",
+              "sku": "AG-HD-BLK-S",
+              "quantity": "2",
+              "unitPrice": "29.99",
+              "lineTotal": "59.98",
+              "currency": "USD"
+            }
+          },
+          "unit_amount": 2999
+        },
+        "quantity": 2
+      }
+    ],
+    "summary": {
+      "items": [
+        {
+          "productId": "prod-access-hoodie",
+          "productName": "Access Global Hoodie",
+          "variantId": "hoodie-black-s",
+          "variantName": "Black / Small",
+          "quantity": 2,
+          "unitPrice": 29.99,
+          "lineTotal": 59.98,
+          "image": "/assets/store_items/Hoodie Girl Black.png",
+          "sku": "AG-HD-BLK-S",
+          "currency": "USD"
+        }
+      ],
+      "subtotal": 59.98,
+      "notes": "234342342423"
+    },
+    "customer": {
+      "name": "sdfsdfsdf",
+      "email": "dsffdsf@gmail.com",
+      "phone": "234234324234",
+      "notes": "234342342423"
+    },
+    "notes": "234342342423",
+    "stripeSessionId": null,
+    "checkoutUrl": null,
+    "stripeCustomerId": null,
+    "paymentIntentId": null,
+    "metadata": {},
+    "shipping_details": null,
+    "customer_details": null,
+    "delivery": null,
+    "fulfillmentHistory": [],
+    "emailHistory": [],
+    "createdAt": "2025-09-24T08:45:39.896Z",
+    "updatedAt": "2025-09-24T08:45:39.896Z"
+  }
+]

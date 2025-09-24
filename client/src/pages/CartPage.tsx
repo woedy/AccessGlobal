@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { useCart } from '@/contexts/CartContext';
 import type { CartItem } from '@/types/product';
 import { processCheckout, type CheckoutCustomerInfo } from '@/services/storeCheckoutService';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const formatCurrency = (amount: number, currency = 'USD') =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
@@ -292,7 +293,7 @@ function CartRow({
   return (
     <div className="bg-white rounded-lg shadow p-4 flex gap-4">
       <div className="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
-        <img
+        <OptimizedImage
           src={item.images?.[0] || 'https://placehold.co/300x300/eee/aaa?text=No+Image'}
           alt={item.name}
           className="w-full h-full object-cover"
