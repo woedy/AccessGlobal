@@ -356,7 +356,7 @@ export const mockProducts: Product[] = [
     name: "Access Global Men's Jacket",
     slug: 'access-global-mens-jacket',
     description: "Weather-ready men's jacket with embroidered Access Global patch and zip pockets.",
-    price: 29.99,
+    price: 49.99,
     category: 'outerwear',
     images: [
       '/assets/optimized_store_items/Jacket Boy White.webp',
@@ -366,7 +366,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-white-s',
         name: 'White / Small',
-        price: 29.99,
+        price: 49.99,
         stock: 18,
         sku: 'AG-JK-MNS-WHT-S',
         color: 'White',
@@ -376,7 +376,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-white-m',
         name: 'White / Medium',
-        price: 29.99,
+        price: 49.99,
         stock: 22,
         sku: 'AG-JK-MNS-WHT-M',
         color: 'White',
@@ -386,7 +386,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-white-l',
         name: 'White / Large',
-        price: 29.99,
+        price: 49.99,
         stock: 20,
         sku: 'AG-JK-MNS-WHT-L',
         color: 'White',
@@ -396,7 +396,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-black-s',
         name: 'Black / Small',
-        price: 29.99,
+        price: 49.99,
         stock: 18,
         sku: 'AG-JK-MNS-BLK-S',
         color: 'Black',
@@ -406,7 +406,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-black-m',
         name: 'Black / Medium',
-        price: 29.99,
+        price: 49.99,
         stock: 22,
         sku: 'AG-JK-MNS-BLK-M',
         color: 'Black',
@@ -416,7 +416,7 @@ export const mockProducts: Product[] = [
       {
         id: '5-black-l',
         name: 'Black / Large',
-        price: 29.99,
+        price: 49.99,
         stock: 20,
         sku: 'AG-JK-MNS-BLK-L',
         color: 'Black',
@@ -436,7 +436,7 @@ export const mockProducts: Product[] = [
     name: "Access Global Women's Jacket",
     slug: 'access-global-womens-jacket',
     description: "Tailored women's jacket with sleek lines and an Access Global emblem on the chest.",
-    price: 29.99,
+    price: 49.99,
     category: 'outerwear',
     images: [
       '/assets/optimized_store_items/Jacket Girl white.webp',
@@ -446,7 +446,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-white-s',
         name: 'White / Small',
-        price: 29.99,
+        price: 49.99,
         stock: 18,
         sku: 'AG-JK-WNS-WHT-S',
         color: 'White',
@@ -456,7 +456,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-white-m',
         name: 'White / Medium',
-        price: 29.99,
+        price: 49.99,
         stock: 22,
         sku: 'AG-JK-WNS-WHT-M',
         color: 'White',
@@ -466,7 +466,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-white-l',
         name: 'White / Large',
-        price: 29.99,
+        price: 49.99,
         stock: 20,
         sku: 'AG-JK-WNS-WHT-L',
         color: 'White',
@@ -476,7 +476,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-black-s',
         name: 'Black / Small',
-        price: 29.99,
+        price: 49.99,
         stock: 18,
         sku: 'AG-JK-WNS-BLK-S',
         color: 'Black',
@@ -486,7 +486,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-black-m',
         name: 'Black / Medium',
-        price: 29.99,
+        price: 49.99,
         stock: 22,
         sku: 'AG-JK-WNS-BLK-M',
         color: 'Black',
@@ -496,7 +496,7 @@ export const mockProducts: Product[] = [
       {
         id: '6-black-l',
         name: 'Black / Large',
-        price: 29.99,
+        price: 49.99,
         stock: 20,
         sku: 'AG-JK-WNS-BLK-L',
         color: 'Black',
@@ -516,7 +516,7 @@ export const mockProducts: Product[] = [
     name: 'Access Global Socks',
     slug: 'access-global-socks',
     description: 'Cozy rib-knit socks featuring the Access Global emblem at the cuff.',
-    price: 19.99,
+    price: 9.99,
     category: 'accessories',
     images: [
       '/assets/optimized_store_items/Socks White.webp',
@@ -526,7 +526,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-white-s',
         name: 'White / Small',
-        price: 19.99,
+        price: 9.99,
         stock: 40,
         sku: 'AG-SK-WHT-S',
         color: 'White',
@@ -536,7 +536,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-white-m',
         name: 'White / Medium',
-        price: 19.99,
+        price: 9.99,
         stock: 45,
         sku: 'AG-SK-WHT-M',
         color: 'White',
@@ -546,7 +546,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-white-l',
         name: 'White / Large',
-        price: 19.99,
+        price: 9.99,
         stock: 35,
         sku: 'AG-SK-WHT-L',
         color: 'White',
@@ -556,7 +556,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-black-s',
         name: 'Black / Small',
-        price: 19.99,
+        price: 9.99,
         stock: 40,
         sku: 'AG-SK-BLK-S',
         color: 'Black',
@@ -566,7 +566,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-black-m',
         name: 'Black / Medium',
-        price: 19.99,
+        price: 9.99,
         stock: 45,
         sku: 'AG-SK-BLK-M',
         color: 'Black',
@@ -576,7 +576,7 @@ export const mockProducts: Product[] = [
       {
         id: '7-black-l',
         name: 'Black / Large',
-        price: 19.99,
+        price: 9.99,
         stock: 35,
         sku: 'AG-SK-BLK-L',
         color: 'Black',
