@@ -10,7 +10,6 @@ export default defineConfig({
       test: /\.(jpe?g|png|gif|tiff|webp|svg|avif)$/i,
       include: [
         '**/assets/**/*.{jpg,jpeg,png,gif,tiff,webp,svg,avif}',
-        '**/dhalia_works/**/*.{jpg,jpeg,png,gif,tiff,webp,svg,avif}'
       ],
       exclude: undefined,
       includePublic: true,

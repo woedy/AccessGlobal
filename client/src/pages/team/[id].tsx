@@ -62,52 +62,7 @@ CORE PHILOSOPHY
       '/assets/Engel Moses.jpg'
     ]
   },
-  {
-    id: 'dhalia-sabeh',
-    name: 'Dhalia Sabeh',
-    role: 'Director of Education & Training',
-    bio: `Education and counseling professional with extensive experience in organizational leadership and community service. Currently pursuing a Doctor of Education in Organizational Change and Leadership at the University of Southern California (expected 2027).
 
-
-EDUCATION
-• Doctor of Education in Organizational Change and Leadership - University of Southern California (Candidate 2027)
-• Ordination Program - Dominion Theological Seminary (2025)
-• Diploma in Apostolic and Ministry - Dominion Theological Seminary (2024)
-• M.A. in Guidance and Counseling - University of Ghana (2017)
-• B.Sc. in Business Administration - University of Phoenix (2007)
-
-
-PROFESSIONAL HIGHLIGHTS
-• Extensive training in cultural diversity, harm reduction, and motivational interviewing
-• Certified in First Aid and CPR (2022)
-• Experienced in project management and leadership development
-• Specialized in faith-based education and counseling
-
-
-Dhalia brings a wealth of knowledge in educational leadership and community development to our team.`,    
-    image: '/assets/Dhalia Sabeh.jpg',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    awards: [
-      "County of San Mateo, Caminar - Director of Services' Outstanding Services",
-      'County of San Matteo, Caminar - Team Spirit Award',
-      'County of San Francisco, Family Service Agency - Documentation Excellence',
-      'Action Chapel International, Prayer Cathedral - The MVP',
-      'Dominion Christian Academy - Customer Service Award',
-      'Outstanding Administrative Employee - Caminar'
-    ],
-    gallery: [
-      '/assets/optimized_gallery/IMG-20250917-WA0004.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0005.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0009.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0011.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0015.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0017.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0019.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0022.webp',
-      '/assets/optimized_gallery/IMG-20250917-WA0025.webp'
-    ]
-  },
   {
     id: 'levytska-oksana',
     name: 'Levytska Oksana',

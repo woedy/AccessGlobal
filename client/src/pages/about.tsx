@@ -25,19 +25,7 @@ const teamMembers: TeamMember[] = [
       'Humanitarian leader'
     ]
   },
-  {
-    id: 'dhalia-sabeh',
-    name: 'Dhalia Sabeh',
-    role: 'Director of Education & Training',
-    bio: 'Education and counseling professional with extensive experience in organizational leadership and community service.',
-    image: '/assets/Dhalia Sabeh.jpg',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
-    awards: [
-      "County of San Mateo, Caminar - Director of Services' Outstanding Services",
-      'Outstanding Administrative Employee - Caminar'
-    ]
-  },
+
   {
     id: 'levytska-oksana',
     name: 'Levytska Oksana',
